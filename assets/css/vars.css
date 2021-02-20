@@ -1,17 +1,19 @@
 /* Variables
 /* ---------------------------------------------------------- */
 
-@import url('https://fonts.googleapis.com/css?family=Muli:400,400i,600,700,700i,800');
-
 :root {
 
     /* Colours */
-    --color-primary: #3eb0ef;
-    --color-base: #131313;
+    --color-primary: #9471c6;
+    --color-base: #131015;
     --color-border: #ddd;
-    --color-bg: #f8f8f8;
+    --color-bg: #f8f7fa;
+
+    --color-text-onLight: #141116;
+    --color-text-onDark: #F8F0FD;
 
     /* Fonts */
+    --font-fancy: 'Venera', sans-serif;
     --font-sans-serif: 'Muli', sans-serif;
     --font-serif: Georgia, Times, serif;
     --font-mono: Menlo, Courier, monospace;

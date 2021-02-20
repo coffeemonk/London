@@ -1,0 +1,78 @@
+{{!< default}}
+
+{{#page}}
+<article class="post-content {{page_class}} no-image">
+
+    <header class="post-content-header">
+        <h2 class="post-content-title">{{title}}</h2>
+    </header>
+
+    <div class="post-content-body">
+        <div class="row">
+            <div class="col">
+                {{content}}
+                <hr />
+                <p id="book-details" style="font-size:.75em;">
+                    <b>Publisher:</b>
+                        {{#has tag="#sgp"}}
+                            Savant-Garde Press
+                        {{else}}
+                            Jetpack Wanderer Press
+                        {{/has}}<br />
+                    <b>Available in:</b>
+                        {{#has tag="#paperback"}}
+                            Paperback{{#has tag="#ebook, #audiobook"}}, {{/has}}
+                        {{/has}}
+                        {{#has tag="#ebook"}}
+                            eBook{{#has tag="#audiobook"}}, {{/has}}
+                        {{/has}}
+                        {{#has tag="#audiobook"}}
+                            Audiobook
+                        {{/has}}<br />
+                    <b>Published:</b> {{date published_at format="MMMM YYYY"}}
+                </p>
+            </div>
+            <div class="col-4">
+                <img src="{{feature_image}}" /><br />
+                <h4 style="text-align: center;">${{date published_at format="HH"}}.95</h4>
+                <ul class="actions fit stacked" data-links='{{excerpt}}'>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</article>
+{{/page}}
+
+{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
+{{#contentFor "scripts"}}
+<script>
+    var images = document.querySelectorAll('.kg-gallery-image img');
+    images.forEach(function (image) {
+        var container = image.closest('.kg-gallery-image');
+        var width = image.attributes.width.value;
+        var height = image.attributes.height.value;
+        var ratio = width / height;
+        container.style.flex = ratio + ' 1 0%';
+    })
+    $(document).ready(
+        function() {
+            var linksData = $('ul.actions').data('links');
+            if (!!linksData.isbn) {
+                $('#book-details').append('<br /><b>ISBN:</b> ' + linksData.isbn);
+            }
+            if (!!linksData.payhip) {
+                $('ul.actions').append('<li><a href="https://payhip.com/b/'+linksData.payhip+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+linksData.payhip+'">Buy Direct</a></li>');
+                $('body').append('<scr'+'ipt type="text/javascript" src="https://payhip.com/payhip.js?v=24u68984"></scr'+'ipt>')
+            }
+            if (!!linksData.bookshop) {
+                $('ul.actions').append('<li><a href="https://bookshop.org/books/'+linksData.bookshop+'" class="button fit">Buy Local</a></li>');
+            }
+            if (!!linksData.books2read) {
+                $('ul.actions').append('<li><a href="https://books2read.com/'+linksData.books2read+'" class="button fit">Buy Online</a></li>');
+            }
+        }
+    )
+</script>
+{{/contentFor}}

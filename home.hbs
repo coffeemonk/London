@@ -1,0 +1,61 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+
+{{#if @site.description}}
+    <header class="page-head">
+        <h3 class="page-head-title">{{@site.description}}</h3>
+    </header>
+{{/if}}
+
+<div class="post-feed">
+
+    {{#get "pages" filter="primary_tag:books+featured:true" order="published_at desc" as |books|}}
+        {{#foreach books}}
+            {{#if @first}}
+                <article class="post-card {{post_class}} post-card-large {{#if feature_image}}with-image" style="background-image: url({{img_url feature_image size="xl"}}){{else}}no-image{{/if}}">
+            {{else}}
+                <article class="post-card {{post_class}} {{#if feature_image}}with-image" style="background-image: url({{img_url feature_image size="l"}}){{else}}no-image{{/if}}">
+            {{/if}}
+                <a class="post-card-link" href="{{url}}">
+                    <div class="post-card-content">
+                        <h2 class="post-card-title">{{title}}</h2>
+                    </div>
+                </a>
+            </article>
+        {{/foreach}}
+    {{/get}}
+
+    {{#unless @member}}
+        <article class="post-card no-image">
+            <div class="post-card-content subscribe-form">
+                {{!-- {{> "subscribe-form"}} --}}
+                <h3 class="post-card-title fancy">Join the Adventure!</h3>
+                <p class="subscribe-form-description">Get two introductory science-fiction stories for free when you sign up.</p>
+                <form data-members-form="subscribe">
+                    <div class="form-group">
+                        <input class="subscribe-email" data-members-email placeholder="youremail@example.com" autocomplete="false" />
+                        <button class="button primary" type="submit">
+                            <span class="button-content">Subscribe</span>
+                            <span class="button-loader">{{> "icons/loader"}}</span>
+                        </button>
+                    </div>
+                    <div class="message-success">
+                        <strong>Great!</strong> Check your inbox and click the link to confirm your subscription.
+                    </div>
+                    <div class="message-error">
+                        Please enter a valid email address!
+                    </div>
+                </form>
+            </div>
+        </article>
+    {{/unless}}
+
+    {{#get "posts" filter="featured:true" limit="2"}}
+        {{#foreach posts}}
+            {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+            {{> "post-card"}}
+        {{/foreach}}
+    {{/get}}
+
+</div>

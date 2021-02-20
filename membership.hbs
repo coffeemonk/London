@@ -1,0 +1,122 @@
+{{!< default}}
+
+<div class="gh-page">
+    <div class="gh-container">
+
+        {{!-- Logged in, not paying: Check out --}}
+        <div class="gh-checkout-form">
+            <h1 class="gh-checkout-title">Join the Adventure!</h1>
+            <p>Subscribe for regular updates, or become a patron and unlock additional members-only content!</p>
+            <div class="gh-checkout-box">
+                <div class="gh-checkout-plan">
+                    <header class="gh-checkout-plan-header">
+                        <h3>Trainee</h3>
+                        <strong>&nbsp;</strong><span>FREE</span><strong>&nbsp;</strong>
+                    </header>
+                    <div class="gh-checkout-plan-content">
+                        <b class="primary">The right stuff!</b>
+                        <p class="intro">As a Trainee, receive public and patron-exclusive site content and emails.</p>
+                        <b>Includes:</b>
+                        <ul>
+                            <li><i>Email newsletter with public and member-exclusive content</i></li>
+                            <li><i>Access to member-exclusive content</i></li>
+                        </ul>
+                        {{#if @member}}
+                            <h6 class="fancy primary center">You Rock!</h6>
+                        {{else}}
+                            <a class="button primary fit" href="javascript:void()" data-portal="signup/free">Subscribe</a>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="gh-checkout-plan">
+                    <header class="gh-checkout-plan-header">
+                        <h3>Astronaut</h3>
+                        <span>$</span><strong>{{@price.monthly}}</strong> / month
+                    </header>
+                    <div class="gh-checkout-plan-content">
+                        <b class="primary">Light that candle!</b>
+                        <p class="intro">As an Astronaut, get Trainee-level access plus pre-release eBooks and your name acknowledged as a Patron.</p>
+                        <b>Includes:</b>
+                        <ul>
+                            <li><i>Pre-release eBook downloads</i></li>
+                            <li><i>A patron-exclusive podcast featuring audio of completed short stories and novels, read by me</i></li>
+                            <li><i>Your name acknowledged as a Patron</i></li>
+                            <li>Email newsletter with public and member-exclusive content</li>
+                            <li>Access to member-exclusive content</li>
+                        </ul>
+                        {{#if @member.paid}}
+                            <h6 class="fancy primary center">You Rock!</h6>
+                        {{else}}
+                            <a class="button primary fit" href="javascript:void()" data-portal="signup/monthly">
+                                {{#if @member}}
+                                    Upgrade to Astronaut
+                                {{else}}
+                                    Become a Patron
+                                {{/if}}
+                            </a>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="gh-checkout-plan">
+                    <header class="gh-checkout-plan-header">
+                        <h3>Colonist</h3>
+                        <span>$</span><strong>{{@price.yearly}}</strong> / year
+                    </header>
+                    <div class="gh-checkout-plan-content">
+                        <b class="primary">Build a brave new world!</b>
+                        <p class="intro">As a Colonist, get Astronaut-level access and one free month!</p>
+                        <b>Includes:</b>
+                        <ul>
+                            <li><i>One free month!</i></li>
+                            <li>Pre-release eBook downloads</li>
+                            <li>A patron-exclusive podcast featuring audio of completed short stories and novels, read by me</li>
+                            <li>Your name acknowledged as a Patron</li>
+                            <li>Email newsletter with regular content updates</li>
+                            <li>Access to member-exclusive content</li>
+                        </ul>
+                        {{#if @member.yearly}}
+                            <h6 class="fancy primary center">You Rock!</h6>
+                        {{else}}
+                            <a class="button primary fit" href="javascript:void()" data-portal="signup/yearly">
+                                {{#if @member.monthly}}
+                                    Upgrade to Colonist
+                                {{else}}
+                                    Become a Patron
+                                {{/if}}
+                            </a>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="gh-checkout-plan">
+                    <header class="gh-checkout-plan-header">
+                        <h3>Explorer</h3>
+                        <span>$</span><strong>20</strong> / month
+                    </header>
+                    <div class="gh-checkout-plan-content">
+                        <b class="primary">See what's out there...</b>
+                        <p class="intro">As an Explorer, get Astronaut-level access plus a signed paperback copy of any book I release during your patronage.</p>
+                        <b>Includes:</b>
+                        <ul>
+                            <li><i>A signed paperback of any book(s) released while you're a patron</i></li>
+                            <li>Pre-release eBook downloads</li>
+                            <li>A patron-exclusive podcast featuring audio of completed short stories and novels, read by me</li>
+                            <li>Your name acknowledged as a Patron</li>
+                            <li>Email newsletter with regular content updates</li>
+                            <li>Access to member-exclusive content</li>
+                        </ul>
+                        <a class="button primary fit" href="https://www.patreon.com/matthewrasnake" title="Explorers will need to join me on Patreon until this site supports advanced memberships.">
+                            {{#has any="@member, @member.paid"}}
+                                Upgrade to Explorer*
+                            {{else}}
+                                Become a Patron*
+                            {{/has}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <p><small>Already have an account? <a href="javascript:void()" data-portal="signin">Sign in</a></small></p>
+            <p class="wide"><small>* <i><b>NOTE:</b> Explorers will need to join me on Patreon until this site supports advanced memberships.</i></small></p>
+        </div>
+
+    </div>
+</div>

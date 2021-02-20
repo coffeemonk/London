@@ -36,21 +36,21 @@
                 </nav>
                 <div class="site-head-center">
                     {{#if @site.logo}}
-                    <a class="site-head-logo" href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{@site.title}}" /></a>
+                        <a class="site-head-logo" href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{@site.title}}" /></a>
                     {{else}}
-                    <a class="site-head-logo" href="{{@site.url}}">{{@site.title}}</a>
+                        <a class="site-head-logo" href="{{@site.url}}">{{@site.title}}</a>
                     {{/if}}
                 </div>
                 <div class="site-head-right">
-                    <div class="social-links">
-                        {{#if @site.facebook}}
-                        <a href="{{facebook_url @site.facebook}}" title="Facebook" target="_blank" rel="noopener">Facebook</a>
-                        {{/if}}
-                        {{#if @site.twitter}}
-                        <a href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">Twitter</a>
-                        {{/if}}
-                        <a href="https://feedly.com/i/subscription/feed/{{@site.url}}/rss/" title="RSS" target="_blank" rel="noopener">RSS</a>
-                    </div>
+                    {{#if @member.paid}}
+                        Welcome, <a href="javascript:" data-portal="account/profile">{{@member.firstname}}</a>
+                    {{else if @member}}
+                        Welcome, <a href="javascript:" data-portal="account/profile">{{@member.firstname}}</a>
+                        <a href="/membership">Become a Patron</a>
+                    {{else}}
+                        <a href="javascript:" data-portal="signin">Sign In</a>
+                        <a href="/membership">Become a Patron</a>
+                    {{/if}}
                 </div>
             </div>
         </header>
@@ -65,8 +65,23 @@
         </main>
 
         {{!-- The footer at the very bottom of the screen --}}
-        <footer class="site-foot">
-            &copy; {{date format="YYYY"}} <a href="{{@site.url}}">{{@site.title}}</a> &mdash; Published with <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+        <footer class="site-foot row">
+            <div class="col"></div>
+            <div class="site-foot-center col">
+                <div>&copy; {{date format="YYYY"}} <a href="{{@site.url}}">Matthew Rasnake</a></div>
+            </div>
+            <div class="site-foot-right col">
+                <div class="social-links">
+                    {{#if @site.facebook}}
+                        <a href="{{facebook_url @site.facebook}}" title="Facebook" target="_blank" rel="noopener">Facebook</a>
+                    {{/if}}
+                    {{#if @site.twitter}}
+                        <a href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">Twitter</a>
+                    {{/if}}
+                    <a href="https://www.instagram.com/coffee.monk" title="Instagram" target="_blank" rel="noopener">Instagram</a>
+                    <a href="https://feedly.com/i/subscription/feed/{{@site.url}}/rss/" title="RSS" target="_blank" rel="noopener">RSS</a>
+                </div>
+            </div>
         </footer>
 
     </div>
