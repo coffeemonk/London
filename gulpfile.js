@@ -7,6 +7,7 @@ var postcss = require('gulp-postcss');
 var zip = require('gulp-zip');
 var uglify = require('gulp-uglify');
 var beeper = require('beeper');
+const rename = require('gulp-rename');
 
 // postcss plugins
 var autoprefixer = require('autoprefixer');
@@ -48,8 +49,9 @@ function css(done) {
     ];
 
     pump([
-        src('assets/css/*.css', {sourcemaps: true}),
+        src(['assets/css/*.css', 'assets/css/*.pcss'], {sourcemaps: true}),
         postcss(processors),
+        rename({extname: '.css'}),
         dest('assets/built/', {sourcemaps: '.'}),
         livereload()
     ], handleError(done));

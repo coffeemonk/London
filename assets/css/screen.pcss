@@ -962,23 +962,27 @@ body {
 /* Membership Page
 /* --------------- */
 
-.testimonials {
+.free-stories {
     margin-right: 3vw;
     margin-left: 3vw;
 }
 .testimonial {
     background-color: white;
-    margin: 2vw;
+    margin: 2vw 0;
     padding: 1.5vw;
     font-size: 1.75rem;
+    &:nth-child(2) {
+        margin: 2vw 3vw;
+    }
+    em {
+        font-weight: 700;
+    }
+    .testimonial-name {
+        font-size: 2rem;
+        margin-left: 3rem;
+    }
 }
-.testimonial em {
-    font-weight: 700;
-}
-.testimonial-name {
-    font-size: 2rem;
-    margin-left: 3rem;
-}
+
 
 /* Members Subscribe Form
 /* ---------------------------------------------------------- */

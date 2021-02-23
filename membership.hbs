@@ -20,7 +20,7 @@
                         <ul>
                             <li><i>Email newsletter with public and member-exclusive content</i></li>
                             <li><i>Access to member-exclusive content</i></li>
-                            <li><a href="#free-stories"><i>Two free sci-fi short stories!</i></a></li>
+                            <li><a href="javascript:scrollToStories()"><i>Two free sci-fi short stories!</i></a></li>
                         </ul>
                     </div>
                     <footer class="plan-footer">
@@ -46,9 +46,7 @@
                             <li><i>Your name acknowledged as a Patron</i></li>
                             <li>Email newsletter with public and member-exclusive content</li>
                             <li>Access to member-exclusive content</li>
-                            <a href="#free-stories">
-                                <li><a href="#free-stories">Two free sci-fi short stories!</a></li>
-                            </a>
+                                <li><a href="javascript:scrollToStories()">Two free sci-fi short stories!</a></li>
                         </ul>
                     </div>
                     <footer class="plan-footer">
@@ -81,9 +79,7 @@
                             <li>Your name acknowledged as a Patron</li>
                             <li>Email newsletter with regular content updates</li>
                             <li>Access to member-exclusive content</li>
-                            <a href="#free-stories">
-                                <li><a href="#free-stories">Two free sci-fi short stories!</a></li>
-                            </a>
+                            <li><a href="javascript:scrollToStories()">Two free sci-fi short stories!</a></li>
                         </ul>
                     </div>
                     <footer class="plan-footer">
@@ -116,9 +112,7 @@
                             <li>Your name acknowledged as a Patron</li>
                             <li>Email newsletter with regular content updates</li>
                             <li>Access to member-exclusive content</li>
-                            <a href="#free-stories">
-                                <li><a href="#free-stories">Two free sci-fi short stories!</a></li>
-                            </a>
+                                <li><a href="javascript:scrollToStories()">Two free sci-fi short stories!</a></li>
                         </ul>
                     </div>
                     <footer class="plan-footer">
@@ -135,8 +129,8 @@
             <p><small>Already have an account? <a href="javascript:void()" data-portal="signin">Sign in</a></small></p>
             <p class="wide"><small>* <i><b>NOTE:</b> Explorers will need to sign up via Patreon until this site's software is upgraded to support advanced memberships.</i></small></p>
         </div>
-        <hr />
-        <div id="free-stories">
+        <div class="free-stories">
+            <hr />
             <h4 class="fancy center">Learn more about these free stories</h4>
             <div class="row">
                 <div class="col">
@@ -183,7 +177,7 @@
                 </div>
             </div>
             <hr />
-            <h4 class="center">But don't just take my word for it</h4>
+            <h4 class="center">Don't Just Take My Word For It&hellip;</h4>
             <div class="row testimonials">
                 <div class="col testimonial">
                     <div class="testimonial-text">
@@ -204,6 +198,27 @@
                     <h6 class="testimonial-name">– Ruthie</h6>
                 </div>
             </div>
+            <h4 class="center">Claim Your Free Books!</h4>
+            <div class="closing">
+                <p>When you sign up, you’ll get a welcome email with links to download both stories. Then, as part of your subscription, I’ll send occasional email updates including news, stats, or interesting things I’ve dug up during my research; or questions, surveys, giveaways, free stories, or ARCs of upcoming works.</p>
+                <p>I’m excited for you to join me on this adventure, and hope you enjoy the stories!</p>
+                <div class="fancy center"><a href="javascript:scrollToPlans()"><b>Subscribe or Become a Patron Today!</b></a></div>
+            </div>
         </div>
     </div>
 </div>
+{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
+{{#contentFor "scripts"}}
+<script>
+    function scrollToStories() {
+        $('html, body').animate({
+            scrollTop: parseInt($("div.free-stories").offset().top)
+        }, 1000);
+    };
+    function scrollToPlans() {
+        $('html, body').animate({
+            scrollTop: parseInt($("div.checkout-box").offset().top)
+        }, 1000);
+    };
+</script>
+{{/contentFor}}
