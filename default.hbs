@@ -42,15 +42,17 @@
                     {{/if}}
                 </div>
                 <div class="site-head-right">
-                    {{#if @member.paid}}
-                        Welcome, <a href="javascript:" data-portal="account/profile">{{@member.firstname}}</a>
-                    {{else if @member}}
-                        Welcome, <a href="javascript:" data-portal="account/profile">{{@member.firstname}}</a>
-                        <a href="/membership">Become a Patron</a>
-                    {{else}}
-                        <a href="javascript:" data-portal="signin">Sign In</a>
-                        <a href="/membership">Become a Patron</a>
-                    {{/if}}
+                    <div class="member-links">
+                        {{#if @member.paid}}
+                            Welcome, <a href="javascript:" data-portal="account/profile">{{@member.firstname}}</a>
+                        {{else if @member}}
+                            Welcome, <a href="javascript:" data-portal="account/profile">{{@member.firstname}}</a>
+                            <a href="/join/">Become a Patron</a>
+                        {{else}}
+                            <a href="javascript:" data-portal="signin">Sign In</a>
+                            <a href="/join/">Become a Patron</a>
+                        {{/if}}
+                    </div>
                 </div>
             </div>
         </header>
@@ -65,25 +67,29 @@
         </main>
 
         {{!-- The footer at the very bottom of the screen --}}
-        <footer class="site-foot row">
-            <div class="col"></div>
-            <div class="site-foot-center col">
-                <div>&copy; {{date format="YYYY"}} <a href="{{@site.url}}">Matthew Rasnake</a></div>
+        <footer class="site-foot">
+            <div class="site-foot-left">{{navigation type="secondary"}}</div>
+            <div class="site-foot-center">
+                <p>&copy; {{date format="YYYY"}} <a href="{{@site.url}}">Matthew Rasnake</a></p>
             </div>
-            <div class="site-foot-right col">
-                <div class="social-links">
+            <div class="site-foot-right">
+                <ul class="nav">
                     {{#if @site.facebook}}
-                        <a href="{{facebook_url @site.facebook}}" title="Facebook" target="_blank" rel="noopener">Facebook</a>
+                        <li><a href="{{facebook_url @site.facebook}}" title="Facebook" target="_blank" rel="noopener">Facebook</a></li>
                     {{/if}}
                     {{#if @site.twitter}}
-                        <a href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">Twitter</a>
+                        <li><a href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">Twitter</a></li>
                     {{/if}}
-                    <a href="https://www.instagram.com/coffee.monk" title="Instagram" target="_blank" rel="noopener">Instagram</a>
-                    <a href="https://feedly.com/i/subscription/feed/{{@site.url}}/rss/" title="RSS" target="_blank" rel="noopener">RSS</a>
-                </div>
+                    <li><a href="https://www.instagram.com/coffee.monk" title="Instagram" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://feedly.com/i/subscription/feed/{{@site.url}}/rss/" title="RSS" target="_blank" rel="noopener">RSS</a></li>
+                </ul>
             </div>
         </footer>
-
+        <div class="row">
+            <div class="col"></div>
+            <div class="col center"><a href="https://allianceindependentauthors.org/?affid=10030"><img src="https://allianceindependentauthors.org/members/banners/ALLi-Associate-Member-Badge.png"  width="109" height="185" alt="Alliance of Independent Authors" /></a></div>
+            <div class="col"></div>
+        </div>
     </div>
 
     {{!-- The big email subscribe modal content --}}

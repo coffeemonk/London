@@ -92,6 +92,7 @@
 }
 
 @media (max-width: 800px) {
+    .col,
     .col-1,
     .col-2,
     .col-3,
@@ -109,6 +110,7 @@
 }
 
 @media (max-width: 600px) {
+    .col,
     .col-1,
     .col-2,
     .col-3,

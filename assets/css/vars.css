@@ -4,34 +4,34 @@
 :root {
 
     /* Colours */
-    --color-primary: #9471c6;
-    --color-base: #131015;
+    --color-primary:    #9471c6;
+    --color-base:   #131015;
     --color-border: #ddd;
-    --color-bg: #f8f7fa;
+    --color-bg:     #f8f7fa;
 
-    --color-text-onLight: #141116;
-    --color-text-onDark: #F8F0FD;
+    --color-text-onLight:   #141116;
+    --color-text-onDark:    #F8F0FD;
 
     /* Fonts */
-    --font-fancy: 'Venera', sans-serif;
-    --font-sans-serif: 'Muli', sans-serif;
-    --font-serif: Georgia, Times, serif;
-    --font-mono: Menlo, Courier, monospace;
-    --font-light: 100;
-    --font-normal: 400;
-    --font-bold: 700;
-    --font-heavy: 800;
+    --font-fancy:   'Venera', sans-serif;
+    --font-sans-serif:  'Muli', sans-serif;
+    --font-serif:   Georgia, Times, serif;
+    --font-mono:    Menlo, Courier, monospace;
+    --font-light:   100;
+    --font-normal:  400;
+    --font-bold:    700;
+    --font-heavy:   800;
 
     /* Breakpoints */
-    --xlarge: 1680px;
-    --large: 1280px;
-    --medium: 980px;
-    --small: 740px;
-    --xsmall: 480px;
+    --xlarge:   1680px;
+    --large:    1280px;
+    --medium:   980px;
+    --small:    740px;
+    --xsmall:   480px;
 
     /* Sizes */
-    --height: 4rem;
-    --margin: 2rem;
-    --radius: 0.5rem;
+    --height:   4rem;
+    --margin:   2rem;
+    --radius:   0.5rem;
 
 }

@@ -4,6 +4,9 @@
 .kg-card {
     margin: 7vw 0;
 }
+#free-stories .kg-card {
+    margin: 7vw 7vw 1vw;
+}
 
 .kg-embed-card {
     display: flex;
