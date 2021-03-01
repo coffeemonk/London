@@ -4,7 +4,7 @@
 :root {
 
     /* Colours */
-    --color-primary:    #9471c6;
+    --color-primary:#9471c6;
     --color-base:   #131015;
     --color-border: #ddd;
     --color-bg:     #f8f7fa;
@@ -18,9 +18,25 @@
     --font-serif:   Georgia, Times, serif;
     --font-mono:    Menlo, Courier, monospace;
     --font-light:   100;
-    --font-normal:  400;
+    --font-regular: 400;
     --font-bold:    700;
     --font-heavy:   800;
+
+    --font-size-min: 18px;
+    --font-size-max: 22px;
+
+    --font-smaller: .6em;
+    --font-small:   .75em;
+    --font-normal:  1em;
+    --font-big:     1.2em;
+    --font-bigger:  1.4em;
+
+    --font-h6: 1rem;
+    --font-h5: 1.2rem;
+    --font-h4: 1.4rem;
+    --font-h3: 1.6rem;
+    --font-h2: 2rem;
+    --font-h1: 2.6rem;
 
     /* Breakpoints */
     --xlarge:   1680px;
@@ -30,8 +46,37 @@
     --xsmall:   480px;
 
     /* Sizes */
-    --height:   4rem;
-    --margin:   2rem;
-    --radius:   0.5rem;
+    --height:   2em;
+    --margin:   1.5rem;
+    --margin-large: calc(var(--margin) * 2);
+    --radius:   0.5em;
+    --padding:  2vw;
+    --padding-vertical: 2vh;
+    --padding-large: 3.5vw;
 
 }
+/* @media (min-width: 1280px) {
+    :root {
+        --font-base-size: 12px;
+        --font-body: calc(var(--font-base-size) + .3vw);
+    }
+}
+@media (min-width: 981px) and (max-width: 1280px) {
+    :root {
+        --font-base-size: 13px;
+        --font-body: calc(var(--font-base-size) + .5vw);
+    }
+}
+@media (min-width: 741px) and (max-width: 980px) {
+    :root {
+        --font-base-size: 12px;
+        --font-body: calc(var(--font-base-size) + .5vw);
+    }
+}
+@media (max-width: 740px) {
+    :root {
+        --font-base-size: 16px;
+        --font-body: clamp(16px calc(var(--font-base-size) + .5vw) 22px);
+    }
+} */
+

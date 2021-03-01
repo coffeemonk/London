@@ -8,11 +8,12 @@ var zip = require('gulp-zip');
 var uglify = require('gulp-uglify');
 var beeper = require('beeper');
 const rename = require('gulp-rename');
+const cleanCSS = require('gulp-clean-css');
 
 // postcss plugins
 var autoprefixer = require('autoprefixer');
 var colorFunction = require('postcss-color-function');
-var cssnano = require('cssnano');
+// var cssnano = require('cssnano');
 var customProperties = require('postcss-custom-properties');
 var easyimport = require('postcss-easy-import');
 var nested = require('postcss-nested');
@@ -40,18 +41,19 @@ function hbs(done) {
 
 function css(done) {
     var processors = [
-        nested(),
         easyimport,
+        nested(),
         customProperties({preserve: false}),
         colorFunction(),
-        autoprefixer(),
-        cssnano()
+        autoprefixer()
+        // cssnano()
     ];
 
     pump([
         src(['assets/css/*.css', 'assets/css/*.pcss'], {sourcemaps: true}),
         postcss(processors),
         rename({extname: '.css'}),
+        cleanCSS(),
         dest('assets/built/', {sourcemaps: '.'}),
         livereload()
     ], handleError(done));

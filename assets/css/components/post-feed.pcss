@@ -1,0 +1,213 @@
+/* Post Feed
+/* ---------------------------------------------------------- */
+
+.post-feed {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: var(--font-normal);
+
+    .post-card {
+        position: relative;
+        display: flex;
+        flex: 1 1 50%;
+        height: 35vw;
+        background: linear-gradient(135deg, #1f1f1f 0%, #111 100%) center center;
+        background-size: cover;
+        overflow: hidden;
+        counter-increment: posts;
+
+        .link,
+        .post-card-link {
+            flex: 1 1 auto;
+            display: block;
+        }
+        .content,
+        .post-card-content {
+            display: flex;
+            flex: 1 1 auto;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            color: #fff;
+            background: rgba(0,0,0,0.5);
+            opacity: 1;
+            transition: opacity 0.5s cubic-bezier(.33,0,.2,1);
+
+            .title,
+            .post-card-title {
+                margin: 0;
+                display: inline-block;
+                font-size: var(--font-bigger);
+                max-width: 70%;
+                text-align: center;
+                transition: all 0.3s cubic-bezier(.33,0,.2,1);
+            }
+        }
+        .footer,
+        .post-card-footer {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            color: var(--color-text-onDark);
+            background-color: color(var(--color-base) a(75%));
+            border-radius: calc(var(--padding) - .5vw) 0 calc(var(--padding) / 4);
+            padding: .25vw var(--padding);
+        }
+
+        &.large,
+        &.post-card-large {
+            flex: 1 1 100%;
+        }
+        &.with-image {
+            .content,
+            .post-card-content {
+                opacity: 0;
+            }
+        }
+        &:hover .content,
+        &:hover .post-card-content {
+            opacity: 1;
+            transition: opacity 0.3s cubic-bezier(.33,0,.2,1);
+        }
+
+        /* Posts without images */
+        &.no-image {
+            &:before {
+                display: block;
+                content: counter(posts);
+                position: absolute;
+                bottom: -0.15em;
+                right: 5vw;
+                font-size: 28vw;
+                line-height: 1em;
+                font-weight: var(--font-heavy);
+                letter-spacing: -0.1em;
+                color: rgba(0,0,0,0.2);
+            }
+            .content,
+            .post-card-content {
+                justify-content: flex-start;
+                align-items: flex-start;
+                padding: 4vw;
+
+                .title,
+                .post-card-title {
+                    font-size: var(--font-bigger);
+                    line-height: 1.15em;
+                    text-align: left;
+                }
+            }
+            &.subscribe-form {
+                &:before {
+                    content: "";
+                }
+                border: 0;
+                margin: 0;
+                padding: var(--padding-large);
+
+                .content,
+                .post-card-content {
+                    flex-direction: column;
+                    justify-content: center;
+
+                    .title {
+                        font-size: clamp(var(--font-h3), 2vw, var(--font-h1));
+                        max-width: 100%;
+                    }
+                    .title,
+                    .subscribe-form-description {
+                        margin-bottom: clamp(.5em, 3vw, 2em);
+                    }
+                    form {
+                        margin: 0;
+                        width: 100%;
+                        font-size: clamp(.8em, 1vw, 1.5em);
+                        .subscribe-email {
+                            padding: .5em;
+                        }
+                        .button {
+                            height: 2.25em;
+                            line-height: 2.25em;
+                        }
+                    }
+                    .subscribe-form-description {
+                        font-size: var(--font-h6);
+                    }
+                }
+            }
+            &.about {
+                &:before {
+                    content: "";
+                }
+                .content {
+                    align-items: center;
+
+                    figure {
+                        display: flex;
+                        flex: 1 0 32%;
+                        margin-right: 2.5vw;
+                        justify-content: center;
+                        overflow: hidden;
+                        align-self: flex-start;
+
+                        img {
+                            max-width: 140%;
+                        }
+                    }
+                    p {
+                        font-size: clamp(.8rem, 4.1vw, 1.5rem);
+                        line-height: 1.4em;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+            &:hover {
+                .post-card-title {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width:981px) and (max-width: 1280px) {
+    .post-feed .post-card.no-image {
+        .title,
+        .post-card-title {
+            font-size: var(--font-bigger);
+        }
+    }
+}
+@media (min-width:741px) {
+    .post-feed .post-card.no-image.about .content p {
+        font-size: clamp(.7rem,1.7vw,1.5rem);
+    }
+}
+@media (max-width: 740px) {
+    .post-feed .post-card {
+        flex: 1 1 100%;
+        height: 70vw;
+
+        &.no-image:before {
+            font-size: 50vw;
+        }
+    }
+}
+@media (max-width: 480px) {
+    .post-feed .post-card {
+        &.with-image {
+            .content,
+            .post-card-content {
+                opacity: 1;
+            }
+            &.book {
+                background: linear-gradient(135deg, #1f1f1f 0, #111 100%) center center;
+                background-size: cover;
+            }
+        }
+    }
+}

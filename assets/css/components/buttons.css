@@ -6,15 +6,15 @@ input[type="reset"],
 input[type="button"],
 button,
 .button {
-    display: inline-block;
+    display: block;
     height: var(--height);
-    padding: 0 2rem;
+    padding: 0 2em;
     border: 0;
     border-radius: var(--radius);
     cursor: pointer;
     font-family: var(--font-sans-serif);
-    font-size: 1.4rem;
-    font-weight: var(--font-normal);
+    font-size: var(--font-small);
+    font-weight: var(--font-regular);
     line-height: var(--height);
     text-align: center;
     text-decoration: none;
@@ -36,10 +36,10 @@ input[type="reset"].small,
 input[type="button"].small,
 button.small,
 .button.small {
-    height: calc(var(--height) * 0.9);
-    line-height: calc(var(--height) * 0.9);
-    padding: 0 1.5rem;
-    font-size: 1.2rem;
+    height: var(--height);
+    line-height: var(--height);
+    padding: 0 1em;
+    font-size: var(--font-smaller);
 }
 
 input[type="submit"].large,
@@ -47,12 +47,11 @@ input[type="reset"].large,
 input[type="button"].large,
 button.large,
 .button.large {
-    height: calc(var(--height) * 1.14);
-    line-height: calc(var(--height) * 1.14);
-    padding: 0 3rem;
-    font-size: 1.6rem;
+    height: var(--height);
+    line-height: var(--height);
+    padding: 0 3em;
+    font-size: var(--font-big);
 }
-
 
 input[type="submit"].disabled,
 input[type="submit"]:disabled,
@@ -67,8 +66,6 @@ button:disabled,
     pointer-events: none;
     opacity: 0.4;
 }
-
-
 
 input[type="submit"],
 input[type="reset"],
@@ -106,5 +103,21 @@ input[type="reset"].primary:hover,
 input[type="button"].primary:hover,
 button.primary:hover,
 .button.primary:hover {
-        background-color: color(var(--color-primary) l(-10%));
+    background-color: color(var(--color-primary) l(-10%));
+}
+
+@media (max-width: 980px) {
+    input[type="submit"],
+    input[type="reset"],
+    input[type="button"],
+    button,
+    .button {
+        font-size: var(--font-big);
+        &.small {
+            font-size: var(--font-normal);
+        }
+        &.large {
+            font-size: var(--font-bigger);
+        }
     }
+}

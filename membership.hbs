@@ -2,20 +2,18 @@
 
 <div class="gh-page">
     <div class="gh-container">
-
-        {{!-- Logged in, not paying: Check out --}}
         <div class="checkout-form">
             <h1 class="checkout-title">Join the Adventure!</h1>
             <p>Subscribe for regular updates, or become a patron and unlock additional members-only content!</p>
             <div class="checkout-box">
-                <div class="checkout-plan">
+                <div class="checkout-plan plan-trainee">
                     <header class="plan-header">
                         <h3>Trainee</h3>
                         <strong>&nbsp;</strong><span>FREE</span><strong>&nbsp;</strong>
                     </header>
                     <div class="plan-content">
-                        <b class="primary">The right stuff!</b>
-                        <p class="intro">As a Trainee, receive two free stories, plus public and patron-exclusive site content and emails.</p>
+                        <b class="tagline">The right stuff!</b>
+                        <p class="intro">As a Trainee, receive two free stories, plus public and member-exclusive site content and emails.</p>
                         <b>Includes:</b>
                         <ul>
                             <li><i>Email newsletter with public and member-exclusive content</i></li>
@@ -24,110 +22,93 @@
                         </ul>
                     </div>
                     <footer class="plan-footer">
-                        {{#if @member}}
-                            <h6 class="fancy primary center">You Rock!</h6>
-                        {{else}}
-                            <a class="button primary fit" href="javascript:void()" data-portal="signup/free">Subscribe</a>
-                        {{/if}}
+                        <a class="button become primary fit" href="javascript:void()" data-portal="signup/free">Join the Crew</a>
+                        <h6 class="fancy primary">You Rock!</h6>
+                        <a class="manage primary" href="javascript:void()" data-portal="account">View Your Profile</a>
                     </footer>
                 </div>
-                <div class="checkout-plan">
+                <div class="checkout-plan plan-astronaut">
                     <header class="plan-header">
                         <h3>Astronaut</h3>
                         <span>$</span><strong>{{@price.monthly}}</strong> / month
                     </header>
                     <div class="plan-content">
-                        <b class="primary">Light that candle!</b>
-                        <p class="intro">As an Astronaut, get Trainee-level access plus pre-release eBooks and your name acknowledged as a Patron.</p>
+                        <b class="tagline">Light that candle!</b>
+                        <p class="intro">As an Astronaut, get Trainee-level access plus pre-release eBooks and your name acknowledged as a supporter.</p>
                         <b>Includes:</b>
                         <ul>
                             <li><i>Pre-release eBook downloads</i></li>
-                            <li><i>A patron-exclusive podcast featuring audio of completed short stories and novels, read by me</i></li>
-                            <li><i>Your name acknowledged as a Patron</i></li>
+                            <li><i>A member-exclusive podcast featuring audio of completed short stories and novels, read by me</i></li>
+                            <li><i>Your name acknowledged as a supporter</i></li>
                             <li>Email newsletter with public and member-exclusive content</li>
                             <li>Access to member-exclusive content</li>
-                                <li><a href="javascript:scrollToStories()">Two free sci-fi short stories!</a></li>
+                            <li><a href="javascript:scrollToStories()">Two free sci-fi short stories!</a></li>
                         </ul>
                     </div>
                     <footer class="plan-footer">
-                        {{#if @member.paid}}
-                            <h6 class="fancy primary center">You Rock!</h6>
-                        {{else}}
-                            <a class="button primary fit" href="javascript:void()" data-portal="signup/monthly">
-                                {{#if @member}}
-                                    Upgrade to Astronaut
-                                {{else}}
-                                    Become a Patron
-                                {{/if}}
-                            </a>
-                        {{/if}}
+                        <a class="button upgrade primary fit" href="javascript:void()" data-members-plan="Monthly">Upgrade to Astronaut</a>
+                        <a class="button become primary fit" href="javascript:void()" data-members-plan="Monthly">Chase the Stars</a>
+                        <h6 class="fancy primary">You Rock!</h6>
+                        <a class="manage primary" href="javascript:void()" data-portal="account">View Your Profile</a>
                     </footer>
                 </div>
-                <div class="checkout-plan">
+                <div class="checkout-plan plan-colonist">
                     <header class="plan-header">
                         <h3>Colonist</h3>
                         <span>$</span><strong>{{@price.yearly}}</strong> / year
                     </header>
                     <div class="plan-content">
-                        <b class="primary">Build a brave new world!</b>
+                        <b class="tagline">Build a brave new world!</b>
                         <p class="intro">As a Colonist, get Astronaut-level access and one free month!</p>
                         <b>Includes:</b>
                         <ul>
                             <li><i>One free month!</i></li>
                             <li>Pre-release eBook downloads</li>
-                            <li>A patron-exclusive podcast featuring audio of completed short stories and novels, read by me</li>
-                            <li>Your name acknowledged as a Patron</li>
+                            <li>A member-exclusive podcast featuring audio of completed short stories and novels, read by me</li>
+                            <li>Your name acknowledged as a supporter</li>
                             <li>Email newsletter with regular content updates</li>
                             <li>Access to member-exclusive content</li>
                             <li><a href="javascript:scrollToStories()">Two free sci-fi short stories!</a></li>
                         </ul>
                     </div>
                     <footer class="plan-footer">
-                        {{#if @member.yearly}}
-                            <h6 class="fancy primary center">You Rock!</h6>
-                        {{else}}
-                            <a class="button primary fit" href="javascript:void()" data-portal="signup/yearly">
-                                {{#if @member.monthly}}
-                                    Upgrade to Colonist
-                                {{else}}
-                                    Become a Patron
-                                {{/if}}
-                            </a>
-                        {{/if}}
+                        <a class="button upgrade primary fit" href="javascript:void()" data-members-plan="Yearly">Upgrade to Colonist</a>
+                        <a class="button become primary fit" href="javascript:void()" data-members-plan="Yearly">Build a World</a>
+                        <h6 class="fancy primary">You Rock!</h6>
+                        <a class="manage primary" href="javascript:void()" data-portal="account">View Your Profile</a>
                     </footer>
                 </div>
-                <div class="checkout-plan">
+                <div class="checkout-plan plan-explorer">
                     <header class="plan-header">
                         <h3>Explorer</h3>
                         <span>$</span><strong>20</strong> / month
                     </header>
                     <div class="plan-content">
-                        <b class="primary">See what's out there...</b>
-                        <p class="intro">As an Explorer, get Astronaut-level access plus a signed paperback copy of any book I release during your patronage.</p>
+                        <b class="tagline">See what's out there...</b>
+                        <p class="intro">As an Explorer, get Astronaut-level access plus a signed paperback copy of any book I release with your support.</p>
                         <b>Includes:</b>
                         <ul>
-                            <li><i>A signed paperback of any book(s) released while you're a patron</i></li>
+                            <li><i>A signed paperback of any book(s) released while you're a member</i></li>
                             <li>Pre-release eBook downloads</li>
-                            <li>A patron-exclusive podcast featuring audio of completed short stories and novels, read by me</li>
-                            <li>Your name acknowledged as a Patron</li>
+                            <li>A member-exclusive podcast featuring audio of completed short stories and novels, read by me</li>
+                            <li>Your name acknowledged as a supporter</li>
                             <li>Email newsletter with regular content updates</li>
                             <li>Access to member-exclusive content</li>
-                                <li><a href="javascript:scrollToStories()">Two free sci-fi short stories!</a></li>
+                            <li><a href="javascript:scrollToStories()">Two free sci-fi short stories!</a></li>
                         </ul>
                     </div>
                     <footer class="plan-footer">
-                        <a class="button primary fit" href="https://www.patreon.com/matthewrasnake" title="Explorers will need to sign up via Patreon until this site's software is upgraded to support advanced memberships.">
-                            {{#has any="@member, @member.paid"}}
-                                Upgrade to Explorer*
-                            {{else}}
-                                Become a Patron*
-                            {{/has}}
-                        </a>
+                        <a class="button upgrade primary fit" href="https://www.patreon.com/matthewrasnake" title="Explorers will sign up via Patreon until this site's software supports membership tiers.">Upgrade to Explorer*</a>
+                        <a class="button become primary fit" href="https://www.patreon.com/matthewrasnake" title="Explorers will sign up via Patreon until this site's software supports membership tiers.">Push the Boundaries*</a>
+                        <h6 class="fancy primary">You Rock!</h6>
+                        <a class="manage primary" href="https://www.patreon.com/matthewrasnake">Manage Your Membership</a>
                     </footer>
                 </div>
             </div>
-            <p><small>Already have an account? <a href="javascript:void()" data-portal="signin">Sign in</a></small></p>
-            <p class="wide"><small>* <i><b>NOTE:</b> Explorers will need to sign up via Patreon until this site's software is upgraded to support advanced memberships.</i></small></p>
+            {{#unless @member }}
+                <p><small>Already have an account? <a href="javascript:void()" data-portal="signin">Sign in</a></small></p>
+            {{/unless}}
+            <p class="wide explorer-note"><small>* <i><b>NOTE:</b> Explorers will sign up via Patreon until this site's software supports membership tiers.</i></small></p>
         </div>
         <div class="free-stories">
             <hr />
@@ -178,20 +159,20 @@
             </div>
             <hr />
             <h4 class="center">Don't Just Take My Word For It&hellip;</h4>
-            <div class="row testimonials">
-                <div class="col testimonial">
+            <div class="testimonials">
+                <div class="testimonial">
                     <div class="testimonial-text">
                         “I read <em>Weekending</em>…omg! I’m hooked! It was a big teaser, but really good. Need to know what happened. Is <em>Rogue Planet</em> out yet?”
                     </div>
                     <h6 class="testimonial-name">– Cori</h6>
                 </div>
-                <div class="col testimonial">
+                <div class="testimonial">
                     <div class="testimonial-text">
                         “Loved the <em>Astronauts Sam</em> story! I just read it from start to finish and found it engaging, creative, and charming. Can’t wait to read the next one!”
                     </div>
                     <h6 class="testimonial-name">- Teresa</h6>
                 </div>
-                <div class="col testimonial">
+                <div class="testimonial">
                     <div class="testimonial-text">
                         “I loved <em>Weekending</em>, and can’t wait to read <em>Rogue Planet</em> to find out what’s really going on. And the <em>Astronauts Sam</em> story was super cute. I think kids will love it!”
                     </div>
@@ -209,16 +190,47 @@
 </div>
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
 {{#contentFor "scripts"}}
-<script>
-    function scrollToStories() {
-        $('html, body').animate({
-            scrollTop: parseInt($("div.free-stories").offset().top)
-        }, 1000);
-    };
-    function scrollToPlans() {
-        $('html, body').animate({
-            scrollTop: parseInt($("div.checkout-box").offset().top)
-        }, 1000);
-    };
-</script>
+    {{#each @member.subscriptions as | subscription |}}
+        {{#if @first}}
+            <script>
+                var member = {
+                    "name": "{{@member.firstname}}",
+                    "paid": !!{{@member.paid}}
+                }
+                var plan = "{{subscription.plan.nickname}}".toLowerCase();
+                $(document).ready(function() {
+                    var className = 'member-';
+                    switch (plan) {
+                        case 'complimentary':
+                            className += 'explorer';
+                            break;
+                        case 'yearly':
+                            className += 'colonist';
+                            break;
+                        case 'monthly':
+                            className += 'astronaut';
+                            break;
+                        default:
+                            if (!!member.name && !member.paid) {
+                                className += 'trainee'
+                            } else className = '';
+                    }
+                    if (className !== 'member-explorer') { $('.explorer-note').show(); }
+                    $('.checkout-box').addClass(className);
+                })
+            </script>
+        {{/if}}
+    {{/each}}
+    <script>
+        function scrollToStories() {
+            $('html, body').animate({
+                scrollTop: parseInt($("div.free-stories").offset().top)
+            }, 1000);
+        };
+        function scrollToPlans() {
+            $('html, body').animate({
+                scrollTop: parseInt($(".checkout-title").offset().top)
+            }, 1000);
+        };
+    </script>
 {{/contentFor}}

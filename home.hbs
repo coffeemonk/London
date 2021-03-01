@@ -13,13 +13,13 @@ into the {body} of the default.hbs template --}}
     {{#get "pages" filter="primary_tag:books+featured:true" order="published_at desc" as |books|}}
         {{#foreach books}}
             {{#if @first}}
-                <article class="post-card {{post_class}} post-card-large {{#if feature_image}}with-image" style="background-image: url({{img_url feature_image size="xl"}}){{else}}no-image{{/if}}">
+                <article class="post-card book large {{post_class}} {{#if feature_image}}with-image" style="background-image: url({{img_url feature_image size="xl"}}){{else}}no-image{{/if}}">
             {{else}}
-                <article class="post-card {{post_class}} {{#if feature_image}}with-image" style="background-image: url({{img_url feature_image size="l"}}){{else}}no-image{{/if}}">
+                <article class="post-card book {{post_class}} {{#if feature_image}}with-image" style="background-image: url({{img_url feature_image size="l"}}){{else}}no-image{{/if}}">
             {{/if}}
-                <a class="post-card-link" href="{{url}}">
-                    <div class="post-card-content">
-                        <h2 class="post-card-title">{{title}}</h2>
+                <a class="link" href="{{url}}">
+                    <div class="content">
+                        <h2 class="title">{{title}}</h2>
                     </div>
                 </a>
             </article>
@@ -27,10 +27,9 @@ into the {body} of the default.hbs template --}}
     {{/get}}
 
     {{#unless @member}}
-        <article class="post-card no-image">
-            <div class="post-card-content subscribe-form">
-                {{!-- {{> "subscribe-form"}} --}}
-                <h3 class="post-card-title fancy">Join the Adventure!</h3>
+        <article class="post-card no-image subscribe-form">
+            <div class="content">
+                <h3 class="title fancy">Join the Adventure!</h3>
                 <p class="subscribe-form-description">Get two introductory science-fiction stories for free when you sign up.</p>
                 <form data-members-form="subscribe">
                     <div class="form-group">
@@ -53,9 +52,19 @@ into the {body} of the default.hbs template --}}
 
     {{#get "posts" filter="featured:true" limit="2"}}
         {{#foreach posts}}
-            {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
             {{> "post-card"}}
         {{/foreach}}
+    {{/get}}
+
+    {{#get "pages" slug="about" as | about |}}
+        {{#about}}
+            <article class="post-card no-image about">
+                <div class="content">
+                    {{#if feature_image}}<figure><img src="{{img_url feature_image size="s"}}" alt="Photo of the author" /></figure>{{/if}}
+                    <p>{{excerpt}} &mdash;&nbsp;<a href="{{url}}">About Matthew</a></p>
+                </div>
+            </article>
+        {{/about}}
     {{/get}}
 
 </div>

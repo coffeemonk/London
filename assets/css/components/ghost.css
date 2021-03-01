@@ -4,8 +4,8 @@
 .kg-card {
     margin: 7vw 0;
 }
-#free-stories .kg-card {
-    margin: 7vw 7vw 1vw;
+.free-stories .kg-card {
+    margin: 3vw 7vw 1vw;
 }
 
 .kg-embed-card {
@@ -21,10 +21,10 @@
 }
 
 .kg-card figcaption {
-    padding: 1.5rem;
-    font-size: 1.3rem;
+    padding: var(--padding);
+    font-size: var(--font-small);
     line-height: 1.4em;
-    font-weight: 600;
+    font-weight: var(--font-bold);
     color: var(--color-text-onLight);
     text-align: center;
     opacity: 0.4;
@@ -41,7 +41,7 @@
 
 .kg-width-full {
     position: relative;
-    width: 94vw;
+    width: 99vw;
     min-width: 100%;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
@@ -49,7 +49,7 @@
 }
 
 .kg-width-full figcaption {
-    padding-left: 0;
+    padding-left: val(--padding);
     padding-right: 0;
     text-align: left;
 }
@@ -59,7 +59,7 @@
         width: 100vw;
     }
     .kg-width-full figcaption {
-        padding-left: 6vw;
+        padding-left: var(--padding-large);
     }
 }
 
