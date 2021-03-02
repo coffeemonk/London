@@ -2,42 +2,49 @@
 /* ---------------------------------------------------------- */
 :root {
 
-    /* Colours */
-    --color-primary:#9471c6;
-    --color-base:   #131015;
-    --color-border: #ddd;
-    --color-bg:     #f8f7fa;
+    /* Colors */
+    --color-light:      #FDECEF; /* Lavender Blush */
+    --color-dark:       #393D3F; /* Onyx */
+    --color-primary:    #9471C6; /* Middle Blue Purple */
+    --color-secondary:  #1B9AAA; /* Blue Munsell */
 
-    --color-text-onLight:   #141116;
-    --color-text-onDark:    #F8F0FD;
-    --color-text-onPrimary: var(--color-bg);
+    --white:            #EFF7FF; /* Alice Blue */
+    --light-gray:       #CECCCC; /* Light Gray */
+    --dark-gray:        var(--color-dark);
+    --black:            #0F110C; /* Rich Black */
+    --green:            #00A878; /* Green Munsell */
+    --red:              #A30015; /* Ruby Red*/
 
-    &.theme-default,
-    &.theme-light {
-        --text:         var(--color-text-onLight);
-        --bg:           var(--color-bg);
-        --border:       var(--color-border);
-        --reverse-text: var(--color-text-onDark);
-        --reverse-bg:   var(--color-base);
-        transition: all 0.5s ease;
-    }
-
-    &.theme-dark {
-        --text:         var(--color-text-onDark);
-        --bg:           var(--color-base);
-        --border:       var(--color-primary);
-        --reverse-text: var(--color-text-onLight);
-        --reverse-bg:   var(--color-bg);
-        transition: all 0.5s ease;
-    }
+    --color-text-onLight:   var(--black);
+    --color-text-onDark:    var(--color-light);
+    --color-text-onPrimary: var(--color-light);
 }
+:root.theme-default,
+:root.theme-light {
+    --text:         var(--color-text-onLight);
+    --bg:           var(--color-light);
+    --reverse-text: var(--color-text-onDark);
+    --reverse-bg:   var(--black);
+    transition: all 0.5s ease;
+}
+
+:root.theme-dark {
+    --border:       var(--color-light-grey);
+    --text:         var(--color-text-onDark);
+    --bg:           var(--black);
+    --border:       var(--color-primary);
+    --reverse-text: var(--color-text-onLight);
+    --reverse-bg:   var(--color-light);
+    transition: all 0.5s ease;
+}
+
 @media (prefers-color-scheme: dark) {
     :root.theme-default {
         --text:         var(--color-text-onDark);
-        --bg:           var(--color-base);
+        --bg:           var(--black);
         --border:       var(--color-primary);
         --reverse-text: var(--color-text-onLight);
-        --reverse-bg:   var(--color-bg);
+        --reverse-bg:   var(--color-light);
         transition: all 0.5s ease;
     }
 }
