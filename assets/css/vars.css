@@ -1,6 +1,5 @@
 /* Variables
 /* ---------------------------------------------------------- */
-
 :root {
 
     /* Colours */
@@ -11,7 +10,38 @@
 
     --color-text-onLight:   #141116;
     --color-text-onDark:    #F8F0FD;
+    --color-text-onPrimary: var(--color-bg);
 
+    &.theme-default,
+    &.theme-light {
+        --text:         var(--color-text-onLight);
+        --bg:           var(--color-bg);
+        --border:       var(--color-border);
+        --reverse-text: var(--color-text-onDark);
+        --reverse-bg:   var(--color-base);
+        transition: all 0.5s ease;
+    }
+
+    &.theme-dark {
+        --text:         var(--color-text-onDark);
+        --bg:           var(--color-base);
+        --border:       var(--color-primary);
+        --reverse-text: var(--color-text-onLight);
+        --reverse-bg:   var(--color-bg);
+        transition: all 0.5s ease;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    :root.theme-default {
+        --text:         var(--color-text-onDark);
+        --bg:           var(--color-base);
+        --border:       var(--color-primary);
+        --reverse-text: var(--color-text-onLight);
+        --reverse-bg:   var(--color-bg);
+        transition: all 0.5s ease;
+    }
+}
+:root {
     /* Fonts */
     --font-fancy:   'Venera', sans-serif;
     --font-sans-serif:  'Muli', sans-serif;
@@ -53,30 +83,4 @@
     --padding:  2vw;
     --padding-vertical: 2vh;
     --padding-large: 3.5vw;
-
 }
-/* @media (min-width: 1280px) {
-    :root {
-        --font-base-size: 12px;
-        --font-body: calc(var(--font-base-size) + .3vw);
-    }
-}
-@media (min-width: 981px) and (max-width: 1280px) {
-    :root {
-        --font-base-size: 13px;
-        --font-body: calc(var(--font-base-size) + .5vw);
-    }
-}
-@media (min-width: 741px) and (max-width: 980px) {
-    :root {
-        --font-base-size: 12px;
-        --font-body: calc(var(--font-base-size) + .5vw);
-    }
-}
-@media (max-width: 740px) {
-    :root {
-        --font-base-size: 16px;
-        --font-body: clamp(16px calc(var(--font-base-size) + .5vw) 22px);
-    }
-} */
-

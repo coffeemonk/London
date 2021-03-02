@@ -43,7 +43,7 @@ function css(done) {
     var processors = [
         easyimport,
         nested(),
-        customProperties({preserve: false}),
+        customProperties({preserve: true}),
         colorFunction(),
         autoprefixer()
         // cssnano()

@@ -1,0 +1,29 @@
+{{!< default}}
+{{#if @member}}
+    {{!-- Logged in: Redirect home --}}
+    <script>window.location = '{{@site.url}}';</script>
+{{else}}
+    <article class="post-content no-image signin">
+
+        <header class="post-content-header">
+            <h1 class="post-content-title">Welcome back!</h1>
+            <p>Sign into your account again for full access</p>
+        </header>
+
+        <div class="post-content-body">
+            <form data-members-form="signin">
+                <input data-members-email type="email" required="true" placeholder="Your email address"/>
+                <button class="button fit primary" type="submit">Send login link</button>
+            </form>
+            <small class="message-success">
+                Great! Check your inbox and click the link to confirm your subscription.
+            </small>
+            <small class="message-error">
+                Please enter a valid email address!
+            </small>
+            <small data-members-error></small>
+
+            <p><small>Don't have an account yet? <a href="/join/">Join the Adventure!</a></small></p>
+        </div>
+    </article>
+{{/if}}

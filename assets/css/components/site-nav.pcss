@@ -23,7 +23,7 @@
             display: block;
             margin: 0;
             padding: .5em .6em;
-            color: var(--color-text-onLight);
+            color: var(--text);
             font-weight: var(--font-regular);
             opacity: 0.4;
             &.site-head-logo {
@@ -31,7 +31,7 @@
                 flex-shrink: 0;
                 display: block;
                 padding: .5em;
-                color: var(--color-text-onLight);
+                color: var(--text);
                 font-family: 'Venera';
                 font-size: var(--font-h4);
                 font-weight: var(--font-bold);
@@ -102,7 +102,7 @@
         margin: 0;
         padding: 0;
         width: 100vw;
-        background-color: var(--color-bg);
+        background-color: var(--bg);
         z-index: 500;
 
         .site-head-container {
@@ -111,7 +111,7 @@
             flex-direction: column;
             justify-content: flex-start;
             height: 40px;
-            background: rgba(255,255,255,0);
+            background: color(var(--bg) a(0));
             z-index: -1;
             transition: all 0.4s ease-out;
             overflow: hidden;
@@ -229,7 +229,7 @@
     }
 
     .site-head-open {
-        background: rgba(255,255,255,1);
+        background: color(var(--bg) a(100%));
         transition: background 0.5s ease-out;
         transition-delay: 0.25;
         overflow: hidden;
@@ -271,7 +271,7 @@
         }
         .site-foot {
             position: fixed;
-            background: var(--color-bg);
+            background: var(--bg);
             z-index: 9999;
             left: 0;
             bottom: 0;
