@@ -7,8 +7,7 @@
     z-index: 300;
     margin-top: -10px;
     font-size: var(--font-small);
-    .site-head-container,
-    .site-foot-container {
+    .container {
         display: grid;
         grid-template-columns: 1fr auto 1fr;
         align-items: center;
@@ -46,7 +45,7 @@
                     display: block;
                     margin-top: .2em;
                     width: auto;
-                    height: 28px;
+                    height: clamp(28px, 3vw, 60px);;
                 }
             }
             &.site-foot-logo {
@@ -88,6 +87,19 @@
     }
 }
 
+@media (prefers-color-scheme: dark) {
+    :root.theme-light {
+        .site-head .container a.logo {
+            background: url(https://images.matthewrasnake.com/logo_MatthewRasnake-Author.png) no-repeat;
+            background-position: center center;
+            opacity: .75;
+            img {
+                visibility: hidden;
+            }
+        }
+    }
+}
+
 /* Mobile Nav Menu
 /* ---------------------------------------------------------- */
 
@@ -105,7 +117,7 @@
         background-color: var(--bg);
         z-index: 500;
 
-        .site-head-container {
+        .container {
             margin: .25em 1em;
             display: flex;
             flex-direction: column;
@@ -170,7 +182,7 @@
         flex-direction: column;
         align-items: center;
 
-        .site-foot-container {
+        .container {
             grid-template-columns: none;
             padding-bottom: 1em;
 
@@ -235,7 +247,7 @@
         overflow: hidden;
         height: 100vh;
 
-        .site-head-container {
+        .site-head .container {
             height: calc(100vh);
             overflow-y: scroll;
             transition: height 0.2s ease-in;

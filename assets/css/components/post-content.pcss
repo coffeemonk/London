@@ -46,110 +46,96 @@
 .post-content-body {
     font-size: var(--font-normal);
     line-height: 1.65em;
+
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--text);
+    }
+    li {
+        word-break: break-word;
+    }
+    li p {
+        margin: 0;
+    }
+    iframe {
+        margin: 0 auto !important;
+    }
+    blockquote {
+        margin: 0 0 1.5em;
+        padding: 0 1.5em;
+        border-left: #3eb0ef 3px solid;
+    }
+    blockquote p {
+        margin: 0 0 1em 0;
+        color: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        font-style: italic;
+    }
+    blockquote p:last-child {
+        margin-bottom: 0;
+    }
+    code {
+        padding: .25em .35em .15em;
+        font-family: var(--font-mono);
+        font-size: var(--font-small);
+        font-weight: var(--font-regular) !important;
+        line-height: 1em;
+        background-color: var(--reverse-bg);
+        color: var(--reverse-text);
+        border-radius: 3px;
+    }
+    p code {
+        word-break: break-all;
+    }
+    pre {
+        overflow-x: auto;
+        margin: 1.5em 0 3em;
+        padding: 20px;
+        max-width: 100%;
+        border: var(--border) 1px solid;
+        color: var(--reverse-text);
+        font-size: var(--font-small);
+        line-height: 1.5em;
+        background: var(--reverse-bg);
+        border-radius: 5px;
+
+        code {
+            padding: 0;
+            font-size: inherit;
+            line-height: inherit;
+            background: transparent;
+
+            :not(span) {
+                color: inherit;
+            }
+        }
+    }
+    .fluid-width-video-wrapper {
+        margin: 1.5em 0 3em;
+    }
+    hr {
+        margin: 4vw 0;
+    }
+    hr:after {
+        content: "";
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        display: block;
+        margin-left: -10px;
+        width: 1px;
+        height: 30px;
+        background: color(var(--border) l(+5%));
+        box-shadow: var(--bg) 0 0 0 5px;
+        transform: rotate(45deg);
+    }
 }
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
     .post-content-body {
         font-size: 1.7rem;
     }
-}
+} */
 
-.post-content-body h1,
-.post-content-body h2,
-.post-content-body h3,
-.post-content-body h4,
-.post-content-body h5,
-.post-content-body h6 {
-    color: var(--text);
-}
-
-.post-content-body li {
-    word-break: break-word;
-}
-
-.post-content-body li p {
-    margin: 0;
-}
-
-.post-content-body iframe {
-    margin: 0 auto !important;
-}
-
-.post-content-body blockquote {
-    margin: 0 0 1.5em;
-    padding: 0 1.5em;
-    border-left: #3eb0ef 3px solid;
-}
-
-.post-content-body blockquote p {
-    margin: 0 0 1em 0;
-    color: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    font-style: italic;
-}
-
-.post-content-body blockquote p:last-child {
-    margin-bottom: 0;
-}
-
-.post-content-body code {
-    padding: 0 5px 2px;
-    font-size: 0.8em;
-    line-height: 1em;
-    font-weight: 400!important;
-    background: var(--reverse-bg);
-    border-radius: 3px;
-}
-
-.post-content-body p code {
-    word-break: break-all;
-}
-
-.post-content-body pre {
-    overflow-x: auto;
-    margin: 1.5em 0 3em;
-    padding: 20px;
-    max-width: 100%;
-    border: color(var(--border) l(-10%)) 1px solid;
-    color: var(--reverse-text);
-    font-size: var(--font-small);
-    line-height: 1.5em;
-    background: color(var(--reverse-bg) l(-3%));
-    border-radius: 5px;
-
-    code {
-        padding: 0;
-        font-size: inherit;
-        line-height: inherit;
-        background: transparent;
-
-        :not(span) {
-            color: inherit;
-        }
-    }
-}
-
-.post-content-body .fluid-width-video-wrapper {
-    margin: 1.5em 0 3em;
-}
-
-.post-content-body hr {
-    margin: 4vw 0;
-}
-
-.post-content-body hr:after {
-    content: "";
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    display: block;
-    margin-left: -10px;
-    width: 1px;
-    height: 30px;
-    background: color(var(--border) l(+5%));
-    box-shadow: var(--bg) 0 0 0 5px;
-    transform: rotate(45deg);
-}
 
 .footnotes-sep {
     margin-bottom: 30px;

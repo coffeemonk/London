@@ -23,7 +23,7 @@
     <div class="site-wrapper">
 
         <header class="site-head">
-            <div class="site-head-container">
+            <div class="container">
                 <a class="nav-burger" href="#">
                     <div class="hamburger hamburger--collapse" aria-label="Menu" role="button" aria-controls="navigation">
                         <div class="hamburger-box">
@@ -35,11 +35,23 @@
                     {{navigation}}
                 </nav>
                 <div class="site-head-center">
-                    {{#if @site.logo}}
-                        <a class="site-head-logo" href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{@site.title}}" /></a>
-                    {{else}}
-                        <a class="site-head-logo" href="{{@site.url}}">{{@site.title}}</a>
-                    {{/if}}
+                    <a class="logo" href="{{@site.url}}">
+                        <picture>
+                            <source
+                                media="(prefers-color-scheme: dark)"
+                                sizes="(max-width: 3000px) 40vw, 1200px"
+                                srcset="
+                                    https://images.matthewrasnake.com/logo_MatthewRasnake-Author_light@0.5x.png 300w,
+                                    https://images.matthewrasnake.com/logo_MatthewRasnake-Author_light.png 600w" />
+                            <img
+                                sizes="(max-width: 3000px) 40vw, 1200px"
+                                srcset="
+                                    https://images.matthewrasnake.com/logo_MatthewRasnake-Author@0.5x.png 300w,
+                                    https://images.matthewrasnake.com/logo_MatthewRasnake-Author.png 600w"
+                                src="https://images.matthewrasnake.com/logo_MatthewRasnake-Author.png"
+                                alt="{{@site.title}}" />
+                        </picture>
+                    </a>
                 </div>
                 <div class="site-head-right">
                     <div class="dark-mode">LIGHT</div>
@@ -69,7 +81,7 @@
 
         {{!-- The footer at the very bottom of the screen --}}
         <footer class="site-foot">
-            <div class="site-foot-container">
+            <div class="container">
                 <div class="site-foot-left">{{navigation type="secondary"}}</div>
                 <div class="site-foot-center">
                     <div>&copy; {{date format="YYYY"}} <a href="{{@site.url}}">Matthew Rasnake</a></div>
@@ -89,7 +101,7 @@
             </div>
         </footer>
         <footer class="site-foot">
-            <div class="site-foot-container">
+            <div class="container">
                 <div class="site-foot-left"></div>
                 <div class="site-foot-center"><a href="https://allianceindependentauthors.org/?affid=10030" class="site-foot-logo"><img src="https://allianceindependentauthors.org/members/banners/ALLi-Associate-Member-Badge.png"  width="109" height="185" alt="Alliance of Independent Authors" /></a></div>
                 <div class="site-foot-right"></div>

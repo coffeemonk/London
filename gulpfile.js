@@ -11,9 +11,9 @@ const rename = require('gulp-rename');
 const cleanCSS = require('gulp-clean-css');
 
 // postcss plugins
+// var postcssPresetEnv = require('postcss-preset-env');
 var autoprefixer = require('autoprefixer');
-var colorFunction = require('postcss-color-function');
-// var cssnano = require('cssnano');
+// var colorFunction = require('postcss-color-function');
 var customProperties = require('postcss-custom-properties');
 var easyimport = require('postcss-easy-import');
 var nested = require('postcss-nested');
@@ -40,14 +40,13 @@ function hbs(done) {
 }
 
 function css(done) {
-    var processors = [
-        easyimport,
+    processors = [
+        easyimport(),
         nested(),
         customProperties({preserve: true}),
-        colorFunction(),
+        // colorFunction(),
         autoprefixer()
-        // cssnano()
-    ];
+    ]
 
     pump([
         src(['assets/css/*.css', 'assets/css/*.pcss'], {sourcemaps: true}),

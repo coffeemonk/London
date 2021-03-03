@@ -1,51 +1,63 @@
 /* Variables
 /* ---------------------------------------------------------- */
+
 :root {
-
     /* Colors */
-    --color-light:      #FDECEF; /* Lavender Blush */
-    --color-dark:       #393D3F; /* Onyx */
-    --color-primary:    #9471C6; /* Middle Blue Purple */
-    --color-secondary:  #1B9AAA; /* Blue Munsell */
+    --color-light:      #F4F0F9; /* Magnolia */
+    --color-dark:       #130c1d; /* Xiketic */
+    --color-primary:    #8256BF; /* Royal Purple */
+    --color-secondary:  #476EBD; /* Han Blue */
+    --color-tertiary:   #23967f; /* Paolo Veronese Green */
 
-    --white:            #EFF7FF; /* Alice Blue */
+    --white:            var(--color-light);
     --light-gray:       #CECCCC; /* Light Gray */
     --dark-gray:        var(--color-dark);
     --black:            #0F110C; /* Rich Black */
-    --green:            #00A878; /* Green Munsell */
+    --green:            var(--color-tertiary);
     --red:              #A30015; /* Ruby Red*/
 
-    --color-text-onLight:   var(--black);
-    --color-text-onDark:    var(--color-light);
+    --color-text-onLight:   var(--dark-gray);
+    --color-text-onDark:    #F4F0F9D0;
     --color-text-onPrimary: var(--color-light);
 }
+/* Default/Light Theme */
 :root.theme-default,
 :root.theme-light {
     --text:         var(--color-text-onLight);
     --bg:           var(--color-light);
-    --reverse-text: var(--color-text-onDark);
-    --reverse-bg:   var(--black);
-    transition: all 0.5s ease;
-}
+    --border:       var(--dark-gray);
+    --highlight:    var(--color-primary);
+    --reverse-text: var(--color-light);
+    --reverse-bg:   var(--dark-gray);
+    --field-text:   var(--black);
+    --field-bg:     var(--light-gray);
 
+    transition: var(--transition);
+}
+/* Dark Theme */
 :root.theme-dark {
-    --border:       var(--color-light-grey);
     --text:         var(--color-text-onDark);
-    --bg:           var(--black);
+    --bg:           var(--dark-gray);
     --border:       var(--color-primary);
+    --highlight:    var(--color-primary);
     --reverse-text: var(--color-text-onLight);
     --reverse-bg:   var(--color-light);
-    transition: all 0.5s ease;
+    --field-text:   var(--black);
+    --field-bg:     var(--light-gray);
+    transition: var(--transition);
 }
-
+/* Auto Dark Theme based on OS/browser settings */
 @media (prefers-color-scheme: dark) {
     :root.theme-default {
         --text:         var(--color-text-onDark);
-        --bg:           var(--black);
+        --bg:           var(--dark-gray);
         --border:       var(--color-primary);
+        --highlight:    var(--color-primary);
         --reverse-text: var(--color-text-onLight);
         --reverse-bg:   var(--color-light);
-        transition: all 0.5s ease;
+        --field-text:   var(--black);
+        --field-bg:     var(--light-gray);
+        transition: var(--transition);
     }
 }
 :root {
@@ -56,6 +68,7 @@
     --font-mono:    Menlo, Courier, monospace;
     --font-light:   100;
     --font-regular: 400;
+    --font-semi:    600;
     --font-bold:    700;
     --font-heavy:   800;
 
@@ -90,4 +103,16 @@
     --padding:  2vw;
     --padding-vertical: 2vh;
     --padding-large: 3.5vw;
+
+    /* Misc */
+    --transition: all 0.4s ease-out;
 }
+
+
+
+
+
+
+
+
+
