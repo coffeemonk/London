@@ -26,8 +26,8 @@
             <div class="container">
                 <a class="nav-burger" href="#">
                     <div class="hamburger hamburger--collapse" aria-label="Menu" role="button" aria-controls="navigation">
-                        <div class="hamburger-box">
-                            <div class="hamburger-inner"></div>
+                        <div class="box">
+                            <div class="inner"></div>
                         </div>
                     </div>
                 </a>
@@ -54,7 +54,6 @@
                     </a>
                 </div>
                 <div class="site-head-right">
-                    <div class="dark-mode">LIGHT</div>
                     <div class="member-links">
                         {{#if @member.paid}}
                             Welcome, <a href="javascript:" data-portal="account">{{@member.firstname}}</a>
@@ -66,6 +65,11 @@
                             <a href="/join/">Become a Patron</a>
                         {{/if}}
                     </div>
+                </div>
+                <div class="theme-selector" title="Select Dark/Light Mode">
+                    {{> "icons/mode-dark"}}
+                    {{> "icons/mode-light"}}
+                    <span class="switch">&nbsp;</span>
                 </div>
             </div>
         </header>
@@ -142,12 +146,11 @@
 
     {{!-- Handle swup content replacement --}}
     <script data-swup-ignore-script>
-        $(document).ready(function () {
-            // Mobile Menu Trigger
-            $('.nav-burger').click(function () {
-                $('body').toggleClass('site-head-open');
-            });
-        });
+
+        // Auto Dark Mode
+        var prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var savedDarkMode = localStorage.getItem('darkMode');
+        setDarkMode(savedDarkMode == null ? prefersDarkScheme : savedDarkMode == 'true');
 
         // Initiate Swup transitions
         var swup = new Swup({
@@ -159,6 +162,21 @@
             $('body').removeClass('site-head-open');
         });
 
+        $(document).ready(function () {
+            /* $('.theme-selector').show(); */
+
+            // Mobile Menu Trigger
+            $('.nav-burger').click(function () {
+                $('body').toggleClass('site-head-open');
+            });
+            // Dark Mode Toggle
+            $('.theme-selector').click(event => {
+                darkMode = $('html').hasClass('theme-dark');
+                localStorage.setItem('darkMode', !darkMode);
+                setDarkMode(!darkMode);
+            });
+        });
+
         function setDarkMode(darkMode = false) {
             if (darkMode) {
                 $('html').addClass('theme-dark').removeClass('theme-light');
@@ -168,17 +186,6 @@
             $('html').removeClass('theme-default');
         }
 
-        // Auto Dark Mode
-        var prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        var savedDarkMode = localStorage.getItem('darkMode');
-        setDarkMode(savedDarkMode == null ? prefersDarkScheme : savedDarkMode == 'true');
-
-        // Dark Mode Toggle
-        $('.dark-mode').click(event => {
-            darkMode = $('html').hasClass('theme-dark');
-            localStorage.setItem('darkMode', !darkMode);
-            setDarkMode(!darkMode);
-        });
     </script>
 
 </body>

@@ -2,24 +2,24 @@
 /* ---------------------------------------------------------- */
 
 .post-feed {
-    display: flex;
-    flex-wrap: wrap;
-    font-size: var(--font-normal);
+    display:    flex;
+    flex-wrap:  wrap;
+    font-size:  var(--font-normal);
 
     .post-card {
-        position: relative;
-        display: flex;
-        flex: 1 1 50%;
-        height: 35vw;
-        background: linear-gradient(135deg, #1f1f1f 0%, #111 100%) center center;
+        position:       relative;
+        display:        flex;
+        flex:           1 1 50%;
+        height:         35vw;
+        background:     linear-gradient(135deg, #1f1f1f 0%, #111 100%) center center;
         background-size: cover;
-        overflow: hidden;
+        overflow:       hidden;
         counter-increment: posts;
 
         .link,
         .post-card-link {
-            flex: 1 1 auto;
-            display: block;
+            flex:       1 1 auto;
+            display:    block;
         }
         .content,
         .post-card-content {
@@ -121,6 +121,7 @@
                     .title,
                     .subscribe-form-description {
                         margin-bottom: clamp(.5em, 3vw, 2em);
+                        color: var(--color-text-onDark);
                     }
                     form {
                         margin: 0;
@@ -162,6 +163,7 @@
                         font-size: clamp(.8rem, 4.1vw, 1.5rem);
                         line-height: 1.4em;
                         margin-bottom: 0;
+                        color: var(--color-text-onDark);
                     }
                 }
             }

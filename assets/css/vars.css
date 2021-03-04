@@ -3,18 +3,20 @@
 
 :root {
     /* Colors */
-    --color-light:      #F4F0F9; /* Magnolia */
-    --color-dark:       #130c1d; /* Xiketic */
-    --color-primary:    #8256BF; /* Royal Purple */
-    --color-secondary:  #476EBD; /* Han Blue */
-    --color-tertiary:   #23967f; /* Paolo Veronese Green */
-
-    --white:            var(--color-light);
-    --light-gray:       #CECCCC; /* Light Gray */
-    --dark-gray:        var(--color-dark);
-    --black:            #0F110C; /* Rich Black */
-    --green:            var(--color-tertiary);
+    --white:            #F4F6F5; /* Cultured */
+    --light-gray:       #C8D0CE; /* Light Gray */
+    --medium-gray:      #7F918D; /* Morning Blue */
+    --dark-gray:        #1C151F; /* Xiketic */
+    --black:            #0B080C; /* Rich Black */
     --red:              #A30015; /* Ruby Red*/
+    --green:            #23967f; /* Paolo Veronese Green */
+    --blue:             #476EBD; /* Han Blue */
+
+    --color-light:      #F4F0F9; /* Magnolia */
+    --color-dark:       #1C112C; /* Dark Purple */
+    --color-primary:    #8256BF; /* Royal Purple */
+    --color-secondary:  var(--blue);
+    --color-tertiary:   var(--green);
 
     --color-text-onLight:   var(--dark-gray);
     --color-text-onDark:    #F4F0F9D0;
@@ -32,7 +34,8 @@
     --field-text:   var(--black);
     --field-bg:     var(--light-gray);
 
-    transition: var(--transition);
+    transition: background-color 0.5s ease-in-out;
+    transition: color 0.5s ease-in-out;
 }
 /* Dark Theme */
 :root.theme-dark {
@@ -42,9 +45,8 @@
     --highlight:    var(--color-primary);
     --reverse-text: var(--color-text-onLight);
     --reverse-bg:   var(--color-light);
-    --field-text:   var(--black);
-    --field-bg:     var(--light-gray);
-    transition: var(--transition);
+    --field-text:   var(--reverse-text);
+    --field-bg:     var(--reverse-bg);
 }
 /* Auto Dark Theme based on OS/browser settings */
 @media (prefers-color-scheme: dark) {
@@ -55,9 +57,8 @@
         --highlight:    var(--color-primary);
         --reverse-text: var(--color-text-onLight);
         --reverse-bg:   var(--color-light);
-        --field-text:   var(--black);
-        --field-bg:     var(--light-gray);
-        transition: var(--transition);
+        --field-text:   var(--reverse-text);
+        --field-bg:     var(--reverse-bg);
     }
 }
 :root {
