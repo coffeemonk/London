@@ -47,6 +47,8 @@
     --reverse-bg:   var(--color-light);
     --field-text:   var(--reverse-text);
     --field-bg:     var(--reverse-bg);
+    transition: background-color 0.5s ease-in-out;
+    transition: color 0.5s ease-in-out;
 }
 /* Auto Dark Theme based on OS/browser settings */
 @media (prefers-color-scheme: dark) {
@@ -59,6 +61,8 @@
         --reverse-bg:   var(--color-light);
         --field-text:   var(--reverse-text);
         --field-bg:     var(--reverse-bg);
+        transition: background-color 0.5s ease-in-out;
+        transition: color 0.5s ease-in-out;
     }
 }
 :root {
