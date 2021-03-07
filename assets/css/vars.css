@@ -68,7 +68,7 @@
 :root {
     /* Fonts */
     --font-fancy:   'Venera', sans-serif;
-    --font-sans-serif:  'Muli', sans-serif;
+    --font-sans-serif:  'Muli', Lucida Sans Unicode, Lucida Grande, Helvetica, Arial, sans-serif;
     --font-serif:   Georgia, Times, serif;
     --font-mono:    Menlo, Courier, monospace;
     --font-light:   100;
@@ -77,14 +77,18 @@
     --font-bold:    700;
     --font-heavy:   800;
 
-    --font-size-min: 18px;
-    --font-size-max: 22px;
+    --font-size-min: 1em;
+    --font-size-max: 1.25em;
 
     --font-smaller: .6em;
     --font-small:   .75em;
     --font-normal:  1em;
     --font-big:     1.2em;
     --font-bigger:  1.4em;
+
+    --line-tight: 1em;
+    --line-normal: 1.6em;
+    --line-loose: 2em;
 
     --font-h6: 1rem;
     --font-h5: 1.2rem;
@@ -96,9 +100,9 @@
     /* Breakpoints */
     --xlarge:   1680px;
     --large:    1280px;
-    --medium:   980px;
-    --small:    740px;
-    --xsmall:   480px;
+    --medium:    980px;
+    --small:     740px;
+    --xsmall:    480px;
 
     /* Sizes */
     --height:   2em;

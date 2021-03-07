@@ -119,24 +119,24 @@
                         max-width: 100%;
                     }
                     .title,
-                    .subscribe-form-description {
+                    .description {
                         margin-bottom: clamp(.5em, 3vw, 2em);
                         color: var(--color-text-onDark);
                     }
                     form {
-                        margin: 0;
                         width: 100%;
-                        font-size: clamp(.8em, 1vw, 1.5em);
+
                         .subscribe-email {
-                            padding: .5em;
+                            margin-right: .5em;
                         }
-                        .button {
-                            height: 2.25em;
-                            line-height: 2.25em;
+                        &.success .message-success,
+                        &.invalid .message-error,
+                        &.error .message-error {
+                            font-size: var(--font-small);
                         }
                     }
-                    .subscribe-form-description {
-                        font-size: var(--font-h6);
+                    .description {
+                        font-size: var(--font-normal);
                     }
                 }
             }

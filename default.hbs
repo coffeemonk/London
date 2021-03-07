@@ -178,12 +178,16 @@
         });
 
         function setDarkMode(darkMode = false) {
+            var root = $('html');
+            var selector = $('.theme-selector');
             if (darkMode) {
-                $('html').addClass('theme-dark').removeClass('theme-light');
+                root.addClass('theme-dark').removeClass('theme-light');
+                selector[0].title = "Click to set Light Mode"
             } else {
-                $('html').addClass('theme-light').removeClass('theme-dark');
+                root.addClass('theme-light').removeClass('theme-dark');
+                selector[0].title = "Click to set Dark Mode"
             }
-            $('html').removeClass('theme-default');
+            root.removeClass('theme-default');
         }
 
     </script>

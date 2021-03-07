@@ -82,11 +82,7 @@ video {
     padding: 0;
     border: 0;
     font: inherit;
-    font-size: 100%;
     vertical-align: baseline;
-}
-body {
-    line-height: 1;
 }
 ol,
 ul {
@@ -131,7 +127,7 @@ a:hover {
 }
 b,
 strong {
-    font-weight: bold;
+    font-weight: var(--font-bold);
 }
 i,
 em,
@@ -139,12 +135,12 @@ dfn {
     font-style: italic;
 }
 small {
-    font-size: .8em;
+    font-size: var(--font-small);
 }
 sub,
 sup {
     position: relative;
-    font-size: .75em;
+    font-size: var(--font-small);
     line-height: 0;
     vertical-align: baseline;
 }
@@ -161,14 +157,14 @@ svg:not(:root) {
     overflow: hidden;
 }
 mark {
-    background-color: #fdffb6;
+    background-color: var(--bg);
 }
 code,
 kbd,
 pre,
 samp {
-    font-family: monospace, monospace;
-    font-size: var(--font-normal);
+    font-family: var(--font-mono);
+    /* font-size: var(--font-normal); */
 }
 button,
 input,
@@ -204,7 +200,7 @@ input::-moz-focus-inner {
     border: 0;
 }
 input {
-    line-height: normal;
+    line-height: var(--line-normal);
 }
 input:focus {
     outline: none;
@@ -250,7 +246,16 @@ th {
 html {
     overflow-x: hidden;
     overflow-y: scroll;
-    font-size: clamp(var(--font-size-min), 2.25vw, var(--font-size-max));
+
+    font-family: var(--font-sans-serif);
+    font-size: clamp(var(--font-size-min), 2vw, var(--font-size-max));
+    font-weight: var(--font-regular);
+    line-height: var(--line-normal);
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: "liga" on;
 
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     min-width: 360px;
@@ -260,20 +265,7 @@ html {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    font-size: var(--font-normal);
-    font-weight: var(--font-regular);
-    font-style: normal;
-    line-height: 1.6em;
-
-    letter-spacing: 0;
-    text-rendering: optimizeLegibility;
-
     overflow-x: hidden;
-
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -moz-font-feature-settings: "liga" on;
 }
 
 ::selection {
@@ -289,8 +281,9 @@ hr {
     padding: 0;
     height: 1px;
     border: 0;
-    border-top: 1px solid color(var(--border) l(+5%));
+    border-top: 1px solid var(--border);
     overflow: visible;
+    opacity: .33;
 }
 
 audio,
@@ -311,7 +304,7 @@ blockquote {
 blockquote {
     margin: 1.5em 0;
     padding: 0 1.6em 0 1.6em;
-    border-left: var(--bg) 0.5em solid;
+    border-left: var(--border) 0.5em solid;
 
     p {
         margin: 0.8em 0;
