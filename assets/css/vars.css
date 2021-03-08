@@ -39,6 +39,8 @@
 }
 /* Dark Theme */
 :root.theme-dark {
+    --color-primary: #9266BFEA;
+
     --text:         var(--color-text-onDark);
     --bg:           var(--dark-gray);
     --border:       var(--color-primary);
@@ -53,6 +55,8 @@
 /* Auto Dark Theme based on OS/browser settings */
 @media (prefers-color-scheme: dark) {
     :root.theme-default {
+        --color-primary: #9266BFEA;
+
         --text:         var(--color-text-onDark);
         --bg:           var(--dark-gray);
         --border:       var(--color-primary);

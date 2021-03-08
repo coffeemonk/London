@@ -7,9 +7,9 @@ into the {body} of the default.hbs template --}}
     {{#get "pages" include="tags" filter="primary_tag:books" order="published_at desc" as |books|}}
         {{#foreach books}}
             {{!-- {{#if @first}}
-                <article class="post-card {{post_class}} post-card-large {{#if feature_image}}with-image" style="background-image: url({{img_url feature_image size="xl"}}){{else}}no-image{{/if}}">
+                <article class="post-card book {{post_class}} post-card-large {{#if feature_image}}with-image" style="background-image: url({{img_url feature_image size="xl"}}){{else}}no-image{{/if}}">
             {{else}} --}}
-                <article class="post-card {{post_class}} {{#if feature_image}}with-image" style="background-image: url({{img_url feature_image size="l"}}){{else}}no-image{{/if}}">
+                <article class="post-card book {{post_class}} {{#if feature_image}}with-image" style="background-image: url({{img_url feature_image size="l"}}){{else}}no-image{{/if}}">
             {{!-- {{/if}} --}}
                 <a class="post-card-link" href="{{url}}">
                     <div class="post-card-content">

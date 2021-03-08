@@ -53,7 +53,8 @@
             bottom: 0;
             right: 0;
             color: var(--color-text-onDark);
-            background-color: color(var(--color-base) a(75%));
+            background-color: var(--medium-gray);
+            opacity: .8;
             border-radius: calc(var(--padding) - .5vw) 0 calc(var(--padding) / 4);
             padding: .25vw var(--padding);
         }
@@ -66,6 +67,9 @@
             .content,
             .post-card-content {
                 opacity: 0;
+            }
+            &.book {
+                background-size: 120%;
             }
         }
         &:hover .content,
@@ -175,7 +179,10 @@
         }
     }
 }
-
+.theme-dark .post-feed .post-card.with-image {
+    opacity: .8;
+    transition: opacity .5s ease-out;
+}
 @media (min-width:981px) and (max-width: 1280px) {
     .post-feed .post-card.no-image {
         .title,
@@ -205,10 +212,6 @@
             .content,
             .post-card-content {
                 opacity: 1;
-            }
-            &.book {
-                background: linear-gradient(135deg, #1f1f1f 0, #111 100%) center center;
-                background-size: cover;
             }
         }
     }
