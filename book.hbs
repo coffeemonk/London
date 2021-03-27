@@ -35,8 +35,7 @@
             <div class="col-4">
                 <img src="{{feature_image}}" /><br />
                 <h4 style="text-align: center;">${{date published_at format="HH"}}.95</h4>
-                <ul class="actions fit stacked" data-links='{{excerpt}}'>
-
+                <ul class="actions fit stacked">
                 </ul>
             </div>
         </div>
@@ -47,7 +46,7 @@
 
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
 {{#contentFor "scripts"}}
-<script>
+<script data-swup-reload-script>
     var images = document.querySelectorAll('.kg-gallery-image img');
     images.forEach(function (image) {
         var container = image.closest('.kg-gallery-image');
@@ -58,19 +57,19 @@
     })
     $(document).ready(
         function() {
-            var linksData = $('ul.actions').data('links');
-            if (!!linksData.isbn) {
-                $('#book-details').append('<br /><b>ISBN:</b> ' + linksData.isbn);
+            var bookData = $('book-data').data();
+            if (!!bookData.isbn) {
+                $('#book-details').append('<br /><b>ISBN:</b> ' + bookData.isbn);
             }
-            if (!!linksData.payhip) {
-                $('ul.actions').append('<li><a href="https://payhip.com/b/'+linksData.payhip+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+linksData.payhip+'">Buy Direct</a></li>');
+            if (!!bookData.payhip) {
+                $('ul.actions').append('<li><a href="https://payhip.com/b/'+bookData.payhip+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip+'">Buy Direct</a></li>');
                 $('body').append('<scr'+'ipt type="text/javascript" src="https://payhip.com/payhip.js?v=24u68984"></scr'+'ipt>')
             }
-            if (!!linksData.bookshop) {
-                $('ul.actions').append('<li><a href="https://bookshop.org/books/'+linksData.bookshop+'" class="button fit">Buy Local</a></li>');
+            if (!!bookData.bookshop) {
+                $('ul.actions').append('<li><a href="https://bookshop.org/books/'+bookData.bookshop+'" class="button fit">Buy Local</a></li>');
             }
-            if (!!linksData.books2read) {
-                $('ul.actions').append('<li><a href="https://books2read.com/'+linksData.books2read+'" class="button fit">Buy Online</a></li>');
+            if (!!bookData.b2r) {
+                $('ul.actions').append('<li><a href="https://books2read.com/'+bookData.b2r+'" class="button fit">Buy Online</a></li>');
             }
         }
     )

@@ -1,18 +1,51 @@
-{{!--
-
-On every 3rd post, add a special .post-card-large class and load a large image
-For the rest, just output a smaller background image
-
---}}
-
-{{!-- #has number="nth:3"}}
-<article class="post-card {{post_class}} post-card-large {{#if feature_image}}with-image" style="background-image: url({{img_url feature_image size="xl"}}){{else}}no-image{{/if}}">
-{{else --}}
-<article class="post-card {{post_class}} {{#if feature_image}}with-image" style="background-image: url({{img_url feature_image size="l"}}){{else}}no-image{{/if}}">
-{{!-- /has --}}
-    <a class="post-card-link" href="{{url}}">
-        <div class="post-card-content">
-            <h2 class="post-card-title">{{title}}</h2>
+<article class="post-card {{post_class}}{{!--
+--}}{{#if book}} book{{/if}}{{!--
+--}}{{#if square}} square{{/if}}{{!--
+--}}{{#if feature_image}} with-image{{else}} no-image{{/if}}{{!--
+--}}{{#if allow-sizes}}{{!--
+    --}}{{#has number="1,2,7,8"}}"
+            {{#if feature_image}} style="background-image: url({{img_url feature_image size="l"}})"{{/if}}{{!--
+    --}}{{else has number="6,12"}} large"
+            {{#if feature_image}} style="background-image: url({{img_url feature_image size="xl"}})"{{/if}}{{!--
+    --}}{{else}} small"
+            {{#if feature_image}} style="background-image: url({{img_url feature_image size="m"}})"{{/if}}{{!--
+    --}}{{/has}}{{!--
+--}}{{else if allow-large}}{{!--
+    --}}{{#has number="nth:3"}} large"
+            {{#if feature_image}} style="background-image: url({{img_url feature_image size="xl"}})"{{/if}}{{!--
+    --}}{{else}}"
+            {{#if feature_image}} style="background-image: url({{img_url feature_image size="l"}})"{{/if}}{{!--
+    --}}{{/has}}{{!--
+--}}{{else}}"
+        {{#if feature_image}} style="background-image: url({{img_url feature_image size="l"}})"{{/if}}{{!--
+--}}{{/if}}>
+{{#if member-banner}}
+    {{#has tag='Member Content'}}
+        {{> "member-banner"}}
+    {{/has}}
+{{/if}}
+    <a class="link" href="{{url}}">
+        <div class="content">
+            <footer class="footer">
+                <div class="date">
+                    {{#unless book}}
+                        <time datetime="{{date format="YYYY-MM-DD"}}">
+                            {{#unless number_date}}
+                                {{ date published_at timeago="true" }}
+                            {{else}}
+                                {{ date published_at }}
+                            {{/unless}}
+                        </time>
+                    {{/unless}}
+                </div>
+                <div class="tag">{{tags.[1].name}}</div>
+                <div class="time">
+                    {{#unless book}}
+                        {{> icons/timer}}{{ reading_time minute="1 min" minutes="% mins" }}
+                    {{/unless}}
+                </div>
+            </footer>
+            <h2 class="title">{{title}}</h2>
         </div>
     </a>
 </article>

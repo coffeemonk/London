@@ -1,0 +1,166 @@
+#cove-form {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+#cove-input-body {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#cove-input-name {
+    width: 160px;
+    margin-left: 1rem;
+}
+#cove-name-message {
+    text-align: right;
+    color: red;
+}
+#cove-login [type="email"] {
+    width: 250px;
+    margin-right: 1rem;
+    display: inline;
+}
+@media (max-width: 479px) {
+    #cove-login [type="email"],
+    #cove-login button,
+    #cove-input-name {
+        width: 100%;
+    }
+    #cove-input-name {
+        margin-left: 0;
+    }
+    #cove-login [type="email"],
+    #cove-input-name {
+        margin-bottom: 8px;
+        margin-right: 0;
+    }
+    #cove-name-message {
+        text-align: center;
+    }
+}
+#cove-new-alert {
+    padding: 1rem;
+    background: #f8f8f8;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+.cove-body p + br {
+    display: none;
+}
+.cove-body p {
+    margin-bottom: 0;
+}
+.cove-body p + p {
+    margin-top: 1.5rem;
+}
+.cove-like,
+.cove-reaction,
+.cove-reaction-menu [data-cove-emoji] {
+    display: inline-block;
+    line-height: 1;
+    padding: 4px;
+}
+.cove-like,
+.cove-reaction-menu {
+    cursor: pointer;
+}
+.cove-like.active {
+    color: #e7241c;
+    font-weight: bold;
+}
+.cove-like {
+    padding: 4px 0;
+}
+.cove-reaction,
+.cove-reaction-box,
+.cove-reaction-menu {
+    border-radius: 2px;
+}
+.cove-reaction {
+    font-size: 15px;
+    padding: 2px 4px;
+    font-weight: bold;
+}
+.cove-reaction.active {
+    border: 1px solid #ccc;
+}
+.cove-reaction-menu {
+    font-size: 15px;
+    display: none;
+    background: #f8f8f8;
+    border: 1px solid #ccc;
+    width: 98px;
+    position: absolute;
+    top: -2px;
+    left: 0;
+}
+.cove-reaction-button {
+    padding: 2px;
+    display: inline-block;
+}
+.cove-reaction + .cove-reaction,
+.cove-reaction + .cove-reaction-box {
+    margin-left: 4px;
+}
+.cove-reaction-box {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    position: relative;
+}
+.cove-reaction-box:hover .cove-reaction-menu {
+    display: inline-block;
+}
+.cove-comment {
+    margin: 2em 0;
+}
+.cove-wrap {
+    display: flex;
+}
+.cove-comment .cove-comment,
+.cove-comment form,
+.cove-cancel {
+    margin-left: 52px;
+}
+.cove-user {
+    width: 52px;
+    min-width: 52px;
+}
+.cove-main {
+    margin-top: -4px;
+}
+.cove-meta {
+    font-weight: bold;
+}
+img.cove-avatar {
+    margin: 0 0.5em 0 0;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    max-width: 36px;
+}
+.cove-footer,
+.cove-cancel,
+.cove-date {
+    color: #aaa;
+    font-size: 0.85em;
+}
+.cove-date {
+    font-weight: normal;
+}
+.cove-pinned {
+    margin-right: 4px;
+    color: #333;
+    display: inline-block;
+    border-radius: 3px;
+    background: #ebebeb;
+    padding: 4px;
+    line-height: 1;
+}

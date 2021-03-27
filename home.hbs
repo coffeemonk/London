@@ -8,21 +8,11 @@ into the {body} of the default.hbs template --}}
     </header>
 {{/if}}
 
-<div class="post-feed">
+<div class="post-feed home">
 
-    {{#get "pages" filter="primary_tag:books+featured:true" order="published_at desc" as |books|}}
+    {{#get "pages" filter="tag:hash-books+featured:true" order="published_at desc" include="tags" as |books|}}
         {{#foreach books}}
-            {{#if @first}}
-                <article class="post-card book large {{post_class}} {{#if feature_image}}with-image" style="background-image: url({{img_url feature_image size="xl"}}){{else}}no-image{{/if}}">
-            {{else}}
-                <article class="post-card book {{post_class}} {{#if feature_image}}with-image" style="background-image: url({{img_url feature_image size="l"}}){{else}}no-image{{/if}}">
-            {{/if}}
-                <a class="link" href="{{url}}">
-                    <div class="content">
-                        <h2 class="title">{{title}}</h2>
-                    </div>
-                </a>
-            </article>
+            {{> post-card book=true}}
         {{/foreach}}
     {{/get}}
 
@@ -50,9 +40,9 @@ into the {body} of the default.hbs template --}}
         </article>
     {{/unless}}
 
-    {{#get "posts" filter="featured:true" limit="2"}}
+    {{#get "posts" filter="tag:blog+featured:true" limit="2" include="tags"}}
         {{#foreach posts}}
-            {{> "post-card"}}
+            {{> post-card}}
         {{/foreach}}
     {{/get}}
 

@@ -16,8 +16,11 @@
 @import "components/site-nav.pcss";
 @import "components/post-feed.pcss";
 @import "components/post-content.pcss";
+@import "components/account.pcss";
 @import "components/membership.pcss";
 @import "components/subscribe-form.pcss";
+@import "components/player.pcss";
+@import "components/comments.pcss";
 
 
 /* Main - Theme styles
@@ -73,15 +76,42 @@ body {
 
     .site-main {
         margin-bottom: var(--margin);
-        min-height: calc(100vh - 7.5em);
-    }
-}
-@media (max-width: 980px) {
-    .site-wrapper {
-        padding: var(--padding-large);
-    }
-}
+        min-height: calc(100vh - 8.5rem);
 
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--margin);
+        }
+        .share {
+            font-size: var(--font-big);
+            text-align: center;
+        }
+        .member-banner {
+            display: none;
+        }
+        .tag-member-content .member-banner {
+            display: block;
+            background-color: var(--color-primary);
+            color: var(--color-text-onPrimary);
+            font-size: .6em;
+            line-height: 1em;
+            padding: .25em 1.75em;
+            text-align: center;
+            width: fit-content;
+            height: 1.5em;
+            transform: rotate(-45deg);
+            position: absolute;
+            z-index: 200;
+            top: 3em;
+            left: -2.65em;
+            text-transform: uppercase;
+        }
+        .podcast-feed .tag-member-content .member-banner {
+            font-size: .5em;
+        }
+    }
+}
 .page-head {
     display: flex;
     flex-direction: column;
@@ -92,7 +122,6 @@ body {
     margin: auto;
     text-align: center;
 }
-
 .error-head {
     height: 75vh;
     h1 {
@@ -109,34 +138,26 @@ body {
         color: color(var(--text) l(+50%));
     }
 }
-
 .error-link {
     margin-top: 1rem;
     font-size: var(--font-h6);
     text-decoration: underline;
 }
-
 .page-head-title {
     margin: 0;
     font-size: var(--font-bigger);
     color: var(--text);
 }
-
 .page-head-description {
     margin: 0 0 1.6vw;
     color: color(var(--border) l(-20%));
     font-size: var(--font-h4);
     line-height: 1.35em;
 }
-@media (max-width: 480px) {
-    .page-head-title {
-        font-size: var(--font-h4);
-    }
-    .page-head-description {
-        font-size: var(--font-h6);
-    }
+.page-body {
+    max-width: var(--medium);
+    margin: 0 auto;
 }
-
 .subscribe-button {
     display: block;
     padding: 4px 10px;
@@ -151,7 +172,6 @@ body {
         opacity: 1;
     }
 }
-
 .rss-button {
     opacity: 0.4;
     :hover {
@@ -161,6 +181,33 @@ body {
         margin-bottom: 1px;
         height: 2.1rem;
         fill: var(--color-base);
+    }
+}
+
+@media (max-width: 980px) {
+    .site-wrapper {
+        padding: var(--padding-large);
+        .site-main {
+            min-height: auto;
+        }
+    }
+}
+@media (max-width: 740px) {
+    .site-wrapper .site-main .tag-member-content .member-banner {
+        top: 0;
+        left: 0;
+        width: 100%;
+        transform: none;
+        border-top: 1px solid var(--white);
+        border-bottom: 1px solid var(--dark-gray);
+    }
+}
+@media (max-width: 480px) {
+    .page-head-title {
+        font-size: var(--font-h4);
+    }
+    .page-head-description {
+        font-size: var(--font-h6);
     }
 }
 
@@ -258,5 +305,26 @@ body {
     .invalid ~ .message-error,
     .error ~ .message-error {
         display: block;
+    }
+}
+
+/* Upgrade CTA */
+/* ----------- */
+
+.upgrade-cta {
+    background-color: var(--reverse-bg);
+    color: var(--reverse-text);
+    border-radius: .5em;
+    padding: var(--padding) 5vw;
+    text-align: center;
+
+    .content {
+        .title {
+            color: var(--reverse-text);
+        }
+        .button {
+            margin: 0 auto 2vw;
+            width: fit-content;
+        }
     }
 }

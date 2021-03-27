@@ -42,7 +42,7 @@
             width: calc(25% - calc(var(--padding) * 3));
             max-width: 525px;
 
-            & + & {
+            &:nth-child(n+2) {
                 margin-left: var(--padding);
             }
             .plan-header {
@@ -303,26 +303,42 @@
 
 .testimonials {
     display: grid;
-    grid-template-columns: repeat(auto-fit, clamp(305px, calc(33vw - 2.6em), 100vw));
+    grid-template-columns: repeat(auto-fit, 29.6vw);
     grid-gap: 1em;
-    align-items: stretch;
-    justify-content: space-around;
+    justify-items: center;
+    justify-content: center;
 
     .testimonial {
         color: var(--color-text-onLight);
         background-color: var(--light-gray);
-        width: 100%;
+        width: 29vw;
+        max-width: 17em;
         padding: 1.5vw;
+        aspect-ratio: 1 / 1;
+        font-size: .9em;
 
         .testimonial-text {
             font-size: var(--font-normal);
         }
         .testimonial-name {
             font-size: var(--font-big);
-            margin-left: 3em;
+            margin: 1em 0 0 1.5em;
         }
         em {
             font-weight: var(--font-bold);
+        }
+    }
+}
+@media (max-width: 740px) {
+    .testimonials {
+        grid-template-columns: auto;
+        margin: 0 auto;
+
+        .testimonial {
+            width: 100%;
+            font-size: var(--font-bigger);
+            line-height: var(--line-normal);
+            aspect-ratio: 4 / 3;
         }
     }
 }

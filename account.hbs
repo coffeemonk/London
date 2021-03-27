@@ -1,0 +1,113 @@
+{{!< default}}
+
+<header class="page-head">
+    <h2 class="title">Member Account</h2>
+    <p class="description">Account details and managment</p>
+</header>
+{{#if @member}}
+    <div class="page-body">
+        <h3 class="title">Your account</h1>
+        <div class="member-box">
+            <div class="subscription">
+                {{#if @member.paid}}
+                    {{!-- Logged in, paying member: Show account info --}}
+                    {{#foreach @member.subscriptions}}
+                        <p>
+                            {{#if cancel_at_period_end}}
+                                <strong class="expiration-warning">Your current membership expires on {{date current_period_end format="DD MMM YYYY"}}.</strong> If you change your mind before then, you can always turn auto-renew back on and continue the adventure!
+                            {{else}}
+                                Hey! You currently have an active membership with access to all areas. Don't hesitate to let me know if you have any problems or need help getting things updated, and thanks for your support!
+                            {{/if}}
+                        </p>
+                        <div class="details">
+                            <div class="detail">
+                                <label class="label">Email address: </label>
+                                <span class="content">{{@member.email}}</span>
+                            </div>
+                            <div class="detail plan" data-amount="{{plan.amount}}" data-interval="{{plan.interval}}">
+                                <label class="label">Your plan: </label>
+                                <span class="content plan-is-by-{{plan.interval}}">
+                                    {{price plan currency=currency}}/{{plan.interval}}
+                                </span>
+                            </div>
+                            <div class="detail">
+                                <label class="label">Card: </label>
+                                <span class="content">**** **** **** {{default_payment_card_last4}}</span>
+                            </div>
+                            <div class="detail">
+                                <label class="label">
+                                    {{#if cancel_at_period_end}}
+                                        Expires:
+                                    {{else}}
+                                        Next bill date:
+                                    {{/if}}
+                                </label>
+                                <span class="content">{{date current_period_end format="DD MMM YYYY"}}</span>
+                            </div>
+                        </div>
+                    {{/foreach}}
+                {{else}}
+                    {{!-- Logged in, free subscriber: Show account info, encourage upgrade. --}}
+                    <p>Hey there, recruit! You've signed up to receive members only newsletter and blog updates, and I sincerely appreciate your interest!</p>
+                    <p>There's more to explore for Astronaut, Colonist, or Explorer-level members, including sneak peeks and pre-release stories, a members' podcast feed, and signed paperbacks of released stories! Sound good?</p>
+                    <div>
+                        <a class="button primary" href="/join/">Become a Patron Today!</a>
+                    </div>
+                {{/if}}
+            </div>
+            <div class="manage">
+                <a href="https://libravatar.org" class="avatar" title="Avatars provided by Libravatar.com">
+                    <img src="{{@member.avatar_image}}">
+                </a>
+                <div class="buttons">
+                    {{#if @member.paid}}
+                        {{#foreach @member.subscriptions}}
+                            <a class="button fit" href="javascript:"
+                                data-members-edit-billing
+                                data-members-success="/account/?stripe=billing-update-success"
+                                data-members-cancel="/account/?stripe=billing-update-cancel">Edit billing info</a>
+                            {{cancel_link
+                                class="button fit"
+                                cancelLabel="Cancel Membership"
+                                continueLabel="Continue Membership"
+                            }}
+                        {{/foreach}}
+                    {{/if}}
+                    <a class="button fit" href="javascript:" data-members-signout>Sign out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{{else}}
+    {{!-- Not logged in: Redirect to signin --}}
+    <script>window.location = '{{@site.url}}/signin/';</script>
+{{/if}}
+{{#contentFor "scripts"}}
+    <script data-swup-reload-script>
+        $(document).ready(function() {
+            var avatar = $('.avatar img');
+            var avatarImg = avatar.attr('src');
+            if (avatarImg) {
+                avatar.attr('src', avatarImg.replace("gravatar.com","seccdn.libravatar.org"));
+            }
+
+            var accountData = $('.detail.plan').data();
+            var planNickname = getNick(accountData);
+            if (!!planNickname) {
+                $('h3.title').text(`Welcome, ${planNickname}!`);
+            }
+        });
+        function getNick(accountData) {
+            switch (accountData.amount) {
+                case 0:
+                    return "Explorer";
+                case 33:
+                    return "Colonist";
+                case 3:
+                    return "Astronaut";
+                default:
+                    break;
+            }
+        }
+    </script>
+{{/contentFor}}

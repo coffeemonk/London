@@ -1,0 +1,16 @@
+<div class="post-nav container">
+    <div class="item previous">
+        {{#prev_post in="primary_tag"}}
+            <a class="link" href="{{url}}">
+                <i class="fa fa-angle-double-left"></i> Previous Post
+            </a>
+        {{/prev_post}}
+    </div>
+    <div class="item next">
+        {{#next_post in="primary_tag"}}
+            <a class="link" href="{{url}}">
+                Next Post <i class="fa fa-angle-double-right"></i>
+            </a>
+        {{/next_post}}
+    </div>
+</div>

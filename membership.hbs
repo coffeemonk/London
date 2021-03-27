@@ -13,11 +13,11 @@
                     </header>
                     <div class="plan-content">
                         <b class="tagline">The right stuff!</b>
-                        <p class="intro">As a Trainee, receive two free short stories, plus public and member-exclusive content.</p>
+                        <p class="intro">As a Trainee, receive two free short stories, plus access to public and Trainee-level member content, including behind the scenes updates, sneak peeks at work in progress, and general updates.</p>
                         <b>Includes:</b>
                         <ul>
-                            <li><i>Email newsletter with member-exclusive content</i></li>
-                            <li><i>Access to member-exclusive site content</i></li>
+                            <li><i>Email newsletter with public and Trainee-level member content</i></li>
+                            <li><i>Site membership with access to Trainee-level content</i></li>
                             <li><a href="javascript:scrollToStories()"><i>Two free sci-fi short stories!</i></a></li>
                         </ul>
                     </div>
@@ -38,7 +38,7 @@
                             </div>
                         </form>
                         <h6 class="fancy primary">You Rock!</h6>
-                        <a class="manage primary" href="javascript:void()" data-portal="account">View Your Profile</a>
+                        <a class="manage primary" href="/account/">View Your Profile</a>
                     </footer>
                 </div>
                 <div class="checkout-plan plan-astronaut">
@@ -48,14 +48,14 @@
                     </header>
                     <div class="plan-content">
                         <b class="tagline">Light that candle!</b>
-                        <p class="intro">As an Astronaut, get Trainee-level access plus pre-release eBooks and your name acknowledged as a supporter.</p>
+                        <p class="intro">As an Astronaut, get Trainee-level access plus access to an audio fiction podcast, pre-release eBooks, and your name acknowledged as a supporter in work I publish while you're a member.</p>
                         <b>Includes:</b>
                         <ul>
                             <li><i>Pre-release eBook downloads</i></li>
                             <li><i>A member-exclusive podcast featuring audio of completed short stories and novels, read by me</i></li>
                             <li><i>Your name acknowledged as a supporter</i></li>
                             <li>Email newsletter with public and member-exclusive content</li>
-                            <li>Access to member-exclusive content</li>
+                            <li>Site membership with full access to member-exclusive content</li>
                             <li><a href="javascript:scrollToStories()">Two free sci-fi short stories!</a></li>
                         </ul>
                     </div>
@@ -63,7 +63,7 @@
                         <a class="button upgrade primary fit" href="javascript:void()" data-members-plan="Monthly">Upgrade to Astronaut</a>
                         <a class="button become primary fit" href="javascript:void()" data-members-plan="Monthly">Chase the Stars</a>
                         <h6 class="fancy primary">You Rock!</h6>
-                        <a class="manage primary" href="javascript:void()" data-portal="account">View Your Profile</a>
+                        <a class="manage primary" href="/account/">View Your Profile</a>
                     </footer>
                 </div>
                 <div class="checkout-plan plan-colonist">
@@ -73,15 +73,15 @@
                     </header>
                     <div class="plan-content">
                         <b class="tagline">Build a brave new world!</b>
-                        <p class="intro">As a Colonist, get Astronaut-level access and one free month!</p>
+                        <p class="intro">As a Colonist, get a year of access to all the Astronaut-level content and perks, and one month free!</p>
                         <b>Includes:</b>
                         <ul>
                             <li><i>One free month!</i></li>
                             <li>Pre-release eBook downloads</li>
                             <li>A member-exclusive podcast featuring audio of completed short stories and novels, read by me</li>
                             <li>Your name acknowledged as a supporter</li>
-                            <li>Email newsletter with regular content updates</li>
-                            <li>Access to member-exclusive content</li>
+                            <li>Email newsletter with public and member-exclusive content</li>
+                            <li>Site membership with full access to member-exclusive content</li>
                             <li><a href="javascript:scrollToStories()">Two free sci-fi short stories!</a></li>
                         </ul>
                     </div>
@@ -89,7 +89,7 @@
                         <a class="button upgrade primary fit" href="javascript:void()" data-members-plan="Yearly">Upgrade to Colonist</a>
                         <a class="button become primary fit" href="javascript:void()" data-members-plan="Yearly">Build a World</a>
                         <h6 class="fancy primary">You Rock!</h6>
-                        <a class="manage primary" href="javascript:void()" data-portal="account">View Your Profile</a>
+                        <a class="manage primary" href="/account/">View Your Profile</a>
                     </footer>
                 </div>
                 <div class="checkout-plan plan-explorer">
@@ -99,15 +99,15 @@
                     </header>
                     <div class="plan-content">
                         <b class="tagline">See what's out there...</b>
-                        <p class="intro">As an Explorer, get Astronaut-level access plus a signed paperback copy of any book I release with your support.</p>
+                        <p class="intro">As an Explorer, get Astronaut-level content and perks, plus a signed paperback copy of any book I release with your support.</p>
                         <b>Includes:</b>
                         <ul>
-                            <li><i>A signed paperback of any book(s) released while you're a member</i></li>
+                            <li><i>A signed paperback copy of any book(s) released while you're a member</i></li>
                             <li>Pre-release eBook downloads</li>
                             <li>A member-exclusive podcast featuring audio of completed short stories and novels, read by me</li>
                             <li>Your name acknowledged as a supporter</li>
-                            <li>Email newsletter with regular content updates</li>
-                            <li>Access to member-exclusive content</li>
+                            <li>Email newsletter with public and member-exclusive content</li>
+                            <li>Site membership with full access to member-exclusive content</li>
                             <li><a href="javascript:scrollToStories()">Two free sci-fi short stories!</a></li>
                         </ul>
                     </div>
@@ -129,38 +129,36 @@
 </div>
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
 {{#contentFor "scripts"}}
-    {{#each @member.subscriptions as | subscription |}}
-        {{#if @first}}
-            <script>
-                var member = {
-                    "name": "{{@member.firstname}}",
-                    "paid": !!{{@member.paid}}
-                }
-                var plan = "{{subscription.plan.nickname}}".toLowerCase();
-                $(document).ready(function() {
-                    var className = 'member-';
-                    switch (plan) {
-                        case 'complimentary':
-                            className += 'explorer';
-                            break;
-                        case 'yearly':
-                            className += 'colonist';
-                            break;
-                        case 'monthly':
-                            className += 'astronaut';
-                            break;
-                        default:
-                            if (!!member.name && !member.paid) {
-                                className += 'trainee'
-                            } else className = '';
-                    }
-                    if (className !== 'member-explorer') { $('.explorer-note').show(); }
-                    $('.checkout-box').addClass(className);
-                })
-            </script>
-        {{/if}}
-    {{/each}}
     <script>
+        {{#if @member}}
+            var member = {
+                "name": "{{@member.firstname}}",
+                "paid": !!{{@member.paid}}
+            }
+            var className = "member-trainee";
+            $(document).ready(function() {
+                {{#if @member.paid}}
+                    {{#foreach @member.subscriptions}}
+                        {{#if @first}}
+                            var plan = "{{plan.nickname}}".toLowerCase();
+                            switch (plan) {
+                                case 'complimentary':
+                                    className = 'member-explorer';
+                                    break;
+                                case 'yearly':
+                                    className = 'member-colonist';
+                                    break;
+                                case 'monthly':
+                                    className = 'member-astronaut';
+                                    break;
+                            }
+                        {{/if}}
+                    {{/foreach}}
+                {{/if}}
+                if (className !== 'member-explorer') { $('.explorer-note').show(); }
+                $('.checkout-box').addClass(className);
+            })
+        {{/if}}
         function scrollToStories() {
             $('html, body').animate({
                 scrollTop: parseInt($("div.free-stories").offset().top)
