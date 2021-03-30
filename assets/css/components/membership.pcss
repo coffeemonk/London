@@ -352,11 +352,14 @@
         margin: 0 auto;
 
         .testimonial {
-            width: 55vw;
-            height: 55vw;
-            font-size: var(--font-bigger);
+            width: 17em;
+            height: 17em;
+            font-size: clamp(1em,3.25vw,1.75em);
             line-height: var(--line-normal);
             margin: .5em auto;
+            max-width: 58vw;
+            max-height: 58vw;
+            text-align: center;
         }
     }
 }
