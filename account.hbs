@@ -60,12 +60,14 @@
                     <img src="{{@member.avatar_image}}">
                 </a>
                 <div class="buttons">
+                    <a class="button fit" href="#/portal/account">Edit Account Info</a>
+                    <a class="button fit" href="/join">Change Plan</a>
                     {{#if @member.paid}}
                         {{#foreach @member.subscriptions}}
                             <a class="button fit" href="javascript:"
                                 data-members-edit-billing
                                 data-members-success="/account/?stripe=billing-update-success"
-                                data-members-cancel="/account/?stripe=billing-update-cancel">Edit billing info</a>
+                                data-members-cancel="/account/?stripe=billing-update-cancel">Edit Billing Info</a>
                             {{cancel_link
                                 class="button fit"
                                 cancelLabel="Cancel Membership"
@@ -73,7 +75,7 @@
                             }}
                         {{/foreach}}
                     {{/if}}
-                    <a class="button fit" href="javascript:" data-members-signout>Sign out</a>
+                    <a class="button fit" href="javascript:" data-members-signout>Sign Out</a>
                 </div>
             </div>
         </div>

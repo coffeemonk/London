@@ -18,7 +18,8 @@
             padding-right: .5rem;
             white-space: nowrap;
         }
-        a {
+        a,
+        span {
             display: block;
             margin: 0;
             padding: .5em .6em;
@@ -125,6 +126,9 @@
                 background-color: var(--light-gray);
                 transition: background-color .5s ease-out;
                 transition: margin-right .5s ease-out;
+                font-size: 1px;
+                z-index: 9999;
+                opacity: 1;
             }
         }
     }
@@ -347,7 +351,8 @@
 
                 .member-links {
                     align-items: flex-start;
-                    a {
+                    a,
+                    span {
                         font-size: var(--font-h5);
                         opacity: 0.5;
                     }

@@ -56,7 +56,10 @@
                 <div class="site-head-right">
                     <div class="member-links">
                         {{#if @member}}
-                            Welcome, <a href="/account/">{{@member.firstname}}</a>
+                            {{#if @member.firstname}}
+                                <span>Welcome, {{@member.firstname}}</span>
+                            {{/if}}
+                            <a href="/account/">Manage Account</a>
                             {{#unless @member.paid}}
                                 <a href="/join/">Become a Patron</a>
                             {{/unless}}

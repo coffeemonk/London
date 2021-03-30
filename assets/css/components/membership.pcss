@@ -95,7 +95,7 @@
                     font-size: clamp(.9em, .9em, 1.2em);
                 }
                 p.intro {
-                    height: calc(6 * 1.5em);
+                    height: calc(8 * 1.5em);
                 }
                 ul {
                     margin: 0 0 25px 0;
@@ -228,6 +228,18 @@
             display: inline;
         }
     }
+    .checkout-box.member-complimentary {
+        .plan-astronaut,
+        .plan-colonist,
+        .plan-explorer {
+            h6 {
+                display: none;
+            }
+            .become {
+                display: inline-block;
+            }
+        }
+    }
     .explorer-note {
         display: none;
     }
@@ -302,8 +314,7 @@
 /* --------------- */
 
 .testimonials {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 29.6vw);
+    display: flex;
     grid-gap: 1em;
     justify-items: center;
     justify-content: center;
@@ -331,7 +342,7 @@
 }
 @media (max-width: 740px) {
     .testimonials {
-        grid-template-columns: auto;
+        flex-direction: column;
         margin: 0 auto;
 
         .testimonial {
@@ -339,6 +350,7 @@
             font-size: var(--font-bigger);
             line-height: var(--line-normal);
             aspect-ratio: 4 / 3;
+            margin: 0 auto;
         }
     }
 }
