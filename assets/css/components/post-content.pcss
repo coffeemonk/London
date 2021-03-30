@@ -67,7 +67,8 @@
         transform: translateX(calc(50vw - 50%));
 
         /*--- height fix ---*/
-        aspect-ratio: 16 / 9;
+        aspect-ratio: var(--aspect-wide);
+        padding-top: var(--aspect-wide-padding);
         height: 56vw;
         display: flex;
         align-items: center;
@@ -241,7 +242,8 @@
     }
     .post-feed .post-card {
         flex-basis: 33%;
-        aspect-ratio: 1/1;
+        aspect-ratio: var(--aspect-square);
+        padding-top: var(--aspect-square-padding);
         height: auto;
     }
 }
@@ -254,7 +256,8 @@ article.tag-podcast + .related-posts {
 @media (max-width: 740px) {
     .related-posts .post-feed .post-card {
         flex-basis: 100%;
-        aspect-ratio: 16 / 9;
+        aspect-ratio: var(--aspect-wide);
+        padding-top: var(--aspect-wide-padding);
     }
 }
 

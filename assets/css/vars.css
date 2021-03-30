@@ -117,6 +117,19 @@
     --padding-vertical: 2vh;
     --padding-large: 3.5vw;
 
+    /* Aspect Ratio Workaround */
+    --aspect-wide: 16 / 9;
+    --aspect-wide-padding: 56.25%;
+    --aspect-square: 1 / 1;
+    --aspect-square-padding: 25%;
+    --aspect-three-to-one: 3 / 1;
+    --aspect-three-to-one-padding: 33.33%;
+    --aspect-onefive-to-one: 1.5 / 1;
+    --aspect-onefive-to-one-padding: 66.67%;
+    --aspect-four-thirds: 4 / 3;
+    --aspect-four-thirds-padding: 75%;
+
+
     /* Misc */
     --transition: all 0.4s ease-out;
 }

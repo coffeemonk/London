@@ -14,7 +14,8 @@
         position:       relative;
         display:        flex;
         flex:           1 1 50%;
-        aspect-ratio:   1.5 / 1;
+        aspect-ratio:   var(--aspect-three-to-one);
+        padding-top:    var(--aspect-three-to-one-padding);
         height:         auto;
         background:     linear-gradient(135deg, #1f1f1f 0%, #111 100%) center center;
         background-size: cover;
@@ -88,11 +89,13 @@
 
         &.large {
             flex: 1 1 100%;
-            aspect-ratio: 3 / 1;
+            aspect-ratio: var(--aspect-three-to-one);
+            padding-top: var(--aspect-three-to-one-padding);
         }
         &.small {
             flex: 1 1 33%;
-            aspect-ratio: 1/1;
+            aspect-ratio: var(--aspect-square);
+            padding-top: var(--aspect-square-padding);
             height: auto;
         }
         &.with-image {
@@ -161,7 +164,8 @@
                 }
             }
             &.about {
-                aspect-ratio: 3 / 1;
+                aspect-ratio: var(--aspect-three-to-one);
+                padding-top: var(--aspect-three-to-one-padding);
                 &:before {
                     content: "";
                 }
@@ -194,7 +198,8 @@
     }
     &.home .post-card.tag-hash-books:first-child {
         flex: 1 1 100%;
-        aspect-ratio: 3 / 1;
+        aspect-ratio: var(--aspect-three-to-one);
+        padding-top: var(--aspect-three-to-one-padding);
     }
 }
 .theme-dark .post-feed .post-card.with-image {
@@ -213,7 +218,8 @@
     .post-feed.home .post-card.tag-hash-books:first-child,
     .post-feed .post-card.no-image.about {
         flex: 1 1 100%;
-        aspect-ratio: 16 / 9;
+        aspect-ratio: var(--aspect-wide);
+        padding-top: var(--aspect-wide-padding);
         height: auto;
 
         &.no-image:before {

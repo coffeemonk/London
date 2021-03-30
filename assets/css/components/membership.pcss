@@ -323,9 +323,10 @@
         color: var(--color-text-onLight);
         background-color: var(--light-gray);
         width: 29vw;
+        height: 29vw;
         max-width: 17em;
+        max-height: 17em;
         padding: 1.5vw;
-        aspect-ratio: 1 / 1;
         font-size: .9em;
 
         .testimonial-text {
@@ -340,17 +341,22 @@
         }
     }
 }
+@media (min-width: 741px) {
+    .testimonial:nth-child(2n) {
+        margin: 0 1em;
+    }
+}
 @media (max-width: 740px) {
     .testimonials {
         flex-direction: column;
         margin: 0 auto;
 
         .testimonial {
-            width: 100%;
+            width: 55vw;
+            height: 55vw;
             font-size: var(--font-bigger);
             line-height: var(--line-normal);
-            aspect-ratio: 4 / 3;
-            margin: 0 auto;
+            margin: .5em auto;
         }
     }
 }
