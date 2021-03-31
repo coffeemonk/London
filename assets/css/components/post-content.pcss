@@ -68,13 +68,11 @@
 
         /*--- height fix ---*/
         aspect-ratio: var(--aspect-wide);
-        padding-top: var(--aspect-wide-padding);
-        height: 56vw;
+        height: 56.25vw;
+        max-height: 66vh;
         display: flex;
         align-items: center;
         overflow: hidden;
-        max-height: 66vh;
-
         /*---/height fix/---*/
     }
     .post-body {
@@ -242,9 +240,8 @@
     }
     .post-feed .post-card {
         flex-basis: 33%;
-        aspect-ratio: var(--aspect-square);
-        padding-top: var(--aspect-square-padding);
         height: auto;
+        font-size: var(--font-small);
     }
 }
 article.tag-podcast + .related-posts {
@@ -256,8 +253,9 @@ article.tag-podcast + .related-posts {
 @media (max-width: 740px) {
     .related-posts .post-feed .post-card {
         flex-basis: 100%;
+        height: 52vw;
         aspect-ratio: var(--aspect-wide);
-        padding-top: var(--aspect-wide-padding);
+        font-size: var(--font-big);
     }
 }
 

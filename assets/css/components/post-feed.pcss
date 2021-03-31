@@ -216,7 +216,8 @@
     .post-feed .post-card.small,
     .post-feed .post-card.large,
     .post-feed.home .post-card.tag-hash-books:first-child,
-    .post-feed .post-card.no-image.about {
+    .post-feed .post-card.no-image.about,
+    .post-feed .post-card.no-image.subscribe-form {
         flex: 1 1 100%;
         aspect-ratio: var(--aspect-wide);
         padding-top: var(--aspect-wide-padding);
@@ -225,6 +226,9 @@
         &.no-image:before {
             font-size: 50vw;
         }
+    }
+    .post-feed .post-card.no-image.subscribe-form {
+        padding-top: var(--aspect-wide-padding);
     }
 }
 @media (max-width: 480px) {
