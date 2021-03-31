@@ -24,7 +24,15 @@
 
 {{#contentFor "scripts"}}
     <script data-swup-reload-script>
-        $(document).ready(function() {
+        const Cove = {
+            autoLoad: 1,
+            publication: "11598a86c4065cb79b370b69baed816d",
+            contentId: "{{comment_id}}",
+            memberId: "{{@member.uuid}}",
+            memberEmail: "{{@member.email}}"
+        }
+
+        /*$(document).ready(function() {
             var covePost = {
                 publication: "11598a86c4065cb79b370b69baed816d",
                 contentId: "{{comment_id}}",
@@ -41,7 +49,8 @@
             if (typeof coveInit == 'function') {
                 commentForm = undefined;
             }
-        })
+        })*/
     </script>
+    {{!-- <script src="https://cdn.cove.chat/comments.js" async></script> --}}
     <script src="{{asset "built/comments.js"}}" async data-swup-reload-script></script>
 {{/contentFor}}

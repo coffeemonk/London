@@ -154,6 +154,7 @@ function addForm(e) {
                 null == e.name &&
                     (((nameInput = document.createElement("input")).className =
                         "cove-input"),
+                    nameInput.setAttribute("type", "text"),
                     nameInput.setAttribute("name", "member_name"),
                     nameInput.setAttribute("placeholder", "Your name"),
                     nameInput.setAttribute("required", !0),
