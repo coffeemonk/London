@@ -154,7 +154,8 @@ var ScriptsPlugin = function (_Plugin) {
 		_this.runScripts = function () {
 			var scope = _this.options.head && _this.options.body ? document : _this.options.head ? document.head : document.body;
 
-			var scripts = arrayify(scope.querySelectorAll('script:not([data-swup-ignore-script])'));
+            var querySelector = _this.options.optin ? 'script:not([data-swup-ignore-script])' : 'script[data-swup-reload-script]'
+			var scripts = arrayify(scope.querySelectorAll(querySelector));
 
 			scripts.forEach(function (script) {
 				return _this.runScript(script);

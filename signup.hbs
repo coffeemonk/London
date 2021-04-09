@@ -1,0 +1,28 @@
+{{!< default}}
+{{#if @member}}
+    {{!-- Logged in: Redirect home --}}
+    <script>window.location = '{{@site.url}}';</script>
+{{else}}
+    <div class="gh-page signup">
+        <div class="gh-container">
+            {{> "subscribe-form"
+                heading="Join the Adventure!"
+                description="Get two introductory science-fiction stories for free when you sign up."
+                form-type="subscribe"
+                button-name="Subscribe"
+                success-text="confirm your subscription"
+            }}
+            {{> "free-stories" }}
+        </div>
+    </div>
+    {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
+    {{#contentFor "scripts"}}
+        <script>
+            function scrollToTop() {
+                $('html, body').animate({
+                    scrollTop: parseInt($(".subscribe-form").offset().top)
+                }, 1000);
+            };
+        </script>
+    {{/contentFor}}
+{{/if}}

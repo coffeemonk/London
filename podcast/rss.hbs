@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+    xmlns:rawvoice="http://www.rawvoice.com/rawvoiceRssModule/" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0">
+    <channel>
+        <title>{{@site.title}}</title>
+        <link>{{@site.url}}</link>
+        <description>{{@site.description}}</description>
+        <language>{{lang}}</language>
+        <copyright>{{@site.title}} Copyright {{date format="YYYY"}}</copyright>
+        <atom:link href="{{@site.url}}/podcast/rss/" rel="self" type="application/rss+xml" />
+        <lastBuildDate>{{date format="ddd, DD MMM YYYY HH:mm:ss ZZ"}}</lastBuildDate>
+        <itunes:author>{{@site.title}}</itunes:author>
+        <itunes:summary>{{@site.description}}</itunes:summary>
+        <itunes:owner>
+            <itunes:name>Matthew Rasnake</itunes:name>
+            <itunes:email>hello@matthewrasnake.com</itunes:email>
+        </itunes:owner>
+        <itunes:image href="{{img_url @site.icon absolute="true"}}"/>
+        <itunes:category text="Arts">
+            <itunes:category text="Books" />
+        </itunes:category>
+        <itunes:category text="Fiction">
+            <itunes:category text="Science Fiction" />
+        </itunes:category>
+
+{{#get "posts" limit="all" filter="tag:podcast" include="tags,authors" as |episode|}}
+    {{#foreach episode visibility="all"}}
+        <item>
+            <title>{{title}}</title>
+            <link>{{url absolute="true"}}</link>
+            <pubDate>{{date format="ddd, DD MMM YYYY HH:mm:ss ZZ"}}</pubDate>
+            <guid isPermaLink="false">{{id}}</guid>
+            <category><![CDATA[ {{tags.[1].name}} ]]></category>
+            <description>{{excerpt}}</description>
+            <content:encoded><![CDATA[
+                {{#if @member.paid}}
+                    {{content}}
+                {{else}}
+                    {{{html}}}
+                {{/if}}
+            ]]></content:encoded>
+            <enclosure url="https://www.matthewrasnake.com/podcast/{{tags.[1].slug}}/{{comment_id}}.mp3" length="0" type="audio/mpeg"/>
+            <itunes:subtitle>{{excerpt characters="255"}}</itunes:subtitle>
+            <itunes:summary><![CDATA[
+                {{#if @member.paid}}
+                    {{content}}
+                {{else}}
+                    {{{html}}}
+                {{/if}}
+            ]]></itunes:summary>
+        </item>
+    {{/foreach}}
+{{/get}}
+
+    </channel>
+</rss>

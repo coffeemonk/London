@@ -1,0 +1,25 @@
+<div class="post-excerpt">{{{html}}}</div>
+<aside class="upgrade-cta">
+    <div class="content">
+        <h4 class="title"></h4>
+        <p class="description">This content is made available for my generous patrons at the Astronaut-level and above.</p>
+        <p>Become a member yourself and enjoy behind-the-scenes info, early digital releases, a members only audio podcast, and other special members only content! Explorer-level members even receive signed paperbacks of new releases!</p>
+        {{#unless @member}}
+            <p>Subscribe today for free and get access to some members only content here and delivered directly to your email. Any level of support is appreciated!</p>
+        {{/unless}}
+        <a class="button primary" href="/join/">Join the Adventure!</a>
+    </div>
+</aside>
+{{#contentFor "scripts"}}
+    <script>
+        var titles = [
+            "Have the right stuff?",
+            "Let's light this candle!",
+            "Second star to the right...",
+            "Let's see what's out there...",
+            "Go boldly."
+        ];
+        var randy = Math.floor(Math.random() * Math.floor(titles.length));
+        $('.upgrade-cta').find('.title').html(titles[randy]);
+    </script>
+{{/contentFor}}

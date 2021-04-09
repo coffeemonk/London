@@ -1,0 +1,242 @@
+/* Post Feed
+/* ---------------------------------------------------------- */
+
+.post-feed {
+    display:    flex;
+    flex-wrap:  wrap;
+    max-width:  1680px;
+    margin:     0 auto;
+    font-size:  var(--font-normal);
+    border-radius: .75em;
+    overflow:   hidden;
+
+    .post-card {
+        position:       relative;
+        display:        flex;
+        flex:           1 1 50%;
+        aspect-ratio:   var(--aspect-three-to-one);
+        padding-top:    var(--aspect-three-to-one-padding);
+        height:         auto;
+        background:     linear-gradient(135deg, #1f1f1f 0%, #111 100%) center center;
+        background-size: cover;
+        overflow:       hidden;
+        counter-increment: posts;
+
+        .link {
+            flex:       1 1 auto;
+            display:    block;
+        }
+        .content {
+            display: flex;
+            flex: 1 1 auto;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            color: #fff;
+            background: rgba(0,0,0,0.5);
+            opacity: 1;
+            transition: opacity 0.5s cubic-bezier(.33,0,.2,1);
+            padding: 4vw;
+
+            .title {
+                margin: 0;
+                display: inline-block;
+                font-size: var(--font-bigger);
+                max-width: 70%;
+                text-align: center;
+                transition: all 0.3s cubic-bezier(.33,0,.2,1);
+            }
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            padding: .33em .5em;
+
+            font-size: var(--font-small);
+            line-height: var(--line-tight);
+            color: var(--color-text-onDark);
+            background: linear-gradient(135deg, #1f1f1f 0%, #111 100%) center center;
+            opacity: .85;
+
+            display: grid;
+            grid-template-columns: 1fr 1.75fr 1fr;
+
+            .date {
+                white-space: nowrap;
+            }
+            .tag {
+                text-align: center;
+            }
+            .time {
+                text-align: right;
+
+                svg {
+                    display: none;
+                    fill: var(--color-text-onDark);
+                    width: 1.2em;
+                    height: 1.2em;
+                    margin-top: -3px;
+                }
+            }
+        }
+
+        &.large {
+            flex: 1 1 100%;
+            aspect-ratio: var(--aspect-three-to-one);
+            padding-top: var(--aspect-three-to-one-padding);
+        }
+        &.small {
+            flex: 1 1 33%;
+            aspect-ratio: var(--aspect-square);
+            padding-top: var(--aspect-square-padding);
+            height: auto;
+        }
+        &.with-image {
+            .content {
+                opacity: 0;
+            }
+            &.tag-hash-books {
+                background-size: 120%;
+            }
+        }
+        &:hover .content {
+            opacity: 1;
+            transition: opacity 0.3s cubic-bezier(.33,0,.2,1);
+        }
+
+        /* Posts without images */
+        &.no-image {
+            &:before {
+                display: block;
+                content: counter(posts);
+                position: absolute;
+                bottom: -0.15em;
+                right: 5vw;
+                font-size: 28vw;
+                line-height: 1em;
+                font-weight: var(--font-heavy);
+                letter-spacing: -0.1em;
+                color: rgba(0,0,0,0.2);
+            }
+            &.subscribe-form {
+                &:before {
+                    content: "";
+                }
+                border: 0;
+                margin: 0;
+                padding: var(--padding-large);
+
+                .content {
+                    flex-direction: column;
+                    justify-content: center;
+
+                    .title {
+                        font-size: clamp(var(--font-h3), 2vw, var(--font-h1));
+                        max-width: 100%;
+                    }
+                    .title,
+                    .description {
+                        margin-bottom: clamp(.5em, 3vw, 2em);
+                        color: var(--color-text-onDark);
+                    }
+                    form {
+                        width: 100%;
+
+                        .subscribe-email {
+                            margin-right: .5em;
+                        }
+                        &.success .message-success,
+                        &.invalid .message-error,
+                        &.error .message-error {
+                            font-size: var(--font-small);
+                        }
+                    }
+                    .description {
+                        font-size: var(--font-normal);
+                    }
+                }
+            }
+            &.about {
+                aspect-ratio: var(--aspect-three-to-one);
+                padding-top: var(--aspect-three-to-one-padding);
+                &:before {
+                    content: "";
+                }
+                .content {
+                    align-items: center;
+
+                    figure {
+                        display: flex;
+                        flex: 1 0 32%;
+                        margin-right: 2.5vw;
+                        align-items: center;
+                        justify-content: center;
+                        overflow: hidden;
+                        max-height: 90%;
+                    }
+                    p {
+                        font-size: clamp(.8rem, 3.5vw, 1.5rem);
+                        line-height: 1.4em;
+                        margin-bottom: 0;
+                        color: var(--color-text-onDark);
+                    }
+                }
+            }
+            &:hover {
+                .title {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    &.home .post-card.tag-hash-books:first-child {
+        flex: 1 1 100%;
+        aspect-ratio: var(--aspect-three-to-one);
+        padding-top: var(--aspect-three-to-one-padding);
+    }
+}
+.theme-dark .post-feed .post-card.with-image {
+    opacity: .8;
+    transition: opacity .5s ease-out;
+}
+@media (min-width:741px) {
+    .post-feed .post-card.no-image.about .content p {
+        font-size: clamp(.7rem,1.7vw,1.5rem);
+    }
+}
+@media (max-width: 740px) {
+    .post-feed .post-card,
+    .post-feed .post-card.small,
+    .post-feed .post-card.large,
+    .post-feed.home .post-card.tag-hash-books:first-child,
+    .post-feed .post-card.no-image.about,
+    .post-feed .post-card.no-image.subscribe-form {
+        flex: 1 1 100%;
+        aspect-ratio: var(--aspect-wide);
+        padding-top: var(--aspect-wide-padding);
+        height: auto;
+
+        &.no-image:before {
+            font-size: 50vw;
+        }
+    }
+    .post-feed .post-card.no-image.subscribe-form {
+        padding-top: var(--aspect-wide-padding);
+    }
+}
+@media (max-width: 480px) {
+    .post-feed .post-card {
+        &.with-image {
+            .content {
+                opacity: 1;
+            }
+        }
+    }
+}

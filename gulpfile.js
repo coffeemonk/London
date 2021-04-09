@@ -5,15 +5,18 @@ const pump = require('pump');
 var livereload = require('gulp-livereload');
 var postcss = require('gulp-postcss');
 var zip = require('gulp-zip');
-var uglify = require('gulp-uglify');
+var uglify = require('gulp-terser-js');
 var beeper = require('beeper');
+const rename = require('gulp-rename');
+const cleanCSS = require('gulp-clean-css');
 
 // postcss plugins
+// var postcssPresetEnv = require('postcss-preset-env');
 var autoprefixer = require('autoprefixer');
-var colorFunction = require('postcss-color-function');
-var cssnano = require('cssnano');
+// var colorFunction = require('postcss-color-function');
 var customProperties = require('postcss-custom-properties');
 var easyimport = require('postcss-easy-import');
+var nested = require('postcss-nested');
 
 function serve(done) {
     livereload.listen();
@@ -37,17 +40,19 @@ function hbs(done) {
 }
 
 function css(done) {
-    var processors = [
-        easyimport,
-        customProperties({preserve: false}),
-        colorFunction(),
-        autoprefixer(),
-        cssnano()
-    ];
+    processors = [
+        easyimport(),
+        nested(),
+        customProperties({preserve: true}),
+        // colorFunction(),
+        autoprefixer()
+    ]
 
     pump([
-        src('assets/css/*.css', {sourcemaps: true}),
+        src(['assets/css/*.css', 'assets/css/*.pcss'], {sourcemaps: true}),
         postcss(processors),
+        rename({extname: '.css'}),
+        cleanCSS(),
         dest('assets/built/', {sourcemaps: '.'}),
         livereload()
     ], handleError(done));
@@ -55,7 +60,7 @@ function css(done) {
 
 function js(done) {
     pump([
-        src('assets/js/*.js', {sourcemaps: true}),
+        src(['assets/js/*.js', 'assets/js/vendor/*.js'], {sourcemaps: true}),
         uglify(),
         dest('assets/built/', {sourcemaps: '.'}),
         livereload()
@@ -80,7 +85,9 @@ function zipper(done) {
 
 const cssWatcher = () => watch('assets/css/**', css);
 const hbsWatcher = () => watch(['*.hbs', 'partials/**/*.hbs', '!node_modules/**/*.hbs'], hbs);
-const watcher = parallel(cssWatcher, hbsWatcher); const build = series(css, js);
+const jsWatcher = () => watch(['assets/js/**'], js);
+const watcher = parallel(cssWatcher, hbsWatcher, jsWatcher);
+const build = series(css, js);
 const dev = series(build, serve, watcher);
 
 exports.build = build;

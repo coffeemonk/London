@@ -1,35 +1,144 @@
 /* Variables
 /* ---------------------------------------------------------- */
 
-@import url('https://fonts.googleapis.com/css?family=Muli:400,400i,600,700,700i,800');
-
 :root {
+    /* Colors */
+    --white:            #F4F6F5; /* Cultured */
+    --light-gray:       #C8D0CE; /* Light Gray */
+    --medium-gray:      #7F918D; /* Morning Blue */
+    --dark-gray:        #1C151F; /* Xiketic */
+    --black:            #0B080C; /* Rich Black */
+    --red:              #A30015; /* Ruby Red*/
+    --green:            #23967f; /* Paolo Veronese Green */
+    --blue:             #476EBD; /* Han Blue */
 
-    /* Colours */
-    --color-primary: var(--ghost-accent-color, #3eb0ef);
-    --color-base: #131313;
-    --color-border: #ddd;
-    --color-bg: #f8f8f8;
+    --color-light:      #F4F0F9; /* Magnolia */
+    --color-dark:       #1C112C; /* Dark Purple */
+    --color-primary:    #8256BF; /* Royal Purple */
+    --color-secondary:  var(--blue);
+    --color-tertiary:   var(--green);
 
+    --color-text-onLight:   var(--dark-gray);
+    --color-text-onDark:    #F4F0F9D0;
+    --color-text-onPrimary: var(--color-light);
+}
+/* Default/Light Theme */
+:root.theme-default,
+:root.theme-light {
+    --text:         var(--color-text-onLight);
+    --bg:           var(--color-light);
+    --border:       var(--dark-gray);
+    --highlight:    var(--color-primary);
+    --reverse-text: var(--color-light);
+    --reverse-bg:   var(--dark-gray);
+    --field-text:   var(--black);
+    --field-bg:     var(--light-gray);
+
+    transition: background-color 0.5s ease-in-out;
+    transition: color 0.5s ease-in-out;
+}
+/* Dark Theme */
+:root.theme-dark {
+    --color-primary: #9266BFEA;
+
+    --text:         var(--color-text-onDark);
+    --bg:           var(--dark-gray);
+    --border:       var(--color-primary);
+    --highlight:    var(--color-primary);
+    --reverse-text: var(--color-text-onLight);
+    --reverse-bg:   var(--color-light);
+    --field-text:   var(--reverse-text);
+    --field-bg:     var(--reverse-bg);
+    transition: background-color 0.5s ease-in-out;
+    transition: color 0.5s ease-in-out;
+}
+/* Auto Dark Theme based on OS/browser settings */
+@media (prefers-color-scheme: dark) {
+    :root.theme-default {
+        --color-primary: #9266BFEA;
+
+        --text:         var(--color-text-onDark);
+        --bg:           var(--dark-gray);
+        --border:       var(--color-primary);
+        --highlight:    var(--color-primary);
+        --reverse-text: var(--color-text-onLight);
+        --reverse-bg:   var(--color-light);
+        --field-text:   var(--reverse-text);
+        --field-bg:     var(--reverse-bg);
+        transition: background-color 0.5s ease-in-out;
+        transition: color 0.5s ease-in-out;
+    }
+}
+:root {
     /* Fonts */
-    --font-sans-serif: 'Muli', sans-serif;
-    --font-serif: Georgia, Times, serif;
-    --font-mono: Menlo, Courier, monospace;
-    --font-light: 100;
-    --font-normal: 400;
-    --font-bold: 700;
-    --font-heavy: 800;
+    --font-fancy:   'Venera', sans-serif;
+    --font-sans-serif:  'Muli', Lucida Sans Unicode, Lucida Grande, Helvetica, Arial, sans-serif;
+    --font-serif:   Georgia, Times, serif;
+    --font-mono:    Menlo, Courier, monospace;
+    --font-light:   100;
+    --font-regular: 400;
+    --font-semi:    600;
+    --font-bold:    700;
+    --font-heavy:   800;
+
+    --font-size-min: .9em;
+    --font-size-max: 1.25em;
+
+    --font-smaller: .6em;
+    --font-small:   .75em;
+    --font-normal:  1em;
+    --font-big:     1.2em;
+    --font-bigger:  1.4em;
+
+    --line-tight: 1em;
+    --line-normal: 1.6em;
+    --line-loose: 2em;
+
+    --font-h6: 1rem;
+    --font-h5: 1.2rem;
+    --font-h4: 1.4rem;
+    --font-h3: 1.6rem;
+    --font-h2: 2rem;
+    --font-h1: 2.6rem;
 
     /* Breakpoints */
-    --xlarge: 1680px;
-    --large: 1280px;
-    --medium: 980px;
-    --small: 740px;
-    --xsmall: 480px;
+    --xlarge:   1680px;
+    --large:    1280px;
+    --medium:    980px;
+    --small:     740px;
+    --xsmall:    480px;
 
     /* Sizes */
-    --height: 4rem;
-    --margin: 2rem;
-    --radius: 0.5rem;
+    --height:   2em;
+    --margin:   1.5rem;
+    --margin-large: calc(var(--margin) * 2);
+    --radius:   0.5em;
+    --padding:  2vw;
+    --padding-vertical: 2vh;
+    --padding-large: 3.5vw;
 
+    /* Aspect Ratio Workaround */
+    --aspect-wide: 16 / 9;
+    --aspect-wide-padding: 56.25%;
+    --aspect-square: 1 / 1;
+    --aspect-square-padding: 25%;
+    --aspect-three-to-one: 3 / 1;
+    --aspect-three-to-one-padding: 33.33%;
+    --aspect-onefive-to-one: 1.5 / 1;
+    --aspect-onefive-to-one-padding: 66.67%;
+    --aspect-four-thirds: 4 / 3;
+    --aspect-four-thirds-padding: 75%;
+
+
+    /* Misc */
+    --transition: all 0.4s ease-out;
 }
+
+
+
+
+
+
+
+
+

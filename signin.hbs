@@ -1,0 +1,19 @@
+{{!< default}}
+{{#if @member}}
+    {{!-- Logged in: Redirect home --}}
+    <script>window.location = '{{@site.url}}';</script>
+{{else}}
+    <div class="gh-page signin">
+        <div class="gh-container">
+            {{> "subscribe-form"
+                heading="Welcome back!"
+                description="Sign into your account again for full access."
+                form-type="signin"
+                button-name="Send Login Link"
+                success-text="finish your login"
+            }}
+            <p class="center">Don't have an account yet? <a href="/join/">Join the Adventure!</a></p>
+        </div>
+        <p>&nbsp;</p>
+    </div>
+{{/if}}

@@ -1,0 +1,331 @@
+/* Lib - Local component imports
+/* ---------------------------------------------------------- */
+@import "vars.css";
+@import "components/fonts.css";
+@import "components/global.css";
+@import "components/ghost.css";
+@import "components/lists.css";
+@import "components/grid.css";
+@import "components/tables.css";
+@import "components/forms.css";
+@import "components/buttons.css";
+@import "components/actions.css";
+@import "components/hamburger.css";
+@import "components/animations.css";
+
+@import "components/site-nav.pcss";
+@import "components/post-feed.pcss";
+@import "components/post-content.pcss";
+@import "components/account.pcss";
+@import "components/membership.pcss";
+@import "components/subscribe-form.pcss";
+@import "components/player.pcss";
+@import "components/comments.pcss";
+
+
+/* Main - Theme styles
+/* ---------------------------------------------------------- */
+
+body {
+    font-family: 'Muli', sans-serif;
+    background: var(--bg);
+    transition: background 0.3s ease-out;
+    transition-delay: 0.25;
+}
+
+.img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 100%;
+}
+
+.hidden {
+    visibility: hidden;
+    position: absolute;
+    text-indent: -9999px;
+}
+
+.fancy {
+    font-family: var(--font-fancy);
+}
+
+.center {
+    text-align: center;
+}
+
+.primary {
+    color: var(--color-primary);
+}
+
+.reverse {
+    background-color: var(--reverse-bg);
+    color: var(--reverse-text);
+}
+
+/* Layout
+/* ---------------------------------------------------------- */
+
+.site-wrapper {
+    padding: var(--padding);
+    min-height: 100vh;
+    max-width: 1920px;
+    margin: 0 auto;
+
+    .site-main {
+        margin-bottom: var(--margin);
+        min-height: calc(100vh - 8.5rem);
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--margin);
+        }
+        .share {
+            font-size: var(--font-big);
+            text-align: center;
+        }
+        .member-banner {
+            display: none;
+        }
+        .tag-member-content .member-banner {
+            display: block;
+            background-color: var(--color-primary);
+            color: var(--color-text-onPrimary);
+            font-size: .6em;
+            line-height: 1em;
+            padding: .25em 1.75em;
+            text-align: center;
+            white-space: nowrap;
+            width: 13em;
+            height: 1.5em;
+            transform: rotate(-45deg);
+            position: absolute;
+            z-index: 200;
+            top: 3em;
+            left: -2.65em;
+            text-transform: uppercase;
+        }
+        .podcast-feed .tag-member-content .member-banner {
+            font-size: .5em;
+        }
+    }
+}
+.page-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4vw 0;
+    max-width: 70%;
+    margin: auto;
+    text-align: center;
+}
+.error-head {
+    height: 75vh;
+    h1 {
+        margin: 0;
+        font-size: var(--font-h1);
+        line-height: 1.1em;
+        font-weight: var(--font-heavy);
+        letter-spacing: 10px;
+    }
+    p {
+        font-size: var(--font-body);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: color(var(--text) l(+50%));
+    }
+}
+.error-link {
+    margin-top: 1rem;
+    font-size: var(--font-h6);
+    text-decoration: underline;
+}
+.page-head-title {
+    margin: 0;
+    font-size: var(--font-bigger);
+    color: var(--text);
+}
+.page-head-description {
+    margin: 0 0 1.6vw;
+    color: color(var(--border) l(-20%));
+    font-size: var(--font-h4);
+    line-height: 1.35em;
+}
+.page-body {
+    max-width: var(--medium);
+    margin: 0 auto;
+}
+.subscribe-button {
+    display: block;
+    padding: 4px 10px;
+    border: var(--border) 1px solid;
+    color: var(--text);
+    font-size: var(--font-small);
+    line-height: 1em;
+    border-radius: 10px;
+    opacity: 0.8;
+    :hover {
+        text-decoration: none;
+        opacity: 1;
+    }
+}
+.rss-button {
+    opacity: 0.4;
+    :hover {
+        opacity: 1;
+    }
+    svg {
+        margin-bottom: 1px;
+        height: 2.1rem;
+        fill: var(--color-base);
+    }
+}
+
+@media (max-width: 980px) {
+    .site-wrapper {
+        padding: var(--padding-large);
+        .site-main {
+            min-height: auto;
+        }
+    }
+}
+@media (max-width: 740px) {
+    .site-wrapper .site-main .tag-member-content .member-banner {
+        top: 0;
+        left: 0;
+        width: 100%;
+        transform: none;
+        border-top: 1px solid var(--white);
+        border-bottom: 1px solid var(--dark-gray);
+    }
+}
+@media (max-width: 480px) {
+    .page-head-title {
+        font-size: var(--font-h4);
+    }
+    .page-head-description {
+        font-size: var(--font-h6);
+    }
+}
+
+/* Author Archive
+/* ---------------------------------------------------------- */
+
+.author-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    color: color(var(--text) l(-20%));
+}
+
+.author-links {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.author-links a {
+    display: block;
+    margin: 0;
+    padding: 0 12px;
+    color: var(--text);
+    opacity: 0.4;
+}
+
+.author-links a:hover {
+    text-decoration: none;
+    opacity: 1;
+}
+
+.author-links .divider {
+    display: inline-block;
+    margin: 0 3px;
+}
+
+/* Page Template
+/* ---------------------------------------------------------- */
+
+.page-template .post-content-body h1,
+.page-template .post-content-body h2,
+.page-template .post-content-body h3 {
+    text-align: center;
+}
+
+/* Signin
+/* ------ */
+
+.post-content.no-image.signin {
+    form {
+        width: clamp(14.5em, 100%, var(--small));
+        font-size: var(--font-small);
+        input,
+        button {
+            display: inline-block;
+        }
+        input {
+            width: clamp(14.5em, 100%, calc(100% - 15em));
+        }
+        button {
+            font-size: var(--font-normal);
+            width: 14.5em;
+        }
+    }
+    .message-success,
+    .message-error {
+        display: none;
+        margin-top: 1rem;
+        font-weight: var(--font-bold);
+    }
+    .message-error,
+    [data-members-error] {
+        color: red;
+    }
+    .message-success {
+        color: green;
+    }
+    .loading button span,
+    .error button span,
+    .success button span {
+        display: none;
+    }
+    .loading button::after {
+        content: "Loading...";
+    }
+    .error button::after {
+        content: "Error :(";
+    }
+    .success button::after {
+        content: "Success :)";
+    }
+    .success ~ .message-success,
+    .invalid ~ .message-error,
+    .error ~ .message-error {
+        display: block;
+    }
+}
+
+/* Upgrade CTA */
+/* ----------- */
+
+.upgrade-cta {
+    background-color: var(--reverse-bg);
+    color: var(--reverse-text);
+    border-radius: .5em;
+    padding: var(--padding) 5vw;
+    text-align: center;
+
+    .content {
+        .title {
+            color: var(--reverse-text);
+        }
+        .button {
+            margin: 0 auto 2vw;
+            width: fit-content;
+        }
+    }
+}

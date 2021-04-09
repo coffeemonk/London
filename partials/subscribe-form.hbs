@@ -1,0 +1,21 @@
+<section class="subscribe-form">
+    <h3 class="title">{{ heading }}</h3>
+    <p class="description">{{ description }}</p>
+    <form data-members-form="{{ form-type }}">
+        <div class="form-group">
+            <input type="email" class="subscribe-email" data-members-email placeholder="youremail@example.com" autocomplete="false" />
+            <button class="button primary" type="submit">
+                <span class="button-content">
+                    {{button-name}}
+                </span>
+                <span class="button-loader">{{> "icons/loader"}}</span>
+            </button>
+        </div>
+        <div class="message-success">
+            <strong>Great!</strong> Check your inbox and click the link to {{success-text}}
+        </div>
+        <div class="message-error">
+            Please enter a valid email address!
+        </div>
+    </form>
+</section>

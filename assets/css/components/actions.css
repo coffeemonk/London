@@ -7,6 +7,8 @@
     list-style: none;
     margin: calc(var(--margin) * -0.5);
     padding-left: 0;
+    margin-bottom: 0;
+    margin-left: 0;
 }
 
 .actions li {
@@ -27,15 +29,17 @@
 .actions.stacked {
     flex-direction: column;
     margin-left: 0;
+    padding: 0;
 }
 
-.actions.stacked li {
-    padding: calc(var(--margin) * 0.65) 0 0 0;
-}
-
-.actions.stacked li:first-child {
-    padding-top: 0;
-}
+/* — m@ changes
+    .actions.stacked li {
+        padding: calc(var(--margin) * 0.65) 0 0 0;
+    }
+    .actions.stacked li:first-child {
+        padding-top: 0;
+    }
+*/
 
 
 .actions.fit {

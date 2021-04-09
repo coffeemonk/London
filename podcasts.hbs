@@ -1,0 +1,40 @@
+{{!< default}}
+<header class="page-head">
+    <h2 class="title">Carrier Wave</h2>
+    <p class="description">Audio Transmissions From Home</p>
+</header>
+<div class="podcast-feed">
+    {{#foreach posts visibility="all"}}
+        <article
+            class="episode {{post_class}} post-{{comment_id}} {{#unless @member.paid}}non-member{{/unless}}"
+            {{#if @member.paid}}
+                data-url="https://audio.matthewrasnake.com/podcast/{{tags.[1].slug}}/{{comment_id}}.mp3"
+                data-id="{{comment_id}}"
+            {{/if}} >
+            {{> member-banner }}
+            {{> player-media ratio="square"}}
+            <div class="wrapper">
+                {{> post-header tags=false primary=tags.[1]}}
+                <div class="excerpt">
+                    {{#if @member.paid}}
+                        {{excerpt words="25"}}
+                    {{else if custom_excerpt}}
+                        {{custom_excerpt}}
+                    {{/if}}
+                </div>
+            </div>
+        </article>
+    {{/foreach}}
+</div>
+{{pagination}}
+{{#if @member.paid}}
+    {{> share podcast=true}}
+{{else}}
+    {{> share }}
+{{/if}}
+{{#contentFor "scripts"}}
+    {{#if @member.paid}}
+        {{> player is_external=true}}
+        <script src="{{asset 'built/player.js'}}"></script>
+    {{/if}}
+{{/contentFor}}

@@ -1,0 +1,8 @@
+{{!< default}}
+<div class="post-feed page-books">
+    {{#get "pages" include="tags" filter="tag:hash-books" order="published_at desc" as |books|}}
+        {{#foreach books}}
+            {{> post-card book=true}}
+        {{/foreach}}
+    {{/get}}
+</div>
