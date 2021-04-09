@@ -1,29 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/"
-    xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
-    xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
-    xmlns:rawvoice="http://www.rawvoice.com/rawvoiceRssModule/" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0">
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+    xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0">
     <channel>
-        <title>{{@site.title}}</title>
-        <link>{{@site.url}}</link>
-        <description>{{@site.description}}</description>
+        <title>Carrier Wave</title>
+        <link>{{@site.url}}/podcast/</link>
+        <description>A Serialized Audio Fiction Members Only Podcast by Matthew Rasnake</description>
         <language>{{lang}}</language>
-        <copyright>{{@site.title}} Copyright {{date format="YYYY"}}</copyright>
-        <atom:link href="{{@site.url}}/podcast/rss/" rel="self" type="application/rss+xml" />
+        <copyright>Copyright {{date format="YYYY"}} by Matthew Rasnake</copyright>
+        <atom:link href="{{@site.url}}/podcast/47fb2572-7837-41c1-bd53-c00592cde6b0/" rel="self" type="application/rss+xml" />
         <lastBuildDate>{{date format="ddd, DD MMM YYYY HH:mm:ss ZZ"}}</lastBuildDate>
-        <itunes:author>{{@site.title}}</itunes:author>
-        <itunes:summary>{{@site.description}}</itunes:summary>
+        <itunes:author>Matthew Rasnake</itunes:author>
         <itunes:owner>
             <itunes:name>Matthew Rasnake</itunes:name>
             <itunes:email>hello@matthewrasnake.com</itunes:email>
         </itunes:owner>
-        <itunes:image href="{{img_url @site.icon absolute="true"}}"/>
+        <itunes:image href="https://audio.matthewrasnake.com/podcast/podcast_logo.jpg"/>
         <itunes:category text="Arts">
             <itunes:category text="Books" />
         </itunes:category>
         <itunes:category text="Fiction">
             <itunes:category text="Science Fiction" />
         </itunes:category>
+        <itunes:explicit>yes</itunes:explicit>
 
 {{#get "posts" limit="all" filter="tag:podcast" include="tags,authors" as |episode|}}
     {{#foreach episode visibility="all"}}
@@ -34,22 +39,11 @@
             <guid isPermaLink="false">{{id}}</guid>
             <category><![CDATA[ {{tags.[1].name}} ]]></category>
             <description>{{excerpt}}</description>
-            <content:encoded><![CDATA[
-                {{#if @member.paid}}
-                    {{content}}
-                {{else}}
-                    {{{html}}}
-                {{/if}}
-            ]]></content:encoded>
-            <enclosure url="https://www.matthewrasnake.com/podcast/{{tags.[1].slug}}/{{comment_id}}.mp3" length="0" type="audio/mpeg"/>
-            <itunes:subtitle>{{excerpt characters="255"}}</itunes:subtitle>
-            <itunes:summary><![CDATA[
-                {{#if @member.paid}}
-                    {{content}}
-                {{else}}
-                    {{{html}}}
-                {{/if}}
-            ]]></itunes:summary>
+            <content:encoded>{{excerpt}}</content:encoded>
+            <enclosure url="https://audio.matthewrasnake.com/podcast/{{tags.[1].slug}}/{{comment_id}}.mp3" length="0" type="audio/mpeg"/>
+            {{#if feature_image}}
+                <itunes:image href="{{img_url feature_image absolute="true"}}" />
+            {{/if}}
         </item>
     {{/foreach}}
 {{/get}}
