@@ -1,7 +1,7 @@
 {{!< default}}
 
 {{#page}}
-<article class="post-content {{page_class}} no-image">
+<article class="post-content book {{page_class}} no-image">
 
     <header class="post-content-header">
         <h2 class="post-content-title">{{title}}</h2>
@@ -9,7 +9,7 @@
 
     <div class="post-content-body">
         <div class="row">
-            <div class="col">
+            <div class="col info">
                 {{content}}
                 <hr />
                 <p id="book-details" style="font-size:.75em;">
@@ -32,10 +32,14 @@
                     <b>Published:</b> {{date published_at format="MMMM YYYY"}}
                 </p>
             </div>
-            <div class="col-4">
+            <div class="col-4 links">
                 <img src="{{feature_image}}" /><br />
                 <h4 style="text-align: center;">${{date published_at format="HH"}}.95</h4>
-                <ul class="actions fit stacked">
+                <h6 class="direct">Direct From the Author</h6>
+                <ul class="direct actions fit stacked">
+                </ul>
+                <h6 class="indirect">Elsewhere</h6>
+                <ul class="indirect actions fit stacked">
                 </ul>
             </div>
         </div>
@@ -57,19 +61,27 @@
     })
     $(document).ready(
         function() {
-            var bookData = $('book-data').data();
             if (!!bookData.isbn) {
                 $('#book-details').append('<br /><b>ISBN:</b> ' + bookData.isbn);
             }
             if (!!bookData.payhip) {
-                $('ul.actions').append('<li><a href="https://payhip.com/b/'+bookData.payhip+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip+'">Buy Direct</a></li>');
+                $('h6.direct').show();
+                if (!!bookData.payhip.print) {
+                    $('ul.actions.direct').append('<li><a href="https://payhip.com/b/'+bookData.payhip.print+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip.print+'">Buy Print</a></li>');
+                }
+                if (!!bookData.payhip.ebook) {
+                    $('ul.actions.direct').append('<li><a href="https://payhip.com/b/'+bookData.payhip.ebook+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip.ebook+'">Buy eBook</a></li>');
+                }
                 $('body').append('<scr'+'ipt type="text/javascript" src="https://payhip.com/payhip.js?v=24u68984"></scr'+'ipt>')
             }
-            if (!!bookData.bookshop) {
-                $('ul.actions').append('<li><a href="https://bookshop.org/books/'+bookData.bookshop+'" class="button fit">Buy Local</a></li>');
-            }
-            if (!!bookData.b2r) {
-                $('ul.actions').append('<li><a href="https://books2read.com/'+bookData.b2r+'" class="button fit">Buy Online</a></li>');
+            if (!!bookData.bookshop || !!bookData.b2r) {
+                $('h6.indirect').show();
+                if (!!bookData.bookshop) {
+                    $('ul.actions.indirect').append('<li><a href="https://bookshop.org/books/'+bookData.bookshop+'" class="button fit" title="Find your local bookshop on bookshop.org">Your Local Shop</a></li>');
+                }
+                if (!!bookData.b2r) {
+                    $('ul.actions.indirect').append('<li><a href="https://books2read.com/'+bookData.b2r+'" class="button fit" title="Choose your favorite online retailer.">The Big Guys</a></li>');
+                }
             }
         }
     )
