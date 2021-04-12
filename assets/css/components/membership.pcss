@@ -129,11 +129,8 @@
                 text-align: center;
 
                 .form-group {
-                    flex-direction: column;
 
-                    .button,
-                    .subscribe-email {
-                        margin: .5em 0 0;
+                    .button {
                         width: 100%;
                     }
                 }
@@ -274,19 +271,7 @@
         font-size: clamp(16px, 1.25vw, var(--font-size-max));
     }
 }
-@media
-    (min-width: 515px) and (max-width: 740px),
-    (min-width: 1050px) and (max-width: 1280px) {
-    .checkout-form .checkout-box .checkout-plan .plan-footer .form-group {
-        flex-direction: row;
-        .subscribe-email {
-            margin-right: .5em;
-        }
-        .button {
-            width: auto;
-        }
-    }
-}
+
 @media (max-width: 740px) {
     .checkout-form {
     	.checkout-title {

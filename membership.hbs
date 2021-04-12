@@ -22,21 +22,14 @@
                         </ul>
                     </div>
                     <footer class="plan-footer subscribe-form">
-                        <form class="become" data-members-form="subscribe">
-                            <div class="form-group">
-                                <input type="email" class="subscribe-email" data-members-email placeholder="youremail@example.com" autocomplete="false" />
-                                <button class="button primary" type="submit">
-                                    <span class="button-content">Join the Crew</span>
-                                    <span class="button-loader">{{> "icons/loader"}}</span>
-                                </button>
-                            </div>
-                            <div class="message-success">
-                                <strong>Great!</strong> Check your inbox and click the link to confirm your subscription.
-                            </div>
-                            <div class="message-error">
-                                Please enter a valid email address!
-                            </div>
-                        </form>
+                        {{> "subscribe-form"
+                            form-only=true
+                            form-class="become"
+                            form-type="subscribe"
+                            show-name=true
+                            button-name="Join the Crew"
+                            submit-text="confirm your subscription"
+                        }}
                         <h6 class="fancy primary">You Rock!</h6>
                         <a class="manage primary" href="/account/">View Your Profile</a>
                     </footer>

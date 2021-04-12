@@ -1,9 +1,16 @@
-<section class="subscribe-form">
+{{#unless form-only}}
+<section class="subscribe-form {{classes}}">
     <h3 class="title">{{ heading }}</h3>
     <p class="description">{{ description }}</p>
-    <form data-members-form="{{ form-type }}">
+{{/unless}}
+    <form {{#if form-class}}class="{{form-class}}"{{/if}} data-members-form="{{ form-type }}">
         <div class="form-group">
-            <input type="email" class="subscribe-email" data-members-email placeholder="youremail@example.com" autocomplete="false" />
+            <div class="fields">
+                {{#if show-name}}
+                    <input type="text" class="subscribe-name" data-members-name placeholder="Your Name" autocomplete="false" />
+                {{/if}}
+                <input type="email" class="subscribe-email" data-members-email placeholder="youremail@example.com" autocomplete="false" />
+            </div>
             <button class="button primary" type="submit">
                 <span class="button-content">
                     {{button-name}}
@@ -18,4 +25,6 @@
             Please enter a valid email address!
         </div>
     </form>
+{{#unless form-only}}
 </section>
+{{/unless}}
