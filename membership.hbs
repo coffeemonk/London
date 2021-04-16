@@ -22,21 +22,14 @@
                         </ul>
                     </div>
                     <footer class="plan-footer subscribe-form">
-                        <form class="become" data-members-form="subscribe">
-                            <div class="form-group">
-                                <input type="email" class="subscribe-email" data-members-email placeholder="youremail@example.com" autocomplete="false" />
-                                <button class="button primary" type="submit">
-                                    <span class="button-content">Join the Crew</span>
-                                    <span class="button-loader">{{> "icons/loader"}}</span>
-                                </button>
-                            </div>
-                            <div class="message-success">
-                                <strong>Great!</strong> Check your inbox and click the link to confirm your subscription.
-                            </div>
-                            <div class="message-error">
-                                Please enter a valid email address!
-                            </div>
-                        </form>
+                        {{> "subscribe-form"
+                            form-only=true
+                            form-class="become"
+                            form-type="subscribe"
+                            show-name=true
+                            button-name="Join the Crew"
+                            submit-text="confirm your subscription"
+                        }}
                         <h6 class="fancy primary">You Rock!</h6>
                         <a class="manage primary" href="/account/">View Your Profile</a>
                     </footer>
@@ -60,8 +53,8 @@
                         </ul>
                     </div>
                     <footer class="plan-footer">
-                        <a class="button upgrade primary fit" href="javascript:void()" data-members-plan="Monthly">Upgrade to Astronaut</a>
-                        <a class="button become primary fit" href="javascript:void()" data-members-plan="Monthly">Chase the Stars</a>
+                        <a class="button upgrade primary fit" href="javascript:" data-members-plan="Monthly">Upgrade to Astronaut</a>
+                        <a class="button become primary fit" href="javascript:" data-members-plan="Monthly">Chase the Stars</a>
                         <h6 class="fancy primary">You Rock!</h6>
                         <a class="manage primary" href="/account/">View Your Profile</a>
                     </footer>
@@ -86,8 +79,8 @@
                         </ul>
                     </div>
                     <footer class="plan-footer">
-                        <a class="button upgrade primary fit" href="javascript:void()" data-members-plan="Yearly">Upgrade to Colonist</a>
-                        <a class="button become primary fit" href="javascript:void()" data-members-plan="Yearly">Build a World</a>
+                        <a class="button upgrade primary fit" href="javascript:" data-members-plan="Yearly">Upgrade to Colonist</a>
+                        <a class="button become primary fit" href="javascript:" data-members-plan="Yearly">Build a World</a>
                         <h6 class="fancy primary">You Rock!</h6>
                         <a class="manage primary" href="/account/">View Your Profile</a>
                     </footer>
@@ -120,7 +113,13 @@
                 </div>
             </div>
             {{#unless @member }}
-                <p><small>Already have an account? <a href="javascript:void()" data-portal="signin">Sign in</a></small></p>
+                {{> "subscribe-form"
+                    heading="Already have an account?"
+                    description="Sign into your account again for full access."
+                    form-type="signin"
+                    button-name="Send Login Link"
+                    success-text="finish your login"
+                }}
             {{/unless}}
             <p class="wide explorer-note"><small>* <i><b>NOTE:</b> Explorers will sign up via Patreon until this site's software supports membership tiers.</i></small></p>
         </div>

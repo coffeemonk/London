@@ -17,27 +17,15 @@ into the {body} of the default.hbs template --}}
     {{/get}}
 
     {{#unless @member}}
-        <article class="post-card no-image subscribe-form">
-            <div class="content">
-                <h3 class="title fancy">Join the Adventure!</h3>
-                <p class="description">Get two introductory science-fiction stories for free when you sign up.</p>
-                <form data-members-form="subscribe">
-                    <div class="form-group">
-                        <input type="email" class="subscribe-email" data-members-email placeholder="youremail@example.com" autocomplete="false" />
-                        <button class="button primary" type="submit">
-                            <span class="button-content">Subscribe</span>
-                            <span class="button-loader">{{> "icons/loader"}}</span>
-                        </button>
-                    </div>
-                    <div class="message-success">
-                        <strong>Great!</strong> Check your inbox and click the link to confirm your subscription.
-                    </div>
-                    <div class="message-error">
-                        Please enter a valid email address!
-                    </div>
-                </form>
-            </div>
-        </article>
+        {{> "subscribe-form"
+            classes="post-card no-image"
+            heading="Join the Adventure!"
+            description="Get two introductory science-fiction stories for free when you sign up."
+            form-type="subscribe"
+            show-name=true
+            button-name="Subscribe"
+            success-text="confirm your subscription"
+        }}
     {{/unless}}
 
     {{#get "posts" filter="tag:blog+featured:true" limit="2" include="tags"}}
