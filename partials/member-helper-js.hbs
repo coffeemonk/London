@@ -1,0 +1,59 @@
+{{#if @member}}
+    <script src="https://cdn.jsdelivr.net/npm/hash-wasm@4/dist/md5.umd.min.js"></script>
+    <script data-swup-reload-script>
+        mm = {
+            'astronauts': [
+                '865bbd7c243d41765a1b32ac3d921bcb', //db
+                'a2f7dff62bf4cdfa917af93b04559679', //sm
+                '2e72059c37b8a963f1119a76318a832b', //cg
+                'da58382e9bae0baf48cc317df53f2d0a', //sw
+                'd75d2c9cfe0a4c7d7d5bbf901c0321c0', //dj
+                '42a7e3667484173c4ff79c69e7f669d9'  //cb
+            ],
+            'explorers': [
+                '1cab8c26af62db61d0fcc58b91f34bed' //cd
+            ]
+        };
+        var member = {
+            "name": "{{@member.firstname}}",
+            "plan": "trainee",
+            "patreon": false,
+            "paid": {{@member.paid}}
+        }
+        hashwasm.md5("{{@member.email}}").then((md5e) => {
+            {{#if @member.paid}}
+                {{#foreach @member.subscriptions}}
+                    var plan = "{{plan.nickname}}".toLowerCase();
+                    switch (plan) {
+                        case 'complimentary':
+                            member.plan = 'complimentary';
+                            if (mm.astronauts.includes(md5e)) {
+                                member.plan = 'astronaut';
+                                member.patreon = true;
+                            } else if (mm.explorers.includes(md5e)) {
+                                member.plan = 'explorer';
+                                member.patreon = true;
+                            }
+                            break;
+                        case 'yearly':
+                            member.plan = 'colonist';
+                            break;
+                        case 'monthly':
+                            member.plan = 'astronaut';
+                            break;
+                    }
+                {{/foreach}}
+            {{/if}}
+        });
+
+        $(document).ready(function() {
+            if (member.patreon) {
+                $('body').addClass('member-patreon');
+            }
+            if (member.plan !== 'explorer') {
+                $('.explorer-note').show();
+            }
+            $('body').addClass(`member-${member.plan}`);
+        })
+    </script>
+{{/if}}

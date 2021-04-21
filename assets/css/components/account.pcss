@@ -1,8 +1,15 @@
 /* Account Page */
+.member-welcome,
+.details .plan-name {
+    text-transform: capitalize;
+}
 .member-box {
     display: grid;
     grid-template-columns: 4fr 1fr;
     column-gap: 1em;
+    .patron-message {
+        display: none;
+    }
 }
 .manage {
     width: fit-content;
@@ -59,6 +66,10 @@
             max-width: none;
         }
     }
+    .manage-patreon,
+    .migrate-patreon {
+        display: none;
+    }
 }
 .details {
     display: grid;
@@ -66,6 +77,26 @@
     gap: 1.25em;
     margin: 0 auto 2em 2em;
 }
+.migration,
+.migration .explorer {
+    display: none;
+}
+.member-patreon {
+    .edit-billing {
+        display: none;
+    }
+    .manage-patreon,
+    .migrate-patreon,
+    .migration,
+    .patron-message {
+        display: block;
+    }
+}
+
+.member-explorer .migration .explorer {
+    display: block;
+}
+
 @media (max-width: 480px) {
     .member-box {
         grid-template-columns: auto;

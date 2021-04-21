@@ -6,7 +6,7 @@
 </header>
 {{#if @member}}
     <div class="page-body">
-        <h3 class="title">Your account</h1>
+        <h3 class="title member-welcome">Welcome, Recruit!</h1>
         <div class="member-box">
             <div class="subscription">
                 {{#if @member.paid}}
@@ -19,6 +19,7 @@
                                 Hey! You currently have an active membership with access to all areas. Don't hesitate to let me know if you have any problems or need help getting things updated, and thanks for your support!
                             {{/if}}
                         </p>
+                        <p class="patron-message"><b>Still need to migrate from Patreon?</b> <a href="#migrate-from-patreon">Read the migration guide.</a></p>
                         <div class="details">
                             <div class="detail">
                                 <label class="label">Email address: </label>
@@ -60,53 +61,97 @@
                     <img src="{{@member.avatar_image}}">
                 </a>
                 <div class="buttons">
-                    <a class="button fit" href="#/portal/account">Edit Account Info</a>
-                    <a class="button fit" href="/join">Change Plan</a>
+                    <a class="button fit edit-account" href="#/portal/account">Edit Account Info</a>
                     {{#if @member.paid}}
                         {{#foreach @member.subscriptions}}
-                            <a class="button fit" href="javascript:"
+                            <a class="button fit edit-billing" href="javascript:"
                                 data-members-edit-billing
                                 data-members-success="/account/?stripe=billing-update-success"
                                 data-members-cancel="/account/?stripe=billing-update-cancel">Edit Billing Info</a>
                             {{cancel_link
-                                class="button fit"
+                                class="button fit cancel"
                                 cancelLabel="Cancel Membership"
                                 continueLabel="Continue Membership"
                             }}
                         {{/foreach}}
                     {{/if}}
-                    <a class="button fit" href="javascript:" data-members-signout>Sign Out</a>
+                    <a class="button fit manage-patreon" href="https://www.patreon.com/pledges">Manage Patreon</a>
+                    <a class="button fit migrate-patreon" href="#migrate-from-patreon">Migrate From Patreon</a>
+                    <a class="button fit member-tiers" href="/join">Member Tiers</a>
+                    <a class="button fit sign-out" href="javascript:" data-members-signout>Sign Out</a>
                 </div>
             </div>
         </div>
+
+        <section class="migration" id="migrate-from-patreon">
+            <hr />
+            <h4>Patreon Membership Migration</h4>
+            <p>Unfortunately, the new website platform doesn't appear to allow you to change your membership plan yourself, at least not from the complimentary membership I setup for you during the transition. So, to complete your migration, you'll need to:</p>
+            <ol type="1">
+                <li><b>Turn Off Complimentary Membership</b>
+                    <ol type="a">
+                        <li><a href="mailto:hello@matthewrasnake.com?subject=Ready to Migrate!">Send me an email</a> when you're ready to migrate, and I'll turn off your complimentary membership.</li>
+                        <li>Wait until October when I plan to shut down the Patreon Trainee, Astronaut, and Colonist tiers, and the complimentary website memberships.</li>
+                    </ol>
+                     <i class="explorer">As an Explorer, you only need to do this if you intend to downgrade to one of the new site membership tiers.</i>
+                </li>
+                <li>
+                    <b>Log in, Sign up</b><br />
+                    After that, when you log in to this site, you'll be able sign up for whichever membership level you prefer, or simply remain a Trainee and continue to receive my semi-irregular updates via email.
+                </li>
+                <li>
+                    <b>Clean Up</b><br />
+                    If you do migrate your membership, don't forget to cancel your Patreon membership so you don't get double-charged the following month.
+                </li>
+            </ol>
+            <p>I apologize for the hoops I'm asking you to jump through. I had hoped this new platform would be a little easier to work with, but though the platform is fairly mature, the membership features are fairly new and apparently still need a little work to support anything beyond the most basic arrangements. Hopefully this will improve with time.</p>
+            <p>Thanks for sticking with me!</p>
+        </section>
     </div>
 {{else}}
     {{!-- Not logged in: Redirect to signin --}}
     <script>window.location = '{{@site.url}}/signin/';</script>
 {{/if}}
 {{#contentFor "scripts"}}
+    {{> "member-helper-js"}}
     <script data-swup-reload-script>
         $(document).ready(function() {
+            // update avatar source
             var avatar = $('.avatar img');
             var avatarImg = avatar.attr('src');
             if (avatarImg) {
                 avatar.attr('src', avatarImg.replace("gravatar.com","seccdn.libravatar.org"));
             }
 
-            var accountData = $('.detail.plan').data();
-            var planNickname = getNick(accountData);
-            if (!!planNickname) {
-                $('h3.title').text(`Welcome, ${planNickname}!`);
+            // handle subscriptions
+            var accountData = {};
+            var planNickname = false;
+            var subscriptions = $('.detail.plan');
+            for (i = 0; i < subscriptions.length; i++) {
+                var planDetails = subscriptions[i];
+                var accountData = $(planDetails).data();
+                planNickname = getNick(accountData);
+                if (!!planNickname) {
+                    if (i==0 && member.plan !== 'complimentary') {
+                        $('.member-welcome').text(`Welcome, ${planNickname}!`);
+                    }
+                    if (member.plan == 'explorer') {
+                        $(planDetails).find('.content').html(`$20/month`);
+                    } else if (member.patreon) {
+                        $(planDetails).find('.content').html('Patreon');
+                    }
+                    $(planDetails).find('.content').prepend(`<span class="plan-name">${planNickname}</span> — `);
+                }
             }
         });
         function getNick(accountData) {
             switch (accountData.amount) {
                 case 0:
-                    return "Explorer";
-                case 33:
-                    return "Colonist";
-                case 3:
-                    return "Astronaut";
+                    return member.plan;
+                case 3300:
+                    return "colonist";
+                case 300:
+                    return "astronaut";
                 default:
                     break;
             }
