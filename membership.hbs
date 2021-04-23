@@ -112,52 +112,34 @@
                     </footer>
                 </div>
             </div>
-            {{#unless @member }}
-                {{> "subscribe-form"
-                    heading="Already have an account?"
-                    description="Sign into your account again for full access."
-                    form-type="signin"
-                    button-name="Send Login Link"
-                    success-text="finish your login"
-                }}
-            {{/unless}}
             <p class="wide explorer-note"><small>* <i><b>NOTE:</b> Explorers will sign up via Patreon until this site's software supports membership tiers.</i></small></p>
+            <p class="wide patreon-migration"><b>Ready to migrate your Patreon membership?</b> <a href="/account/#migrate-from-patreon">See your account page for more information.</a></p>
         </div>
+        {{#unless @member }}
+            <hr />
+            {{> "subscribe-form"
+                heading="Already have an account?"
+                description="Sign into your account again for full access."
+                form-type="signin"
+                button-name="Send Login Link"
+                success-text="finish your login"
+            }}
+        {{/unless}}
         {{> "free-stories"}}
     </div>
 </div>
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
 {{#contentFor "scripts"}}
+    {{> "member-helper-js"}}
     <script>
-        {{#if @member}}
-            var member = {
-                "name": "{{@member.firstname}}",
-                "paid": !!{{@member.paid}}
-            }
-            var className = "member-trainee";
-            $(document).ready(function() {
-                {{#if @member.paid}}
-                    {{#foreach @member.subscriptions}}
-                        {{#if @first}}
-                            var plan = "{{plan.nickname}}".toLowerCase();
-                            switch (plan) {
-                                case 'complimentary':
-                                    className = 'member-explorer member-complimentary';
-                                    break;
-                                case 'yearly':
-                                    className = 'member-colonist';
-                                    break;
-                                case 'monthly':
-                                    className = 'member-astronaut';
-                                    break;
-                            }
-                        {{/if}}
-                    {{/foreach}}
-                {{/if}}
-                if (className !== 'member-explorer') { $('.explorer-note').show(); }
-                $('.checkout-box').addClass(className);
-            })
-        {{/if}}
+        /* Change Plan Plan
+            1. Update "Join" page for complimentary members to include
+                instructions for requesting cancellation of complimentary
+                membership
+            2. Update "Join" page for existing paid members to include instructions for
+                for requesting cancellation of their current membership so they can re-sign-up
+                under a different plan
+        */
         function scrollToStories() {
             $('html, body').animate({
                 scrollTop: parseInt($("div.free-stories").offset().top)

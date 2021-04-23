@@ -122,7 +122,9 @@
             if (avatarImg) {
                 avatar.attr('src', avatarImg.replace("gravatar.com","seccdn.libravatar.org"));
             }
+        });
 
+        function memberPageUpdates() {
             // handle subscriptions
             var accountData = {};
             var planNickname = false;
@@ -143,7 +145,7 @@
                     $(planDetails).find('.content').prepend(`<span class="plan-name">${planNickname}</span> — `);
                 }
             }
-        });
+        };
         function getNick(accountData) {
             switch (accountData.amount) {
                 case 0:

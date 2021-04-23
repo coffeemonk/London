@@ -147,96 +147,119 @@
                 font-size: .85em;
             }
         }
-    }
 
-    .member-trainee {
-        .become {
-            display: none;
-        }
-        .plan-trainee {
-            h6 {
-                display: block;
+        .member-trainee & {
+            .become {
+                display: none;
             }
-            .manage {
+            .plan-trainee {
+                h6 {
+                    display: block;
+                }
+                .manage {
+                    display: inline;
+                }
+            }
+            .plan-astronaut,
+            .plan-colonist,
+            .plan-explorer {
+                .upgrade {
+                    display: inline-block;
+                }
+            }
+        }
+        .member-astronaut & {
+            .become {
+                display: none;
+            }
+            .plan-trainee,
+            .plan-astronaut {
+                h6 {
+                    display: block;
+                }
+            }
+            .plan-astronaut .manage {
+                display: inline;
+            }
+            .plan-colonist,
+            .plan-explorer {
+                .upgrade {
+                    display: inline-block;
+                }
+            }
+        }
+        .member-colonist & {
+            .become {
+                display: none;
+            }
+            .plan-trainee,
+            .plan-astronaut,
+            .plan-colonist {
+                h6 {
+                    display: block;
+                }
+            }
+            .plan-colonist .manage {
+                display: inline;
+            }
+            .plan-explorer {
+                .upgrade {
+                    display: inline-block;
+                }
+            }
+        }
+        .member-explorer & {
+            .become {
+                display: none;
+            }
+            .plan-trainee,
+            .plan-astronaut,
+            .plan-colonist,
+            .plan-explorer {
+                h6 {
+                    display: block;
+                }
+            }
+            .plan-explorer .manage {
                 display: inline;
             }
         }
-        .plan-astronaut,
-        .plan-colonist,
-        .plan-explorer {
-            .upgrade {
-                display: inline-block;
+        .member-complimentary & {
+            .plan-astronaut,
+            .plan-colonist,
+            .plan-explorer {
+                h6 {
+                    display: block;
+                }
+                .become,
+                .manage {
+                    display: none;
+                }
             }
         }
-    }
-    .member-astronaut {
-        .become {
+        .patreon-migration {
             display: none;
         }
-        .plan-trainee,
-        .plan-astronaut {
-            h6 {
+        .member-patreon & {
+            .patreon-migration {
                 display: block;
             }
-        }
-        .plan-astronaut .manage {
-            display: inline;
-        }
-        .plan-colonist,
-        .plan-explorer {
-            .upgrade {
-                display: inline-block;
-            }
-        }
-    }
-    .member-colonist {
-        .become {
-            display: none;
-        }
-        .plan-trainee,
-        .plan-astronaut,
-        .plan-colonist {
-            h6 {
-                display: block;
-            }
-        }
-        .plan-colonist .manage {
-            display: inline;
-        }
-        .plan-explorer {
-            .upgrade {
-                display: inline-block;
-            }
-        }
-    }
-    .member-explorer {
-        .become {
-            display: none;
-        }
-        .plan-trainee,
-        .plan-astronaut,
-        .plan-colonist,
-        .plan-explorer {
-            h6 {
-                display: block;
-            }
-        }
-        .plan-explorer .manage {
-            display: inline;
-        }
-    }
-    .checkout-box.member-complimentary {
-        .plan-astronaut,
-        .plan-colonist,
-        .plan-explorer {
-            h6 {
+            .explorer-note {
                 display: none;
             }
-            .become {
-                display: inline-block;
+            .plan-footer {
+                .become,
+                .upgrade {
+                    display: none;
+                }
+                h6 {
+                    display: block;
+                }
             }
         }
     }
+}
+.member-explorer {
     .explorer-note {
         display: none;
     }
