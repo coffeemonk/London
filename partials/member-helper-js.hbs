@@ -1,0 +1,53 @@
+{{#if @member}}
+    <script src="https://cdn.jsdelivr.net/npm/hash-wasm@4/dist/md5.umd.min.js"></script>
+    <script data-swup-reload-script>
+        var member = {
+            "name": "{{@member.firstname}}",
+            "plan": "trainee",
+            "patreon": false,
+            "paid": {{@member.paid}}
+        }
+        jQuery.getJSON('https://matthewrasnake.com/patrons.php?jsonp=?').done((mm) => {
+            hashwasm.md5("{{@member.email}}").then((md5e) => {
+                {{#if @member.paid}}
+                    {{#foreach @member.subscriptions}}
+                        // process subscriptions
+                        var plan = "{{plan.nickname}}".toLowerCase();
+                        switch (plan) {
+                            case 'complimentary':
+                                member.plan = 'complimentary';
+                                if (mm.astronauts.includes(md5e)) {
+                                    member.plan = 'astronaut';
+                                    member.patreon = true;
+                                } else if (mm.explorers.includes(md5e)) {
+                                    member.plan = 'explorer';
+                                    member.patreon = true;
+                                }
+                                break;
+                            case 'yearly':
+                                member.plan = 'colonist';
+                                break;
+                            case 'monthly':
+                                member.plan = 'astronaut';
+                                break;
+                        }
+                    {{/foreach}}
+                {{/if}}
+
+                $(document).ready(function() {
+                    console.error('mm', mm);
+                    // update page classes
+                    if (member.patreon) {
+                        $('body').addClass('member-patreon');
+                    }
+                    $('body').addClass(`member-${member.plan}`);
+
+                    // handle page-specific update
+                    if (typeof memberPageUpdates == 'function') {
+                        memberPageUpdates();
+                    }
+                }) // $(document).ready
+            }); // hashwasm.md5
+        }) // .getJSON.done
+    </script>
+{{/if}}
