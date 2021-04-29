@@ -36,6 +36,14 @@
 
     transition: background-color 0.5s ease-in-out;
     transition: color 0.5s ease-in-out;
+    .site-head .container a.logo {
+        img.light {
+            display: block;
+        }
+        img.dark {
+            display: none;
+        }
+    }
 }
 /* Dark Theme */
 :root.theme-dark {
@@ -51,6 +59,15 @@
     --field-bg:     var(--reverse-bg);
     transition: background-color 0.5s ease-in-out;
     transition: color 0.5s ease-in-out;
+
+    .site-head .container a.logo {
+        img.light {
+            display: none;
+        }
+        img.dark {
+            display: block;
+        }
+    }
 }
 /* Auto Dark Theme based on OS/browser settings */
 @media (prefers-color-scheme: dark) {
@@ -67,6 +84,14 @@
         --field-bg:     var(--reverse-bg);
         transition: background-color 0.5s ease-in-out;
         transition: color 0.5s ease-in-out;
+    }
+    .site-head .container a.logo {
+        img.light {
+            display: none;
+        }
+        img.dark {
+            display: block;
+        }
     }
 }
 :root {

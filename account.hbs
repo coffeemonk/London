@@ -12,38 +12,40 @@
                 {{#if @member.paid}}
                     {{!-- Logged in, paying member: Show account info --}}
                     {{#foreach @member.subscriptions}}
-                        <p>
-                            {{#if cancel_at_period_end}}
-                                <strong class="expiration-warning">Your current membership expires on {{date current_period_end format="DD MMM YYYY"}}.</strong> If you change your mind before then, you can always turn auto-renew back on and continue the adventure!
-                            {{else}}
-                                Hey! You currently have an active membership with access to all areas. Don't hesitate to let me know if you have any problems or need help getting things updated, and thanks for your support!
-                            {{/if}}
-                        </p>
-                        <p class="patron-message"><b>Still need to migrate from Patreon?</b> <a href="#migrate-from-patreon">Read the migration guide.</a></p>
-                        <div class="details">
-                            <div class="detail">
-                                <label class="label">Email address: </label>
-                                <span class="content">{{@member.email}}</span>
-                            </div>
-                            <div class="detail plan" data-amount="{{plan.amount}}" data-interval="{{plan.interval}}">
-                                <label class="label">Your plan: </label>
-                                <span class="content plan-is-by-{{plan.interval}}">
-                                    {{price plan currency=currency}}/{{plan.interval}}
-                                </span>
-                            </div>
-                            <div class="detail">
-                                <label class="label">Card: </label>
-                                <span class="content">**** **** **** {{default_payment_card_last4}}</span>
-                            </div>
-                            <div class="detail">
-                                <label class="label">
-                                    {{#if cancel_at_period_end}}
-                                        Expires:
-                                    {{else}}
-                                        Next bill date:
-                                    {{/if}}
-                                </label>
-                                <span class="content">{{date current_period_end format="DD MMM YYYY"}}</span>
+                        <div class="status-{{status}}">
+                            <p>
+                                {{#if cancel_at_period_end}}
+                                    <strong class="expiration-warning">Your current membership expires on {{date current_period_end format="DD MMM YYYY"}}.</strong> If you change your mind before then, you can always turn auto-renew back on and continue the adventure!
+                                {{else}}
+                                    Hey! You currently have an active membership with access to all areas. Don't hesitate to let me know if you have any problems or need help getting things updated, and thanks for your support!
+                                {{/if}}
+                            </p>
+                            <p class="patron-message"><b>Still need to migrate from Patreon?</b> <a href="#migrate-from-patreon">Read the migration guide.</a></p>
+                            <div class="details">
+                                <div class="detail">
+                                    <label class="label">Email address: </label>
+                                    <span class="content">{{@member.email}}</span>
+                                </div>
+                                <div class="detail plan" data-amount="{{plan.amount}}" data-interval="{{plan.interval}}">
+                                    <label class="label">Your plan: </label>
+                                    <span class="content plan-is-by-{{plan.interval}}">
+                                        {{price plan currency=currency}}/{{plan.interval}}
+                                    </span>
+                                </div>
+                                <div class="detail">
+                                    <label class="label">Card: </label>
+                                    <span class="content">**** **** **** {{default_payment_card_last4}}</span>
+                                </div>
+                                <div class="detail">
+                                    <label class="label">
+                                        {{#if cancel_at_period_end}}
+                                            Expires:
+                                        {{else}}
+                                            Next bill date:
+                                        {{/if}}
+                                    </label>
+                                    <span class="content">{{date current_period_end format="DD MMM YYYY"}}</span>
+                                </div>
                             </div>
                         </div>
                     {{/foreach}}
@@ -64,15 +66,17 @@
                     <a class="button fit edit-account" href="#/portal/account">Edit Account Info</a>
                     {{#if @member.paid}}
                         {{#foreach @member.subscriptions}}
-                            <a class="button fit edit-billing" href="javascript:"
-                                data-members-edit-billing
-                                data-members-success="/account/?stripe=billing-update-success"
-                                data-members-cancel="/account/?stripe=billing-update-cancel">Edit Billing Info</a>
-                            {{cancel_link
-                                class="button fit cancel"
-                                cancelLabel="Cancel Membership"
-                                continueLabel="Continue Membership"
-                            }}
+                            <div class="status-{{status}}">
+                                <a class="button fit edit-billing" href="javascript:"
+                                    data-members-edit-billing
+                                    data-members-success="/account/?stripe=billing-update-success"
+                                    data-members-cancel="/account/?stripe=billing-update-cancel">Edit Billing Info</a>
+                                {{cancel_link
+                                    class="button fit cancel"
+                                    cancelLabel="Cancel Membership"
+                                    continueLabel="Continue Membership"
+                                }}
+                            </div>
                         {{/foreach}}
                     {{/if}}
                     <a class="button fit manage-patreon" href="https://www.patreon.com/pledges">Manage Patreon</a>
