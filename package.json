@@ -50,8 +50,9 @@
         "last 2 versions"
     ],
     "devDependencies": {
-        "autoprefixer": "10.2.5",
-        "gscan": "4.0.1",
+        "autoprefixer": "10.3.1",
+        "beeper": "2.1.0",
+        "gscan": "4.1.3",
         "gulp": "4.0.2",
         "gulp-clean-css": "^4.3.0",
         "gulp-livereload": "4.0.2",
@@ -62,7 +63,7 @@
         "gulp-util": "3.0.8",
         "gulp-watch": "5.0.1",
         "gulp-zip": "5.1.0",
-        "postcss": "8.2.9",
+        "postcss": "8.3.6",
         "postcss-color-function": "4.1.0",
         "postcss-custom-properties": "11.0.0",
         "postcss-easy-import": "3.0.0",
@@ -89,5 +90,8 @@
             }
         }
     },
-    "dependencies": {}
+    "dependencies": {},
+    "staged-devDependencies-from-main": {
+        "cssnano": "5.0.7"
+    }
 }

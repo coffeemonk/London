@@ -13,9 +13,12 @@
             {{/if}}
 
             {{#if feature_image}}
-                <div class="post-image">
+                <figure class="post-image">
                     <img class="kg-image" src="{{feature_image}}" alt="{{title}}" />
-                </div>
+                    {{#if feature_image_caption}}
+                        <figcaption>{{feature_image_caption}}</figcaption>
+                    {{/if}}
+                </figure>
             {{/if}}
         {{/has}}
 
