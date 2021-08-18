@@ -24,7 +24,7 @@
         {{> "member-banner"}}
     {{/has}}
 {{/if}}
-    <a class="link" href="{{url}}">
+    <a class="link" href="{{#if book}}/books/{{slug}}/{{else}}{{url}}{{/if}}">
         <div class="content">
             <footer class="footer">
                 <div class="date">

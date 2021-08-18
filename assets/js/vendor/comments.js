@@ -158,6 +158,7 @@ function addForm(e) {
                     nameInput.setAttribute("name", "member_name"),
                     nameInput.setAttribute("placeholder", "Your name"),
                     nameInput.setAttribute("required", !0),
+                    (nameInput.value = Cove.memberName),
                     (nameInput.id = "cove-input-name"),
                     commentForm.appendChild(nameInput));
             var t = document.createElement("button");
