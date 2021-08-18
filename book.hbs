@@ -34,7 +34,7 @@
             </div>
             <div class="col-4 links">
                 <img src="{{feature_image}}" /><br />
-                <h4 style="text-align: center;">${{date published_at format="HH"}}.95</h4>
+                <h4 style="text-align: center;">${{date published_at format="H"}}.{{#has tag="#paperback"}}99{{else}}95{{/has}}</h4>
                 <h6 class="direct">Direct From the Author</h6>
                 <ul class="direct actions fit stacked">
                 </ul>
