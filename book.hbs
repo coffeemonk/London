@@ -1,7 +1,11 @@
 {{!< default}}
 
 {{#page}}
-<article class="post-content book {{page_class}} no-image">
+<article class="post-content
+    book
+    {{page_class}}
+    {{#has tag="#preorder"}}preorder{{else has tag="#comingsoon"}}comingsoon{{/has}}
+    no-image">
 
     <header class="post-content-header">
         <h2 class="post-content-title">{{title}}</h2>
@@ -29,7 +33,19 @@
                         {{#has tag="#audiobook"}}
                             Audiobook
                         {{/has}}<br />
-                    <b>Published:</b> {{date published_at format="MMMM YYYY"}}
+                    <b id="pubDateLabel">{{#has tag="#preorder"}}
+                            Pre-Order Now
+                        {{else has tag="#comingsoon"}}
+                            Coming Soon
+                        {{else}}
+                            Publish Date:
+                        {{/has}}
+                    </b> <span id="pubDate">
+                        {{#has tag="#comingsoon, #preorder"}}
+                        {{else}}
+                            {{date published_at format="MMMM YYYY"}}
+                        {{/has}}
+                    </span>
                 </p>
             </div>
             <div class="col-4 links">
@@ -59,31 +75,71 @@
         var ratio = width / height;
         container.style.flex = ratio + ' 1 0%';
     })
+
+    // Format these so we're just working with the DATE, not the TIME
+    var preOrderDate = Date.parse('{{date published_at format="LL"}}');
+    var pubDate = preOrderDate;
+    var today = Date.parse(new Date().toDateString());
+
+    // We assume the post is published on the book's publication date
+    var comingsoon, preorder = false;
+
     $(document).ready(
         function() {
+
+            // The book's publication date
+            if (!!bookData.pubDate) {
+                pubDate = Date.parse(bookData.pubDate)
+                $('#pubDate').html(new Intl.DateTimeFormat(undefined, {month: 'long', year: 'numeric'}).format(pubDate));
+            }
+            // The book's pre-order date
+            if (!!bookData.preOrderDate) {
+                preOrderDate = Date.parse(bookData.preOrderDate)
+            }
+
+            // The book hasn't been published yet
+            if (today < pubDate) {
+                // Is it available for pre-order?
+                preorder = (preOrderDate <= today);
+                // If not, it's coming soon
+                comingsoon = !preorder
+
+                var pubDateLabel = (preorder) ? "Pre-Order Until" : ((comingsoon) ? "Coming" : null);
+                if (!!pubDateLabel) {
+                    $('#pubDateLabel').html(`${pubDateLabel}:`);
+                }
+            }
+
+            // The book's primary retail price
             if (!!bookData.price) {
                 $('div.links').find('.price').html('$'+bookData.price);
             }
+            // The book's primary ISBN
             if (!!bookData.isbn) {
                 $('#book-details').append('<br /><b>ISBN:</b> ' + bookData.isbn);
             }
-            if (!!bookData.payhip) {
-                $('h6.direct').show();
-                if (!!bookData.payhip.print) {
-                    $('ul.actions.direct').append('<li><a href="https://payhip.com/b/'+bookData.payhip.print+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip.print+'">Buy Print</a></li>');
+            if (comingsoon) {
+                $('h6.direct').html("Coming Soon!").show();
+            } else {
+                // Show BUY buttons if book is available for sale or pre-order
+                if (!!bookData.payhip) {
+                    $('h6.direct').show();
+                    if (!!bookData.payhip.print) {
+                        $('ul.actions.direct').append('<li><a href="https://payhip.com/b/'+bookData.payhip.print+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip.print+'">Buy Print</a></li>');
+                    }
+                    if (!!bookData.payhip.ebook) {
+                        $('ul.actions.direct').append('<li><a href="https://payhip.com/b/'+bookData.payhip.ebook+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip.ebook+'">Buy eBook</a></li>');
+                    }
+                    $('body').append('<scr'+'ipt type="text/javascript" src="https://payhip.com/payhip.js?v=24u68984"></scr'+'ipt>')
                 }
-                if (!!bookData.payhip.ebook) {
-                    $('ul.actions.direct').append('<li><a href="https://payhip.com/b/'+bookData.payhip.ebook+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip.ebook+'">Buy eBook</a></li>');
-                }
-                $('body').append('<scr'+'ipt type="text/javascript" src="https://payhip.com/payhip.js?v=24u68984"></scr'+'ipt>')
-            }
-            if (!!bookData.bookshop || !!bookData.b2r) {
-                $('h6.indirect').show();
-                if (!!bookData.bookshop) {
-                    $('ul.actions.indirect').append('<li><a href="https://bookshop.org/books/'+bookData.bookshop+'" class="button fit" title="Find your local bookshop on bookshop.org">Your Local Shop</a></li>');
-                }
-                if (!!bookData.b2r) {
-                    $('ul.actions.indirect').append('<li><a href="https://books2read.com/'+bookData.b2r+'" class="button fit" title="Choose your favorite online retailer.">The Big Guys</a></li>');
+                if (!!bookData.bookshop || !!bookData.b2r) {
+                    $('h6.indirect').show();
+                    if (!!bookData.bookshop) {
+                        $('ul.actions.indirect').append('<li><a href="https://bookshop.org/books/'+bookData.bookshop+'" class="button fit" title="Find your local bookshop on bookshop.org">Your Local Shop</a></li>');
+                    }
+                    if (!!bookData.b2r) {
+                        $('ul.actions.indirect').append('<li><a href="https://books2read.com/'+bookData.b2r+'" class="button fit" title="Choose your favorite online retailer.">The Big Guys</a></li>');
+                    }
                 }
             }
         }
