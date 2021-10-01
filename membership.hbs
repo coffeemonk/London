@@ -185,14 +185,15 @@
         function updatePlanPricing() {
             var showYearlyPricing = $('.checkout-form').hasClass('yearly');
             Object.keys(planPricing).forEach(key => {
-                var plan = showYearlyPricing ? planPricing[key].yearly : planPricing[key].monthly;
-                var period = showYearlyPricing ? 'year' : 'month'
-                var $planBox = $('div.plan-'+key.toLowerCase())
-                $planBox.find('.price').html(`<span>$</span><strong>${plan.price}</strong> / ${period}`);
-                $planBox
-                    .find(`.plan-footer .${period}ly a.button`)
-                    .attr('href',`/join/#/portal/signup/${plan.id}/${period}ly`);
-                console.log('planBox button', $planBox.find(`.plan-footer .${period}ly a.button`).attr('href'));
+                if (key.toLowerCase() !== 'matthew rasnake | author') {
+                    var plan = showYearlyPricing ? planPricing[key].yearly : planPricing[key].monthly;
+                    var period = showYearlyPricing ? 'year' : 'month'
+                    var $planBox = $('div.plan-'+key.toLowerCase())
+                    $planBox.find('.price').html(`<span>$</span><strong>${plan.price}</strong> / ${period}`);
+                    $planBox
+                        .find(`.plan-footer .${period}ly a.button`)
+                        .attr('href',`/join/#/portal/signup/${plan.id}/${period}ly`);
+                }
             });
         }
         function scrollToStories() {
