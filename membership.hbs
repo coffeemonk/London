@@ -4,7 +4,11 @@
     <div class="gh-container">
         <div class="checkout-form">
             <h1 class="checkout-title">Join the Adventure!</h1>
-            <p>Subscribe for regular updates, or become a patron and unlock additional members-only content!</p>
+            <p>Subscribe for free to receive regular updates, or become a patron to unlock additional members-only content and perks!</p>
+            <h6>Sign up for a full year, and get a free month!</h6>
+            <div class="plan-selector" title="Select Monthly/Yearly Plans">
+                <span class="switch">&nbsp;</span>
+            </div>
             <div class="checkout-box">
                 <div class="checkout-plan plan-trainee">
                     <header class="plan-header">
@@ -37,7 +41,7 @@
                 <div class="checkout-plan plan-astronaut">
                     <header class="plan-header">
                         <h3>Astronaut</h3>
-                        <span>$</span><strong>{{@price.monthly}}</strong> / month
+                        <span class="price"><span>$</span><strong>3</strong> / month</span>
                     </header>
                     <div class="plan-content">
                         <b class="tagline">Light that candle!</b>
@@ -45,7 +49,6 @@
                         <b>Includes:</b>
                         <ul>
                             <li><i>Pre-release eBook downloads</i></li>
-                            <li><i>A member-exclusive podcast featuring audio of completed short stories and novels, read by me</i></li>
                             <li><i>Your name acknowledged as a supporter</i></li>
                             <li>Email newsletter with public and member-exclusive content</li>
                             <li>Site membership with full access to member-exclusive content</li>
@@ -53,8 +56,14 @@
                         </ul>
                     </div>
                     <footer class="plan-footer">
-                        <a class="button upgrade primary fit" href="javascript:" data-members-plan="Monthly">Upgrade to Astronaut</a>
-                        <a class="button become primary fit" href="javascript:" data-members-plan="Monthly">Chase the Stars</a>
+                        <span class="monthly">
+                            <a class="button upgrade primary fit">Upgrade to Astronaut</a>
+                            <a class="button become primary fit">Chase the Stars</a>
+                        </span>
+                        <span class="yearly">
+                            <a class="button upgrade primary fit">Upgrade to Astronaut</a>
+                            <a class="button become primary fit">Chase the Stars</a>
+                        </span>
                         <h6 class="fancy primary">You Rock!</h6>
                         <a class="manage primary" href="/account/">View Your Profile</a>
                     </footer>
@@ -62,14 +71,13 @@
                 <div class="checkout-plan plan-colonist">
                     <header class="plan-header">
                         <h3>Colonist</h3>
-                        <span>$</span><strong>{{@price.yearly}}</strong> / year
+                        <span class="price"><span>$</span><strong>5</strong> / month</span>
                     </header>
                     <div class="plan-content">
                         <b class="tagline">Build a brave new world!</b>
                         <p class="intro">As a Colonist, get a year of access to all the Astronaut-level content and perks, and one month free!</p>
                         <b>Includes:</b>
                         <ul>
-                            <li><i>One free month!</i></li>
                             <li>Pre-release eBook downloads</li>
                             <li>A member-exclusive podcast featuring audio of completed short stories and novels, read by me</li>
                             <li>Your name acknowledged as a supporter</li>
@@ -79,16 +87,22 @@
                         </ul>
                     </div>
                     <footer class="plan-footer">
-                        <a class="button upgrade primary fit" href="javascript:" data-members-plan="Yearly">Upgrade to Colonist</a>
-                        <a class="button become primary fit" href="javascript:" data-members-plan="Yearly">Build a World</a>
+                        <span class="monthly">
+                            <a class="button upgrade primary fit">Upgrade to Colonist</a>
+                            <a class="button become primary fit">Build a World</a>
+                        </span>
+                        <span class="yearly">
+                            <a class="button upgrade primary fit">Upgrade to Colonist</a>
+                            <a class="button become primary fit">Build a World</a>
+                        </span>
                         <h6 class="fancy primary">You Rock!</h6>
                         <a class="manage primary" href="/account/">View Your Profile</a>
                     </footer>
                 </div>
-                <!-- <div class="checkout-plan plan-explorer">
+                <div class="checkout-plan plan-explorer">
                     <header class="plan-header">
                         <h3>Explorer</h3>
-                        <span>$</span><strong>20</strong> / month
+                        <span class="price"><span>$</span><strong>15</strong> / month</span>
                     </header>
                     <div class="plan-content">
                         <b class="tagline">See what's out there...</b>
@@ -105,14 +119,19 @@
                         </ul>
                     </div>
                     <footer class="plan-footer">
-                        <a class="button upgrade primary fit" href="https://www.patreon.com/matthewrasnake" title="Explorers will sign up via Patreon until this site's software supports membership tiers.">Upgrade to Explorer*</a>
-                        <a class="button become primary fit" href="https://www.patreon.com/matthewrasnake" title="Explorers will sign up via Patreon until this site's software supports membership tiers.">Push the Boundaries*</a>
+                        <span class="monthly">
+                            <a class="button upgrade primary fit">Upgrade to Explorer*</a>
+                            <a class="button become primary fit">Push the Boundaries*</a>
+                        </span>
+                        <span class="yearly">
+                            <a class="button upgrade primary fit">Upgrade to Explorer*</a>
+                            <a class="button become primary fit">Push the Boundaries*</a>
+                        </span>
                         <h6 class="fancy primary">You Rock!</h6>
-                        <a class="manage primary" href="https://www.patreon.com/matthewrasnake">Manage Your Membership</a>
+                        <a class="manage primary" href="/account/">View Your Profile</a>
                     </footer>
-                </div> -->
+                </div>
             </div>
-            <!-- <p class="wide explorer-note"><small>* <i><b>NOTE:</b> Explorers will sign up via Patreon until this site's software supports membership tiers.</i></small></p> -->
             <p class="wide patreon-migration"><b>Ready to migrate your Patreon membership?</b> <a href="/account/#migrate-from-patreon">See your account page for more information.</a></p>
         </div>
         {{#unless @member }}
@@ -140,6 +159,42 @@
                 for requesting cancellation of their current membership so they can re-sign-up
                 under a different plan
         */
+        var planPricing = {
+            {{#foreach @products as |product|}}
+                '{{product.name}}': {
+                    'monthly': {
+                        'id': '{{product.monthly_price.id}}',
+                        'price': {{price product.monthly_price.amount}}
+                    },
+                    'yearly': {
+                        'id': '{{product.yearly_price.id}}',
+                        'price': {{price product.yearly_price.amount}}
+                    }
+                },
+            {{/foreach}}
+        }
+
+        $(document).ready(function() {
+            updatePlanPricing();
+            $('.plan-selector').click(event => {
+                $('.checkout-form').toggleClass('yearly');
+                updatePlanPricing();
+            });
+        })
+
+        function updatePlanPricing() {
+            var showYearlyPricing = $('.checkout-form').hasClass('yearly');
+            Object.keys(planPricing).forEach(key => {
+                var plan = showYearlyPricing ? planPricing[key].yearly : planPricing[key].monthly;
+                var period = showYearlyPricing ? 'year' : 'month'
+                var $planBox = $('div.plan-'+key.toLowerCase())
+                $planBox.find('.price').html(`<span>$</span><strong>${plan.price}</strong> / ${period}`);
+                $planBox
+                    .find(`.plan-footer .${period}ly a.button`)
+                    .attr('href',`/join/#/portal/signup/${plan.id}/${period}ly`);
+                console.log('planBox button', $planBox.find(`.plan-footer .${period}ly a.button`).attr('href'));
+            });
+        }
         function scrollToStories() {
             $('html, body').animate({
                 scrollTop: parseInt($("div.free-stories").offset().top)

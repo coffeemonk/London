@@ -16,13 +16,61 @@
 
     & > p {
         max-width: 33rem;
-        margin: 0 auto var(--margin-large);
+        margin: 0 auto var(--margin);
         &.wide{
             max-width: fit-content;
             width: 100%
         }
     }
 
+    .plan-selector {
+        --tsSize: clamp(.75rem, 1.4vw, 1rem);
+        position:       relative;
+        height:         var(--tsSize);
+        width:          calc(var(--tsSize) * 2.25);
+        margin:         0 auto var(--margin);
+        z-index:        9900;
+        border-radius:  calc(var(--tsSize) / 2);
+        background-color: var(--bg);
+        border:         1px solid var(--color-primary);
+        vertical-align: center;
+        transition:     var(--transition);
+
+        &::before {
+            content:    "Monthly";
+            position:   absolute;
+            left:       calc(-4.3em);
+            font-size:  calc(var(--tsSize) / 1.5);
+            top:        -50%;
+        }
+        &::after {
+            content:    "Yearly";
+            position:   absolute;
+            right:      calc(-3.3em);
+            font-size:  calc(var(--tsSize) / 1.5);
+            top:        -50%;
+        }
+        span {
+            display: block;
+            position: absolute;
+            width: calc(var(--tsSize) - 4px);
+            height: calc(var(--tsSize) - 4px);
+            z-index: 9950;
+            fill: var(--color-primary);
+        }
+        .switch {
+            top:    1px;
+            right:  1px;
+            margin-right: calc(var(--tsSize) * 1.25);
+            border-radius: var(--tsSize);
+            background-color: var(--color-primary);
+            transition: background-color .5s ease-out;
+            transition: margin-right .5s ease-out;
+            font-size: 1px;
+            z-index: 9999;
+            opacity: 1;
+        }
+    }
     .checkout-box {
         display: flex;
         margin-bottom: 3rem;
@@ -133,6 +181,9 @@
                     .button {
                         width: 100%;
                     }
+                }
+                span.yearly {
+                    display: none;
                 }
             }
             h6 {
@@ -258,6 +309,29 @@
             }
         }
     }
+
+    &.yearly {
+        .plan-selector .switch {
+            margin-right: 0;
+        }
+        .checkout-box .checkout-plan .plan-footer {
+            .monthly {
+                display: none;
+            }
+            .yearly {
+                display: inline;
+            }
+        }
+    }
+}
+:root.theme-dark .checkout-form .plan-selector {
+    border-color: var(--color-primary);
+
+    .switch {
+        background-color: var(--color-primary);
+        transition: background-color .5s ease-out;
+        transition: margin-right .5s ease-out;
+    }
 }
 .member-explorer {
     .explorer-note {
@@ -268,7 +342,9 @@
     background-color: var(--black);
     color: var(--color-text-onDark);
 }
-
+.gh-portal-triggerbtn-iframe {
+    display: none !important;
+}
 @media (max-width: 1280px) {
     .checkout-form {
         .checkout-box {
@@ -294,7 +370,6 @@
         font-size: clamp(16px, 1.25vw, var(--font-size-max));
     }
 }
-
 @media (max-width: 740px) {
     .checkout-form {
     	.checkout-title {
