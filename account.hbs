@@ -113,9 +113,6 @@
                     if (i==0 && member.plan !== 'complimentary') {
                         $('.member-welcome').text(`Welcome, ${planNickname}!`);
                     }
-                    /*  if (member.plan == 'explorer') {
-                            $(planDetails).find('.content').html(`$20/month`);
-                        } */
                     $(planDetails).find('.content').prepend(`<span class="plan-name">${planNickname}</span> — `);
                 }
             }
