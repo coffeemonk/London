@@ -214,9 +214,6 @@
                     var period = showYearlyPricing ? 'year' : 'month'
                     var $planBox = $('div.plan-'+key.toLowerCase())
                     $planBox.find('.price').html(`<span>$</span><strong>${plan.price}</strong> / ${period}`);
-/*                    $planBox
-                        .find(`.plan-footer  a.button.${period}ly`)
-                        .attr('href',`/join/#/portal/signup/${plan.id}/${period}ly`); */
                 }
             });
         }
