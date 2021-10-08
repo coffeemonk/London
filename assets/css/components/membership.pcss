@@ -166,8 +166,13 @@
                             color: #98c22e;
                             content: "✓";
                         }
-                        & i {
-                            color: color(var(--color-primary) l(-10%))
+                        &.benefit-new {
+                            font-style: italic;
+                            font-weight: 600;
+                            color: var(--color-primary);
+                        }
+                        &.benefit-prior {
+                            opacity: .5;
                         }
                     }
                 }
@@ -177,13 +182,9 @@
                 text-align: center;
 
                 .form-group {
-
                     .button {
                         width: 100%;
                     }
-                }
-                span.yearly {
-                    display: none;
                 }
             }
             h6 {
@@ -191,18 +192,21 @@
             }
             h6,
             .upgrade,
-            .manage {
+            .manage,
+            .yearly {
                 display: none;
             }
             .manage {
                 font-size: .85em;
             }
         }
-
-        .member-trainee & {
+        body.member & {
+            .monthly,
             .become {
                 display: none;
             }
+        }
+        body.member.trainee & {
             .plan-trainee {
                 h6 {
                     display: block;
@@ -214,58 +218,62 @@
             .plan-astronaut,
             .plan-colonist,
             .plan-explorer {
+                .monthly,
                 .upgrade {
                     display: inline-block;
                 }
             }
         }
-        .member-astronaut & {
-            .become {
-                display: none;
-            }
-            .plan-trainee,
+        body.member.astronaut & {
             .plan-astronaut {
                 h6 {
                     display: block;
                 }
-            }
-            .plan-astronaut .manage {
-                display: inline;
+                .manage {
+                    display: inline;
+                }
+                .monthly,
+                .yearly {
+                    display: none;
+                }
             }
             .plan-colonist,
             .plan-explorer {
+                .monthly,
                 .upgrade {
                     display: inline-block;
                 }
             }
         }
-        .member-colonist & {
-            .become {
-                display: none;
-            }
-            .plan-trainee,
+        body.member.colonist & {
             .plan-astronaut,
+            .plan-colonist {
+                .monthly,
+                .yearly {
+                    display: none;
+                }
+            }
             .plan-colonist {
                 h6 {
                     display: block;
                 }
-            }
-            .plan-colonist .manage {
-                display: inline;
+                .manage {
+                    display: inline;
+                }
             }
             .plan-explorer {
+                .monthly,
                 .upgrade {
                     display: inline-block;
                 }
             }
         }
-        .member-explorer & {
-            .become {
+        body.member.explorer & {
+            .monthly,
+            .yearly,
+            .upgrade {
                 display: none;
             }
-            .plan-trainee,
-            .plan-astronaut,
-            .plan-colonist,
             .plan-explorer {
                 h6 {
                     display: block;
@@ -275,51 +283,42 @@
                 display: inline;
             }
         }
-        .member-complimentary & {
-            .plan-astronaut,
-            .plan-colonist,
-            .plan-explorer {
-                h6 {
-                    display: block;
-                }
-                .become,
-                .manage {
-                    display: none;
-                }
-            }
-        }
-        .patreon-migration {
-            display: none;
-        }
-        .member-patreon & {
-            .patreon-migration {
-                display: block;
-            }
-            .explorer-note {
+        body.member.complimentary & {
+            .monthly,
+            .yearly,
+            .become,
+            .upgrade,
+            .manage {
                 display: none;
             }
-            .plan-footer {
-                .become,
-                .upgrade {
-                    display: none;
-                }
-                h6 {
-                    display: block;
-                }
+            h6 {
+                display: block;
             }
         }
     }
 
     &.yearly {
+        body.member & {
+            .checkout-box {
+                .plan-trainee,
+                .plan-astronaut,
+                .plan-colonist,
+                .plan-explorer {
+                    .monthly {
+                        display: none;
+                    }
+                }
+            }
+        }
         .plan-selector .switch {
             margin-right: 0;
         }
-        .checkout-box .checkout-plan .plan-footer {
+        .checkout-box .checkout-plan {
             .monthly {
                 display: none;
             }
             .yearly {
-                display: inline;
+                display: block;
             }
         }
     }
