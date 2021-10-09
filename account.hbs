@@ -117,17 +117,5 @@
                 }
             }
         };
-        function getNick(accountData) {
-            switch (accountData.amount) {
-                case 0:
-                    return member.plan;
-                case 3300:
-                    return "colonist";
-                case 300:
-                    return "astronaut";
-                default:
-                    break;
-            }
-        }
     </script>
 {{/contentFor}}

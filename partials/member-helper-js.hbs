@@ -1,6 +1,28 @@
 {{#if @member}}
     <script src="https://cdn.jsdelivr.net/npm/hash-wasm@4/dist/md5.umd.min.js"></script>
     <script data-swup-reload-script>
+        var planPricing = {
+            {{#foreach @products as |product|}}
+                '{{product.name}}': {
+                    'monthly': {
+                        'id': '{{product.monthly_price.id}}',
+                        'price': {{price product.monthly_price.amount}}
+                    },
+                    'yearly': {
+                        'id': '{{product.yearly_price.id}}',
+                        'price': {{price product.yearly_price.amount}}
+                    }
+                },
+            {{/foreach}}
+        }
+        var planNicks = {
+            0: 'complimentary',
+            {{#foreach @products as |product|}}
+                [{{price product.monthly_price.amount}} * 100]: '{{product.name}}'.toLowerCase(),
+                [{{price product.yearly_price.amount}} * 100]: '{{product.name}}'.toLowerCase(),
+            {{/foreach}}
+        }
+
         var member = {
             "name": "{{@member.firstname}}",
             "plan": "trainee",
@@ -8,7 +30,7 @@
         }
         {{#if @member.paid}}
             {{#foreach @member.subscriptions}}
-                member.plan = "{{plan.nickname}}".toLowerCase();
+                member.plan = planNicks[{{plan.amount}}];
             {{/foreach}}
         {{/if}}
 
@@ -21,5 +43,6 @@
                 memberPageUpdates();
             }
         })
+
     </script>
 {{/if}}
