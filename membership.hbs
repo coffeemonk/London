@@ -1,6 +1,6 @@
 {{!< default}}
 
-<div class="gh-page">
+<div class="gh-page {{#if @member}}member{{/if}} monthly">
     <div class="gh-container">
         <div class="checkout-form">
             <h1 class="checkout-title">Join the Adventure!</h1>
@@ -122,7 +122,11 @@
                                 {{/has}}
                             </div>
                             <footer class="plan-footer">
-                                <a class="button monthly primary fit" data-portal="signup/{{id}}/monthly">
+                                {{#if @member}}
+                                    <a class="button monthly primary fit" href="#/portal/signup/{{id}}/"> <!-- monthly/" -->
+                                {{else}}
+                                    <a class="button monthly primary fit" href="#/portal/signup/{{id}}/monthly/">
+                                {{/if}}
                                     {{#has slug="astronaut"}}
                                         <span class="upgrade">Upgrade to Astronaut</span>
                                         <span class="become">Chase the Stars</span>
@@ -134,7 +138,7 @@
                                         <span class="become">Push the Boundaries</span>
                                     {{/has}}
                                 </a>
-                                <a class="button yearly primary fit" data-portal="signup/{{id}}/yearly">
+                                <a class="button yearly primary fit" href="#/portal/signup/{{id}}/yearly/">
                                     {{#has slug="astronaut"}}
                                         <span class="upgrade">Upgrade to Astronaut</span>
                                         <span class="become">Chase the Stars</span>
@@ -169,6 +173,7 @@
 </div>
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
 {{#contentFor "scripts"}}
+    {{> "plans-helper-js"}}
     {{> "member-helper-js"}}
     <script>
         /* Change Plan Plan
@@ -188,11 +193,9 @@
 
         function updatePlanPricing(toggle = false) {
             if (toggle) {
-                $('.checkout-form').toggleClass(['monthly','yearly']);
-            } else {
-                $('.checkout-form').addClass('monthly');
+                $('div.gh-page').toggleClass(['monthly','yearly']);
             }
-            var showYearlyPricing = $('.checkout-form').hasClass('yearly');
+            var showYearlyPricing = $('div.gh-page').hasClass('yearly');
             Object.keys(planPricing).forEach(key => {
                 if (key.toLowerCase() !== 'matthew rasnake | author') {
                     var plan = showYearlyPricing ? planPricing[key].yearly : planPricing[key].monthly;

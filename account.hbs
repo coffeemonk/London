@@ -5,7 +5,7 @@
     <p class="description">Account details and managment</p>
 </header>
 {{#if @member}}
-    <div class="page-body">
+    <div class="page-body gh-page member">
         <h3 class="title member-welcome">Welcome, Recruit!</h1>
         <div class="member-box">
             <div class="subscription">
@@ -89,6 +89,7 @@
     <script>window.location = '{{@site.url}}/signin/';</script>
 {{/if}}
 {{#contentFor "scripts"}}
+    {{> "plans-helper-js" }}
     {{> "member-helper-js" }}
     <script data-swup-reload-script>
         $(document).ready(function() {
@@ -108,7 +109,7 @@
             for (i = 0; i < subscriptions.length; i++) {
                 var planDetails = subscriptions[i];
                 var accountData = $(planDetails).data();
-                planNickname = getNick(accountData);
+                planNickname = planNicks[accountData.amount];
                 if (!!planNickname) {
                     if (i==0 && member.plan !== 'complimentary') {
                         $('.member-welcome').text(`Welcome, ${planNickname}!`);

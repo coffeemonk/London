@@ -1,5 +1,5 @@
-/* Membership
-/* ---------------------------------------------------------- */
+/* Membership */
+/* ---------- */
 
 .checkout-form {
     width: 100%;
@@ -36,6 +36,7 @@
         vertical-align: center;
         transition:     var(--transition);
 
+        /* label: "Monthly" */
         &::before {
             content:    "Monthly";
             position:   absolute;
@@ -43,6 +44,7 @@
             font-size:  calc(var(--tsSize) / 1.5);
             top:        -50%;
         }
+        /* label: "Yearly" */
         &::after {
             content:    "Yearly";
             position:   absolute;
@@ -50,25 +52,27 @@
             font-size:  calc(var(--tsSize) / 1.5);
             top:        -50%;
         }
-        span {
+
+        .switch {
+            /* design */
             display: block;
-            position: absolute;
             width: calc(var(--tsSize) - 4px);
             height: calc(var(--tsSize) - 4px);
-            z-index: 9950;
             fill: var(--color-primary);
-        }
-        .switch {
-            top:    1px;
-            right:  1px;
-            margin-right: calc(var(--tsSize) * 1.25);
-            border-radius: var(--tsSize);
             background-color: var(--color-primary);
-            transition: background-color .5s ease-out;
-            transition: margin-right .5s ease-out;
+            border-radius: var(--tsSize);
             font-size: 1px;
             z-index: 9999;
             opacity: 1;
+
+            /* position - default to monthly */
+            position: absolute;
+            top:    1px;
+            right:  1px;
+            margin-right: calc(var(--tsSize) * 1.25);
+
+            /* animation */
+            transition: all .5s cubic-bezier(0.33, 1, 0.68, 1);
         }
     }
     .checkout-box {
@@ -200,90 +204,111 @@
                 font-size: .85em;
             }
         }
-        body.member & {
-            .monthly,
+    }
+}
+.gh-page.member {
+    &.yearly {
+        .plan-selector .switch {
+            margin-right: 0;
+        }
+    }
+    .checkout-form .checkout-box .checkout-plan {
+        .yearly& {
+            .monthly {
+                display: none;
+            }
+            .yearly {
+                display: block;
+            }
+        }
+        .plan-footer {
+            .upgrade {
+                display: inline-block;
+            }
             .become {
                 display: none;
             }
         }
-        body.member.trainee & {
-            .plan-trainee {
+        .trainee& {
+            &.plan-trainee {
                 h6 {
                     display: block;
                 }
                 .manage {
                     display: inline;
                 }
-            }
-            .plan-astronaut,
-            .plan-colonist,
-            .plan-explorer {
-                .monthly,
                 .upgrade {
-                    display: inline-block;
+                    display: none;
                 }
             }
         }
-        body.member.astronaut & {
-            .plan-astronaut {
+        .astronaut& {
+            &.plan-trainee,
+            &.plan-astronaut {
                 h6 {
                     display: block;
-                }
-                .manage {
-                    display: inline;
                 }
                 .monthly,
                 .yearly {
                     display: none;
                 }
             }
-            .plan-colonist,
-            .plan-explorer {
-                .monthly,
+            &.plan-astronaut{
+                .manage {
+                    display: inline;
+                }
+            }
+            &.plan-colonist,
+            &.plan-explorer {
                 .upgrade {
                     display: inline-block;
                 }
             }
         }
-        body.member.colonist & {
-            .plan-astronaut,
-            .plan-colonist {
+        .colonist& {
+            &.plan-trainee,
+            &.plan-astronaut,
+            &.plan-colonist {
+                h6 {
+                    display: block;
+                }
                 .monthly,
                 .yearly {
                     display: none;
                 }
             }
-            .plan-colonist {
-                h6 {
-                    display: block;
-                }
+            &.plan-colonist {
                 .manage {
                     display: inline;
                 }
             }
-            .plan-explorer {
-                .monthly,
+            &.plan-explorer {
                 .upgrade {
                     display: inline-block;
                 }
             }
         }
-        body.member.explorer & {
-            .monthly,
-            .yearly,
-            .upgrade {
-                display: none;
-            }
-            .plan-explorer {
+        .explorer& {
+            &.plan-trainee,
+            &.plan-astronaut,
+            &.plan-colonist,
+            &.plan-explorer {
                 h6 {
                     display: block;
                 }
+                .monthly,
+                .yearly,
+                .upgrade {
+                    display: none;
+                }
             }
-            .plan-explorer .manage {
-                display: inline;
+            &.plan-explorer {
+                .manage {
+                    display: inline;
+                }
             }
         }
-        body.member.complimentary & {
+        .complimentary& {
             .monthly,
             .yearly,
             .become,
@@ -296,46 +321,10 @@
             }
         }
     }
-
-    &.yearly {
-        body.member & {
-            .checkout-box {
-                .plan-trainee,
-                .plan-astronaut,
-                .plan-colonist,
-                .plan-explorer {
-                    .monthly {
-                        display: none;
-                    }
-                }
-            }
-        }
-        .plan-selector .switch {
-            margin-right: 0;
-        }
-        .checkout-box .checkout-plan {
-            .monthly {
-                display: none;
-            }
-            .yearly {
-                display: block;
-            }
-        }
-    }
 }
+
 :root.theme-dark .checkout-form .plan-selector {
     border-color: var(--color-primary);
-
-    .switch {
-        background-color: var(--color-primary);
-        transition: background-color .5s ease-out;
-        transition: margin-right .5s ease-out;
-    }
-}
-.member-explorer {
-    .explorer-note {
-        display: none;
-    }
 }
 .theme-dark .checkout-form .checkout-box .checkout-plan {
     background-color: var(--black);
@@ -392,8 +381,8 @@
 }
 
 
-/* Membership Page
-/* --------------- */
+/* Testimonials */
+/* ------------ */
 
 .testimonials {
     display: flex;

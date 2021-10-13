@@ -1,0 +1,25 @@
+<script data-swup-reload-script>
+    // setup js object with plan details
+    var planPricing = {
+        {{#foreach @products as |product|}}
+            '{{product.name}}': {
+                'monthly': {
+                    'id': '{{product.monthly_price.id}}',
+                    'price': {{price product.monthly_price.amount}}
+                },
+                'yearly': {
+                    'id': '{{product.yearly_price.id}}',
+                    'price': {{price product.yearly_price.amount}}
+                }
+            },
+        {{/foreach}}
+    }
+    // map all active plan amounts to their names
+    var planNicks = {
+        0: 'complimentary',
+        {{#foreach @products as |product|}}
+            [{{price product.monthly_price.amount}} * 100]: '{{product.name}}'.toLowerCase(),
+            [{{price product.yearly_price.amount}} * 100]: '{{product.name}}'.toLowerCase(),
+        {{/foreach}}
+    }
+</script>
