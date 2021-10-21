@@ -206,14 +206,12 @@
         }
     }
 }
-.gh-page.member {
+.gh-page {
     &.yearly {
         .plan-selector .switch {
             margin-right: 0;
         }
-    }
-    .checkout-form .checkout-box .checkout-plan {
-        .yearly& {
+        .checkout-form .checkout-box .checkout-plan {
             .monthly {
                 display: none;
             }
@@ -221,103 +219,115 @@
                 display: block;
             }
         }
-        .plan-footer {
-            .upgrade {
-                display: inline-block;
-            }
-            .become {
-                display: none;
-            }
-        }
-        .trainee& {
-            &.plan-trainee {
-                h6 {
-                    display: block;
-                }
-                .manage {
-                    display: inline;
-                }
-                .upgrade {
+    }
+    &.member {
+        .checkout-form .checkout-box .checkout-plan {
+            .yearly& {
+                .monthly {
                     display: none;
                 }
-            }
-        }
-        .astronaut& {
-            &.plan-trainee,
-            &.plan-astronaut {
-                h6 {
-                    display: block;
-                }
-                .monthly,
                 .yearly {
-                    display: none;
+                    display: block;
                 }
             }
-            &.plan-astronaut{
-                .manage {
-                    display: inline;
-                }
-            }
-            &.plan-colonist,
-            &.plan-explorer {
+            .plan-footer {
                 .upgrade {
                     display: inline-block;
                 }
-            }
-        }
-        .colonist& {
-            &.plan-trainee,
-            &.plan-astronaut,
-            &.plan-colonist {
-                h6 {
-                    display: block;
-                }
-                .monthly,
-                .yearly {
+                .become {
                     display: none;
                 }
             }
-            &.plan-colonist {
-                .manage {
-                    display: inline;
+            .trainee& {
+                &.plan-trainee {
+                    h6 {
+                        display: block;
+                    }
+                    .manage {
+                        display: inline;
+                    }
+                    .upgrade {
+                        display: none;
+                    }
                 }
             }
-            &.plan-explorer {
-                .upgrade {
-                    display: inline-block;
+            .astronaut& {
+                &.plan-trainee,
+                &.plan-astronaut {
+                    h6 {
+                        display: block;
+                    }
+                    .monthly,
+                    .yearly {
+                        display: none;
+                    }
+                }
+                &.plan-astronaut{
+                    .manage {
+                        display: inline;
+                    }
+                }
+                &.plan-colonist,
+                &.plan-explorer {
+                    .upgrade {
+                        display: inline-block;
+                    }
                 }
             }
-        }
-        .explorer& {
-            &.plan-trainee,
-            &.plan-astronaut,
-            &.plan-colonist,
-            &.plan-explorer {
-                h6 {
-                    display: block;
+            .colonist& {
+                &.plan-trainee,
+                &.plan-astronaut,
+                &.plan-colonist {
+                    h6 {
+                        display: block;
+                    }
+                    .monthly,
+                    .yearly {
+                        display: none;
+                    }
                 }
+                &.plan-colonist {
+                    .manage {
+                        display: inline;
+                    }
+                }
+                &.plan-explorer {
+                    .upgrade {
+                        display: inline-block;
+                    }
+                }
+            }
+            .explorer& {
+                &.plan-trainee,
+                &.plan-astronaut,
+                &.plan-colonist,
+                &.plan-explorer {
+                    h6 {
+                        display: block;
+                    }
+                    .monthly,
+                    .yearly,
+                    .upgrade {
+                        display: none;
+                    }
+                }
+                &.plan-explorer {
+                    .manage {
+                        display: inline;
+                    }
+                }
+            }
+            .complimentary& {
                 .monthly,
                 .yearly,
-                .upgrade {
+                .become,
+                .upgrade,
+                .manage {
                     display: none;
                 }
-            }
-            &.plan-explorer {
-                .manage {
-                    display: inline;
+                h6 {
+                    display: block;
                 }
-            }
-        }
-        .complimentary& {
-            .monthly,
-            .yearly,
-            .become,
-            .upgrade,
-            .manage {
-                display: none;
-            }
-            h6 {
-                display: block;
             }
         }
     }

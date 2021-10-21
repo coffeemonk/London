@@ -12,7 +12,7 @@
                 {{#if @member.paid}}
                     {{!-- Logged in, paying member: Show account info --}}
                     {{#foreach @member.subscriptions}}
-                        <div class="status-{{status}}">
+                        <div class="status {{status}}">
                             <p>
                                 {{#if cancel_at_period_end}}
                                     <strong class="expiration-warning">Your current membership expires on {{date current_period_end format="DD MMM YYYY"}}.</strong> If you change your mind before then, you can always turn auto-renew back on and continue the adventure!
@@ -65,7 +65,7 @@
                     <a class="button fit edit-account" href="#/portal/account">Edit Account Info</a>
                     {{#if @member.paid}}
                         {{#foreach @member.subscriptions}}
-                            <div class="status-{{status}}">
+                            <div class="status {{status}}">
                                 <a class="button fit edit-billing" href="javascript:"
                                     data-members-edit-billing
                                     data-members-success="/account/?stripe=billing-update-success"
@@ -105,7 +105,7 @@
             // handle subscriptions
             var accountData = {};
             var planNickname = false;
-            var subscriptions = $('.detail.plan');
+            var subscriptions = $('div.subscription div.status.active').find('.detail.plan');
             for (i = 0; i < subscriptions.length; i++) {
                 var planDetails = subscriptions[i];
                 var accountData = $(planDetails).data();
