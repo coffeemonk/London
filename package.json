@@ -2,7 +2,7 @@
     "name": "louisville",
     "description": "A site-specific theme for Ghost",
     "demo": "https://www.matthewrasnake.com/",
-    "version": "1.3.24",
+    "version": "1.4.0",
     "engines": {
         "ghost": ">=4.0.0",
         "ghost-api": "v4"
@@ -44,7 +44,7 @@
         "url": "https://github.com/TryGhost/London.git"
     },
     "bugs": "https://github.com/TryGhost/London/issues",
-    "contributors": "https://github.com/TryGhost/London/graphs/contributors",
+    "contributors": ["https://github.com/TryGhost/London/graphs/contributors"],
     "browserslist": [
         "> 5%",
         "last 2 versions"

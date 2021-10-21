@@ -1,25 +1,23 @@
 {{#if @member}}
-    <script data-swup-reload-script>
-        var member = {
-            "name": "{{@member.firstname}}",
-            "plan": "trainee",
-            "paid": {{@member.paid}}
-        }
-        {{#if @member.paid}}
-            {{#foreach @member.subscriptions}}
-                member.plan = planNicks[{{plan.amount}}];
-            {{/foreach}}
-        {{/if}}
+<script data-swup-reload-script>
+{{#if @member.paid}}
+    {{#foreach @products as |product|}}
+        {{#foreach @member.subscriptions as |sub|}}
+            {{#match @member.subscriptions.0.price.product.product_id "=" product.id}}
+                {{#match status "!=" "canceled"}}
+    var memberPlan = '{{product.name}}'.toLowerCase();
+                    {{/match}}
+            {{/match}}
+        {{/foreach}}
+    {{/foreach}}
+{{else}}
+    var memberPlan = "trainee";
+{{/if}}
 
-        $(document).ready(function() {
-            // update page classes
-            $('div.gh-page').addClass(`${member.plan}`);
+    $(document).ready(function() {
+        // update page classes
+        $('div.gh-page').addClass(`${memberPlan}`);
+    });
 
-            // handle page-specific update
-            if (typeof memberPageUpdates == 'function') {
-                memberPageUpdates();
-            }
-        })
-
-    </script>
+</script>
 {{/if}}

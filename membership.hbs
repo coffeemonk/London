@@ -1,6 +1,21 @@
 {{!< default}}
 
-<div class="gh-page {{#if @member}}member{{/if}} monthly">
+<div class="gh-page
+    {{#if @member}}
+        member
+        {{#if @member.paid}}
+            {{#foreach @member.subscriptions as |sub|}}
+                {{#match status "=" "active"}}
+                    {{plan.interval}}ly
+                {{/match}}
+            {{/foreach}}
+        {{else}}
+            monthly
+        {{/if}}
+    {{else}}
+        monthly
+    {{/if}}"
+>
     <div class="gh-container">
         <div class="checkout-form">
             <h1 class="checkout-title">Join the Adventure!</h1>
@@ -77,7 +92,8 @@
                         <div class="checkout-plan plan-{{slug}}">
                             <header class="plan-header">
                                 <h3>{{name}}</h3>
-                                <span class="price"><span>$</span><strong>{{price monthly_price.amount}}</strong> / month</span>
+                                <span class="price monthly"><span>$</span><strong>{{price product.monthly_price.amount}}</strong> / month</span>
+                                <span class="price yearly"><span>$</span><strong>{{price product.yearly_price.amount}}</strong> / year</span>
                             </header>
                             <div class="plan-content">
                                 {{#has slug="astronaut"}}
@@ -169,7 +185,6 @@
 </div>
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
 {{#contentFor "scripts"}}
-    {{> "plans-helper-js"}}
     {{> "member-helper-js"}}
     <script>
         /* Change Plan Plan
@@ -181,26 +196,10 @@
                 under a different plan
         */
         $(document).ready(function() {
-            updatePlanPricing();
             $('.plan-selector').click(event => {
-                updatePlanPricing(true);
+                $('div.gh-page').toggleClass(['monthly','yearly']);
             });
         })
-
-        function updatePlanPricing(toggle = false) {
-            if (toggle) {
-                $('div.gh-page').toggleClass(['monthly','yearly']);
-            }
-            var showYearlyPricing = $('div.gh-page').hasClass('yearly');
-            Object.keys(planPricing).forEach(key => {
-                if (key.toLowerCase() !== 'matthew rasnake | author') {
-                    var plan = showYearlyPricing ? planPricing[key].yearly : planPricing[key].monthly;
-                    var period = showYearlyPricing ? 'year' : 'month'
-                    var $planBox = $('div.plan-'+key.toLowerCase())
-                    $planBox.find('.price').html(`<span>$</span><strong>${plan.price}</strong> / ${period}`);
-                }
-            });
-        }
         function scrollToStories() {
             $('html, body').animate({
                 scrollTop: parseInt($("div.free-stories").offset().top)

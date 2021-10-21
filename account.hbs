@@ -6,47 +6,77 @@
 </header>
 {{#if @member}}
     <div class="page-body gh-page member">
-        <h3 class="title member-welcome">Welcome, Recruit!</h1>
+        <h3 class="title member-welcome">Welcome,
+            {{#if @member.paid}}
+                {{#foreach @products as |product|}}
+                    {{#foreach @member.subscriptions as |sub|}}
+                        {{#match @member.subscriptions.0.price.product.product_id "=" product.id}}
+                            {{#match status "!=" "canceled"}}
+                                {{#match plan.amount "!=" 0}}
+                                    {{product.name}}
+                                {{/match}}
+                                {{#match plan.amount "=" 0}}
+                                    Friend
+                                {{/match}}
+                            {{/match}}
+                        {{/match}}
+                    {{/foreach}}
+                {{/foreach}}
+            {{else}}
+                Recruit
+            {{/if}}!
+        </h3>
         <div class="member-box">
             <div class="subscription">
                 {{#if @member.paid}}
                     {{!-- Logged in, paying member: Show account info --}}
-                    {{#foreach @member.subscriptions}}
-                        <div class="status {{status}}">
-                            <p>
-                                {{#if cancel_at_period_end}}
-                                    <strong class="expiration-warning">Your current membership expires on {{date current_period_end format="DD MMM YYYY"}}.</strong> If you change your mind before then, you can always turn auto-renew back on and continue the adventure!
-                                {{else}}
-                                    Hey! You currently have an active membership. Don't hesitate to let me know if you have any problems or need help getting things updated, and thanks for your support!
-                                {{/if}}
-                            </p>
-                            <div class="details">
-                                <div class="detail">
-                                    <label class="label">Email address: </label>
-                                    <span class="content">{{@member.email}}</span>
-                                </div>
-                                <div class="detail plan" data-amount="{{plan.amount}}" data-interval="{{plan.interval}}">
-                                    <label class="label">Your plan: </label>
-                                    <span class="content plan-is-by-{{plan.interval}}">
-                                        {{price plan currency=currency}}/{{plan.interval}}
-                                    </span>
-                                </div>
-                                <div class="detail">
-                                    <label class="label">Card: </label>
-                                    <span class="content">**** **** **** {{default_payment_card_last4}}</span>
-                                </div>
-                                <div class="detail">
-                                    <label class="label">
-                                        {{#if cancel_at_period_end}}
-                                            Expires:
-                                        {{else}}
-                                            Next bill date:
-                                        {{/if}}
-                                    </label>
-                                    <span class="content">{{date current_period_end format="DD MMM YYYY"}}</span>
-                                </div>
-                            </div>
-                        </div>
+                    {{#foreach @products as |product|}}
+                        {{#foreach @member.subscriptions as |sub|}}
+                            {{#match @member.subscriptions.0.price.product.product_id "=" product.id}}
+                                {{#match status "!=" "canceled"}}
+                                    <div class="status {{status}}">
+                                        <p>
+                                            {{#if cancel_at_period_end}}
+                                                <strong class="expiration-warning">Your current membership expires on {{date current_period_end format="DD MMM YYYY"}}.</strong> If you change your mind before then, you can always turn auto-renew back on and continue the adventure!
+                                            {{else}}
+                                                Hey! You currently have an active membership. Don't hesitate to let me know if you have any problems or need help getting things updated, and thanks for your support!
+                                            {{/if}}
+                                        </p>
+                                        <div class="details">
+                                            <div class="detail">
+                                                <label class="label">Email address: </label>
+                                                <span class="content">{{@member.email}}</span>
+                                            </div>
+                                            <div class="detail plan" data-amount="{{plan.amount}}" data-interval="{{plan.interval}}">
+                                                <label class="label">Your plan: </label>
+                                                <span class="content plan-is-by-{{plan.interval}}">
+                                                    {{#match plan.amount "!=" 0}}
+                                                        {{product.name}}
+                                                    {{/match}}
+                                                    {{#match plan.amount "=" 0}}
+                                                        Complimentary
+                                                    {{/match}} &mdash; {{price plan currency=currency}}/{{plan.interval}}
+                                                </span>
+                                            </div>
+                                            <div class="detail">
+                                                <label class="label">Card: </label>
+                                                <span class="content">**** **** **** {{default_payment_card_last4}}</span>
+                                            </div>
+                                            <div class="detail">
+                                                <label class="label">
+                                                    {{#if cancel_at_period_end}}
+                                                        Expires:
+                                                    {{else}}
+                                                        Next bill date:
+                                                    {{/if}}
+                                                </label>
+                                                <span class="content">{{date current_period_end format="DD MMM YYYY"}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/match}}
+                            {{/match}}
+                        {{/foreach}}
                     {{/foreach}}
                 {{else}}
                     {{!-- Logged in, free subscriber: Show account info, encourage upgrade. --}}
@@ -89,8 +119,7 @@
     <script>window.location = '{{@site.url}}/signin/';</script>
 {{/if}}
 {{#contentFor "scripts"}}
-    {{> "plans-helper-js" }}
-    {{> "member-helper-js" }}
+    {{> "member-helper-js"}}
     <script data-swup-reload-script>
         $(document).ready(function() {
             // update avatar source
@@ -100,23 +129,5 @@
                 avatar.attr('src', avatarImg.replace("gravatar.com","seccdn.libravatar.org"));
             }
         });
-
-        function memberPageUpdates() {
-            // handle subscriptions
-            var accountData = {};
-            var planNickname = false;
-            var subscriptions = $('div.subscription div.status.active').find('.detail.plan');
-            for (i = 0; i < subscriptions.length; i++) {
-                var planDetails = subscriptions[i];
-                var accountData = $(planDetails).data();
-                planNickname = planNicks[accountData.amount];
-                if (!!planNickname) {
-                    if (i==0 && member.plan !== 'complimentary') {
-                        $('.member-welcome').text(`Welcome, ${planNickname}!`);
-                    }
-                    $(planDetails).find('.content').prepend(`<span class="plan-name">${planNickname}</span> — `);
-                }
-            }
-        };
     </script>
 {{/contentFor}}
