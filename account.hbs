@@ -10,8 +10,8 @@
             {{#if @member.paid}}
                 {{#foreach @products as |product|}}
                     {{#foreach @member.subscriptions as |sub|}}
-                        {{#match @member.subscriptions.0.price.product.product_id "=" product.id}}
-                            {{#match status "!=" "canceled"}}
+                        {{#match sub.price.product.product_id "=" product.id}}
+                            {{#match sub.status "!=" "canceled"}}
                                 {{#match plan.amount "!=" 0}}
                                     {{product.name}}
                                 {{/match}}
@@ -32,8 +32,8 @@
                     {{!-- Logged in, paying member: Show account info --}}
                     {{#foreach @products as |product|}}
                         {{#foreach @member.subscriptions as |sub|}}
-                            {{#match @member.subscriptions.0.price.product.product_id "=" product.id}}
-                                {{#match status "!=" "canceled"}}
+                            {{#match sub.price.product.product_id "=" product.id}}
+                                {{#match sub.status "!=" "canceled"}}
                                     <div class="status {{status}}">
                                         <p>
                                             {{#if cancel_at_period_end}}

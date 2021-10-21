@@ -3,8 +3,8 @@
 {{#if @member.paid}}
     {{#foreach @products as |product|}}
         {{#foreach @member.subscriptions as |sub|}}
-            {{#match @member.subscriptions.0.price.product.product_id "=" product.id}}
-                {{#match status "!=" "canceled"}}
+            {{#match sub.price.product.product_id "=" product.id}}
+                {{#match sub.status "!=" "canceled"}}
     var memberPlan = '{{product.name}}'.toLowerCase();
                     {{/match}}
             {{/match}}

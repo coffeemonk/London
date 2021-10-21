@@ -5,7 +5,7 @@
         member
         {{#if @member.paid}}
             {{#foreach @member.subscriptions as |sub|}}
-                {{#match status "=" "active"}}
+                {{#match sub.status "=" "active"}}
                     {{plan.interval}}ly
                 {{/match}}
             {{/foreach}}
