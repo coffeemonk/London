@@ -1,138 +1,159 @@
 <!DOCTYPE html>
 <html lang="{{@site.locale}}" class="theme-default">
-<head>
+    <head>
 
-    {{!-- Document Settings --}}
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        {{!-- Document Settings --}}
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    {{!-- Base Meta --}}
-    <title>{{meta_title}}</title>
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {{!-- Base Meta --}}
+        <title>{{meta_title}}</title>
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    {{!-- Styles'n'Scripts --}}
-    <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}" />
+        {{!-- Fonts --}}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&display=swap">
 
-    {{!-- This tag outputs SEO meta+structured data and other important settings --}}
-    {{ghost_head}}
+        {{!-- Styles'n'Scripts --}}
+        <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}" />
 
-</head>
-<body class="{{body_class}}">
+        {{!-- This tag outputs SEO meta+structured data and other important settings --}}
+        {{ghost_head}}
 
-    <div class="site-wrapper">
+    </head>
+    <body class="{{body_class}}{{#match @custom.title_font "=" "Elegant serif"}} has-serif-title{{/match}}{{#match @custom.body_font "=" "Elegant serif"}} has-serif-body{{/match}}">
 
-        <header class="site-head">
-            <div class="container">
-                <a class="nav-burger" href="#">
-                    <div class="hamburger hamburger--collapse" aria-label="Menu" role="button" aria-controls="navigation">
-                        <div class="box">
-                            <div class="inner"></div>
+        <div class="site-wrapper">
+
+            <header class="site-head">
+                <div class="container">
+                    <a class="nav-burger" href="#">
+                        <div class="hamburger hamburger--collapse" aria-label="Menu" role="button" aria-controls="navigation">
+                            <div class="box">
+                                <div class="inner"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <nav id="swup" class="site-head-left">
+                        {{navigation}}
+                    </nav>
+                    <div class="site-head-center">
+                        <a class="logo" href="{{@site.url}}">
+                            <picture>
+                                <source
+                                    media="(prefers-color-scheme: dark)"
+                                    sizes="(max-width: 3000px) 40vw, 1200px"
+                                    srcset="
+                                        https://images.matthewrasnake.com/logo_MatthewRasnake-Author_light@0.5x.png 300w,
+                                        https://images.matthewrasnake.com/logo_MatthewRasnake-Author_light.png 600w" />
+                                <img class="light"
+                                    sizes="(max-width: 3000px) 40vw, 1200px"
+                                    srcset="
+                                        https://images.matthewrasnake.com/logo_MatthewRasnake-Author@0.5x.png 300w,
+                                        https://images.matthewrasnake.com/logo_MatthewRasnake-Author.png 600w"
+                                    src="https://images.matthewrasnake.com/logo_MatthewRasnake-Author.png"
+                                    alt="{{@site.title}}" />
+                                <img class="dark"
+                                    sizes="(max-width: 3000px) 40vw, 1200px"
+                                    srcset="
+                                        https://images.matthewrasnake.com/logo_MatthewRasnake-Author_light@0.5x.png 300w,
+                                        https://images.matthewrasnake.com/logo_MatthewRasnake-Author_light.png 600w"
+                                    src="https://images.matthewrasnake.com/logo_MatthewRasnake-Author_light.png"
+                                    alt="{{@site.title}}" />
+                            </picture>
+                        </a>
+                    </div>
+                    <div class="site-head-right">
+                        <div class="member-links">
+                            {{#if @member}}
+                                {{#if @member.firstname}}
+                                    <span>Welcome, {{@member.firstname}}</span>
+                                {{/if}}
+                                <a href="/account/">Manage Account</a>
+                                {{#unless @member.paid}}
+                                    <a href="/join/">Become a Patron</a>
+                                {{/unless}}
+                            {{else}}
+                                <a href="/signin/">Sign In</a>
+                                <a href="/join/">Become a Patron</a>
+                            {{/if}}
                         </div>
                     </div>
-                </a>
-                <nav id="swup" class="site-head-left">
-                    {{navigation}}
-                </nav>
-                <div class="site-head-center">
-                    <a class="logo" href="{{@site.url}}">
-                        <picture>
-                            <source
-                                media="(prefers-color-scheme: dark)"
-                                sizes="(max-width: 3000px) 40vw, 1200px"
-                                srcset="
-                                    https://images.matthewrasnake.com/logo_MatthewRasnake-Author_light@0.5x.png 300w,
-                                    https://images.matthewrasnake.com/logo_MatthewRasnake-Author_light.png 600w" />
-                            <img class="light"
-                                sizes="(max-width: 3000px) 40vw, 1200px"
-                                srcset="
-                                    https://images.matthewrasnake.com/logo_MatthewRasnake-Author@0.5x.png 300w,
-                                    https://images.matthewrasnake.com/logo_MatthewRasnake-Author.png 600w"
-                                src="https://images.matthewrasnake.com/logo_MatthewRasnake-Author.png"
-                                alt="{{@site.title}}" />
-                            <img class="dark"
-                                sizes="(max-width: 3000px) 40vw, 1200px"
-                                srcset="
-                                    https://images.matthewrasnake.com/logo_MatthewRasnake-Author_light@0.5x.png 300w,
-                                    https://images.matthewrasnake.com/logo_MatthewRasnake-Author_light.png 600w"
-                                src="https://images.matthewrasnake.com/logo_MatthewRasnake-Author_light.png"
-                                alt="{{@site.title}}" />
-                        </picture>
-                    </a>
-                </div>
-                <div class="site-head-right">
-                    <div class="member-links">
-                        {{#if @member}}
-                            {{#if @member.firstname}}
-                                <span>Welcome, {{@member.firstname}}</span>
-                            {{/if}}
-                            <a href="/account/">Manage Account</a>
-                            {{#unless @member.paid}}
-                                <a href="/join/">Become a Patron</a>
-                            {{/unless}}
-                        {{else}}
-                            <a href="/signin/">Sign In</a>
-                            <a href="/join/">Become a Patron</a>
-                        {{/if}}
+                    <div class="theme-selector" title="Select Dark/Light Mode">
+                        {{> "icons/mode-dark"}}
+                        {{> "icons/mode-light"}}
+                        <span class="switch">&nbsp;</span>
                     </div>
                 </div>
-                <div class="theme-selector" title="Select Dark/Light Mode">
-                    {{> "icons/mode-dark"}}
-                    {{> "icons/mode-light"}}
-                    <span class="switch">&nbsp;</span>
+            </header>
+
+            <main id="site-main" class="site-main">
+                <div id="swup" class="transition-fade">
+
+                {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
+                {{{body}}}
+
                 </div>
-            </div>
-        </header>
+            </main>
 
-        <main id="site-main" class="site-main">
-            <div id="swup" class="transition-fade">
-
-            {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
-            {{{body}}}
-
-            </div>
-        </main>
-
-        <footer class="site-foot">
-            <div class="container">
-                <div class="site-foot-left">{{navigation type="secondary"}}</div>
-                <div class="site-foot-center">
-                    <div>&copy; {{date format="YYYY"}} <a href="{{@site.url}}">Matthew Rasnake</a></div>
+            <footer class="site-foot">
+                <div class="container">
+                    <div class="site-foot-left">{{navigation type="secondary"}}</div>
+                    <div class="site-foot-center">
+                        <div>&copy; {{date format="YYYY"}} <a href="{{@site.url}}">Matthew Rasnake</a></div>
+                    </div>
+                    <div class="site-foot-right">
+                        <ul class="nav">
+                            <li><a href="https://matthewrasnake.com/facebook" title="Facebook" target="_blank" rel="noopener">Facebook</a></li>
+                            {{#if @site.twitter}}
+                                <li><a href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">Twitter</a></li>
+                            {{/if}}
+                            <li><a href="https://matthewrasnake.com/instagram" title="Instagram" target="_blank" rel="noopener">Instagram</a></li>
+                            <li><a href="{{@site.url}}/rss/" title="RSS" target="_blank" rel="noopener">RSS</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="site-foot-right">
-                    <ul class="nav">
-                        <li><a href="https://matthewrasnake.com/facebook" title="Facebook" target="_blank" rel="noopener">Facebook</a></li>
-                        {{#if @site.twitter}}
-                            <li><a href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">Twitter</a></li>
-                        {{/if}}
-                        <li><a href="https://matthewrasnake.com/instagram" title="Instagram" target="_blank" rel="noopener">Instagram</a></li>
-                        <li><a href="{{@site.url}}/rss/" title="RSS" target="_blank" rel="noopener">RSS</a></li>
-                    </ul>
+            </footer>
+            <footer class="site-foot">
+                <div class="container">
+                    <div class="site-foot-left"></div>
+                    <div class="site-foot-center"><a href="https://allianceindependentauthors.org/?affid=10030"><img src="https://allianceindependentauthors.org/members/banners/ALLi-Author-Member-Badge.png"  width="109" height="185" alt="Alliance of Independent Authors" /></a></div>
+                    <div class="site-foot-right"></div>
                 </div>
-            </div>
-        </footer>
-        <footer class="site-foot">
-            <div class="container">
-                <div class="site-foot-left"></div>
-                <div class="site-foot-center"><a href="https://allianceindependentauthors.org/?affid=10030"><img src="https://allianceindependentauthors.org/members/banners/ALLi-Author-Member-Badge.png"  width="109" height="185" alt="Alliance of Independent Authors" /></a></div>
-                <div class="site-foot-right"></div>
-            </div>
-        </footer>
-        {{{block "footer"}}}
-    </div>
+            </footer>
+            {{{block "footer"}}}
+        </div>
 
-    <script src='{{asset "built/jquery.js"}}' data-swup-reload-script></script>
-    <!-- script src='{{asset "built/swup.js"}}' data-swup-ignore-script></script -->
-    <script src='{{asset "built/infinite-scroll.js"}}' data-swup-ignore-script></script>
-    <script src='{{asset "built/lazysizes.js"}}' data-swup-reload-script></script>
+        <script src='{{asset "built/jquery.js"}}' data-swup-reload-script></script>
+        <!-- script src='{{asset "built/swup.js"}}' data-swup-ignore-script></script -->
+        <script src='{{asset "built/infinite-scroll.js"}}' data-swup-ignore-script></script>
+        <script src='{{asset "built/lazysizes.js"}}' data-swup-reload-script></script>
+        <script src="{{asset "built/reframe.min.js"}}" data-swup-ignore-script></script>
 
-    <div id="swup">
-        {{{block "scripts"}}}
+        <div id="swup">
+            {{{block "scripts"}}}
 
-        {{!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag --}}
-        {{ghost_foot}}
-    </div>
+            {{!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag --}}
+            {{ghost_foot}}
+        </div>
 
-    <script src="{{asset "built/site.js"}}" data-swup-ignore-script></script>
-</body>
+        <script src="{{asset "built/site.js"}}" data-swup-ignore-script></script>
+
+        {{#is "post, page"}}
+            <script>
+                const sources = [
+                    '.gh-content iframe[src*="youtube.com"]',
+                    '.gh-content iframe[src*="youtube-nocookie.com"]',
+                    '.gh-content iframe[src*="player.vimeo.com"]',
+                    '.gh-content iframe[src*="kickstarter.com"][src*="video.html"]',
+                    'object',
+                    'embed',
+                ];
+
+                reframe(document.querySelectorAll(sources.join(',')));
+            </script>
+        {{/is}}
+    </body>
 </html>

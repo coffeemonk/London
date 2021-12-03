@@ -2,7 +2,7 @@
     "name": "louisville",
     "description": "A site-specific theme for Ghost",
     "demo": "https://www.matthewrasnake.com/",
-    "version": "1.4.2",
+    "version": "1.5.0",
     "engines": {
         "ghost": ">=4.0.0",
         "ghost-api": "v4"
@@ -44,15 +44,17 @@
         "url": "https://github.com/TryGhost/London.git"
     },
     "bugs": "https://github.com/TryGhost/London/issues",
-    "contributors": ["https://github.com/TryGhost/London/graphs/contributors"],
+    "contributors": [
+        "https://github.com/TryGhost/London/graphs/contributors"
+    ],
     "browserslist": [
         "> 5%",
         "last 2 versions"
     ],
     "devDependencies": {
-        "autoprefixer": "10.3.7",
+        "autoprefixer": "10.4.0",
         "beeper": "2.1.0",
-        "gscan": "4.1.3",
+        "gscan": "4.15.2",
         "gulp": "4.0.2",
         "gulp-clean-css": "^4.3.0",
         "gulp-livereload": "4.0.2",
@@ -60,15 +62,14 @@
         "gulp-rename": "^2.0.0",
         "gulp-sourcemaps": "3.0.0",
         "gulp-terser-js": "^5.2.2",
-        "gulp-util": "3.0.8",
         "gulp-watch": "5.0.1",
         "gulp-zip": "5.1.0",
-        "postcss": "8.3.9",
+        "postcss": "8.4.4",
         "postcss-color-function": "4.1.0",
-        "postcss-custom-properties": "11.0.0",
+        "postcss-custom-properties": "12.0.0",
         "postcss-easy-import": "3.0.0",
-        "postcss-nested": "^5.0.5",
-        "postcss-preset-env": "^6.7.0"
+        "postcss-nested": "^5.0.6",
+        "postcss-preset-env": "^7.0.1"
     },
     "config": {
         "posts_per_page": 15,
@@ -88,10 +89,30 @@
             "xl": {
                 "width": 2000
             }
+        },
+        "card_assets": true,
+        "custom": {
+            "title_font": {
+                "type": "select",
+                "options": [
+                    "Modern sans-serif",
+                    "Elegant serif"
+                ],
+                "default": "Modern sans-serif"
+            },
+            "body_font": {
+                "type": "select",
+                "options": [
+                    "Modern sans-serif",
+                    "Elegant serif"
+                ],
+                "default": "Modern sans-serif"
+            }
         }
     },
     "dependencies": {},
     "staged-devDependencies-from-main": {
-        "cssnano": "5.0.7"
+        "cssnano": "5.0.12",
+        "gulp-util": "3.0.8"
     }
 }

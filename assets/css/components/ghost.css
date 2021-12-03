@@ -1,8 +1,17 @@
 /* Styling for Ghost-specific elements
 /* ---------------------------------------------------------- */
 
-.kg-card {
-    margin: 7vw 0;
+.kg-toggle-heading-text {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.has-serif-title .kg-toggle-heading-text {
+    font-family: var(--font-serif);
+}
+
+.kg-toggle-content > * + * {
+    margin: 2.4rem 0 0;
 }
 .free-stories .kg-card {
     margin: 3vw 7vw 1vw;

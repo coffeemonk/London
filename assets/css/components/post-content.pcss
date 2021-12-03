@@ -14,8 +14,12 @@
 
         .title {
             margin: 0 0 2vw;
+            line-height: 1.1;
             color: var(--text);
             text-align: center;
+            .has-serif-title & {
+                font-family: var(--font-serif);
+            }
         }
         .meta {
             opacity: .6;
@@ -58,6 +62,9 @@
         color: var(--text);
         text-align: left;
         opacity: 0.75;
+        .has-serif-body & {
+            font-family: var(--font-serif);
+        }
     }
     .post-image {
         margin: 2vw calc(50% - 50vw) 4vw;

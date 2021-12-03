@@ -44,8 +44,8 @@ function css(done) {
         easyimport(),
         nested(),
         customProperties({preserve: true}),
-        // colorFunction(),
         autoprefixer()
+        // colorFunction(),
     ]
 
     pump([
