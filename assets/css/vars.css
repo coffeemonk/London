@@ -97,7 +97,7 @@
 :root {
     /* Fonts */
     --font-fancy:   'Venera', sans-serif;
-    --font-sans-serif:  'Muli', Lucida Sans Unicode, Lucida Grande, Helvetica, Arial, sans-serif;
+    --font-sans-serif:  'Mulish', 'Muli', Lucida Sans Unicode, Lucida Grande, Helvetica, Arial, sans-serif;
     --font-serif:   Georgia, Times, serif;
     --font-mono:    Menlo, Courier, monospace;
     --font-light:   100;
