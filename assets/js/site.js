@@ -5,7 +5,6 @@ $(function () {
     // initSwup();
     initMobileNav();
 });
-
 function initDarkMode() {
     // Auto Dark Mode
     var prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -30,7 +29,6 @@ function setDarkMode(darkMode = false) {
     }
     html.removeClass('theme-default');
 }
-
 function initSwup() {
     // Initiate Swup transitions
     var swup = new Swup({
@@ -45,7 +43,6 @@ function initSwup() {
         html.removeClass('site-head-open');
     });
 }
-
 function initMobileNav() {
     // Mobile Menu Trigger
     $('.nav-burger').click(function () {
@@ -54,6 +51,8 @@ function initMobileNav() {
 };
 
 /* Other initializations */
-const Cove = {
-    autoLoad: 1
-};
+if ("undefined" == typeof Cove) {
+    const Cove = {
+        autoLoad: 1
+    };
+}
