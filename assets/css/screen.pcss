@@ -27,7 +27,7 @@
 /* ---------------------------------------------------------- */
 
 body {
-    font-family: 'Muli', sans-serif;
+    font-family: var(--font-sans-serif);
     background: var(--bg);
     transition: background 0.3s ease-out;
     transition-delay: 0.25;
@@ -125,6 +125,7 @@ body {
 }
 .error-head {
     height: 75vh;
+
     h1 {
         margin: 0;
         font-size: var(--font-h1);
@@ -148,6 +149,7 @@ body {
     margin: 0;
     font-size: var(--font-bigger);
     color: var(--text);
+
     .has-serif-title & {
         font-family: var(--font-serif);
     }
@@ -395,41 +397,52 @@ is the very first element in the post content */
     word-break: break-word;
 }
 
+.gh-content > blockquote:not([class]),
 .gh-content > ol,
 .gh-content > ul,
 .gh-content > dl,
-.gh-content > p,
-.kg-callout-text,
-.kg-toggle-content > ol,
-.kg-toggle-content > ul,
-.kg-toggle-content > p {
+.gh-content > p {
     font-size: 1.9rem;
     line-height: 1.6;
 }
 
-@media (max-width: 500px) {
-    .gh-content > ol,
-    .gh-content > ul,
-    .gh-content > dl,
-    .gh-content > p,
-    .kg-callout-text,
-    .kg-toggle-content > ol,
-    .kg-toggle-content > ul,
-    .kg-toggle-content > p {
+.gh-content {
+    .kg-callout-card .kg-callout-text,
+    .kg-toggle-card .kg-toggle-content > ol,
+    .kg-toggle-card .kg-toggle-content > ul,
+    .kg-toggle-card .kg-toggle-content > p {
         font-size: 1.7rem;
     }
 }
 
-.has-serif-body .gh-content > blockquote,
-.has-serif-body .gh-content > ol,
-.has-serif-body .gh-content > ul,
-.has-serif-body .gh-content > dl,
-.has-serif-body .gh-content > p,
-.has-serif-body .kg-callout-text,
-.has-serif-body .kg-toggle-content > ol,
-.has-serif-body .kg-toggle-content > ul,
-.has-serif-body .kg-toggle-content > p {
-    font-family: var(--font-serif);
+@media (max-width: 500px) {
+    .gh-content {
+        & > blockquote:not([class]),
+        & > ol,
+        & > ul,
+        & > dl,
+        & > p,
+        .kg-callout-card .kg-callout-text,
+        .kg-toggle-card .kg-toggle-content > ol,
+        .kg-toggle-card .kg-toggle-content > ul,
+        .kg-toggle-card .kg-toggle-content > p {
+            font-size: 1.7rem;
+        }
+    }
+}
+
+.has-serif-body .gh-content {
+    & > blockquote,
+    & > ol,
+    & > ul,
+    & > dl,
+    & > p,
+    .kg-callout-text,
+    .kg-toggle-content > ol,
+    .kg-toggle-content > ul,
+    .kg-toggle-content > p {
+        font-family: var(--font-serif);
+    }
 }
 
 .gh-content > ul,
