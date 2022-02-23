@@ -92,8 +92,12 @@
                         <div class="checkout-plan plan-{{slug}}">
                             <header class="plan-header">
                                 <h3>{{name}}</h3>
-                                <span class="price monthly"><span>$</span><strong>{{price product.monthly_price.amount}}</strong> / month</span>
-                                <span class="price yearly"><span>$</span><strong>{{price product.yearly_price.amount}}</strong> / year</span>
+                                {{#if product.monthly_price}}
+                                    <span class="price monthly"><span>$</span><strong>{{price product.monthly_price.amount}}</strong> / month</span>
+                                {{/if}}
+                                {{#if product.yearly_price}}
+                                    <span class="price yearly"><span>$</span><strong>{{price product.yearly_price.amount}}</strong> / year</span>
+                                {{/if}}
                             </header>
                             <div class="plan-content">
                                 {{#has slug="astronaut"}}
