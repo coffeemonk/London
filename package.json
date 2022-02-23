@@ -2,7 +2,7 @@
     "name": "louisville",
     "description": "A site-specific theme for Ghost",
     "demo": "https://www.matthewrasnake.com/",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "engines": {
         "ghost": ">=4.0.0",
         "ghost-api": "v4"
@@ -52,24 +52,24 @@
         "last 2 versions"
     ],
     "devDependencies": {
-        "autoprefixer": "10.4.0",
+        "autoprefixer": "^10.4.2",
         "beeper": "2.1.0",
-        "gscan": "4.20.0",
-        "gulp": "4.0.2",
+        "gscan": "^4.22.0",
+        "gulp": "^4.0.2",
         "gulp-clean-css": "^4.3.0",
-        "gulp-livereload": "4.0.2",
-        "gulp-postcss": "9.0.1",
+        "gulp-livereload": "^4.0.2",
+        "gulp-postcss": "^9.0.1",
         "gulp-rename": "^2.0.0",
-        "gulp-sourcemaps": "3.0.0",
+        "gulp-sourcemaps": "^3.0.0",
         "gulp-terser-js": "^5.2.2",
-        "gulp-watch": "5.0.1",
-        "gulp-zip": "5.1.0",
-        "postcss": "8.4.5",
-        "postcss-color-function": "4.1.0",
-        "postcss-custom-properties": "12.0.1",
-        "postcss-easy-import": "3.0.0",
+        "gulp-watch": "^5.0.1",
+        "gulp-zip": "^5.1.0",
+        "postcss": "^8.4.6",
+        "postcss-color-function": "^4.1.0",
+        "postcss-custom-properties": "^12.1.4",
+        "postcss-easy-import": "^3.0.0",
         "postcss-nested": "^5.0.6",
-        "postcss-preset-env": "^7.0.1"
+        "postcss-preset-env": "^7.4.1"
     },
     "config": {
         "posts_per_page": 15,
@@ -110,7 +110,6 @@
             }
         }
     },
-    "dependencies": {},
     "staged-devDependencies-from-main": {
         "cssnano": "5.0.12",
         "gulp-util": "3.0.8"
