@@ -14,9 +14,9 @@ jobs:
         with:
           node-version: 'lts/*'
       - run: npm i -g gscan@latest
-      - run: which gscan
       - run: corepack enable
       - run: yarn --version
         # - run: yarn set version 3.x
       - run: yarn
-      - run: yarn test:ci
+        # - run: yarn test:ci
+      - run: gscan --fatal --verbose .
