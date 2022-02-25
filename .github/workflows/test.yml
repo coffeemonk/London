@@ -13,5 +13,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 'lts/*'
+      - run: node i -g gscan@latest
+      - run: codepack enable
+      - run: yarn set version 3.x
       - run: yarn
       - run: yarn test:ci
