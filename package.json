@@ -2,7 +2,7 @@
     "name": "louisville",
     "description": "A site-specific theme for Ghost",
     "demo": "https://www.matthewrasnake.com/",
-    "version": "1.7.3",
+    "version": "1.7.4",
     "engines": {
         "ghost": ">=4.0.0",
         "ghost-api": "v4"
@@ -113,5 +113,6 @@
     "staged-devDependencies-from-main": {
         "cssnano": "5.0.12",
         "gulp-util": "3.0.8"
-    }
+    },
+    "packageManager": "yarn@3.2.0"
 }
