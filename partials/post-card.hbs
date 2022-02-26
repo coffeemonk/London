@@ -1,23 +1,25 @@
 <article class="post-card {{post_class}}{{!--
---}}{{#if book}} book{{/if}}{{!--
---}}{{#if square}} square{{/if}}{{!--
---}}{{#if feature_image}} with-image{{else}} no-image{{/if}}{{!--
---}}{{#if allow-sizes}}{{!--
-    --}}{{#has number="1,2,7,8"}}"
-            {{#if feature_image}} style="background-image: url({{img_url feature_image size="l"}})"{{/if}}{{!--
-    --}}{{else has number="6,12"}} large"
-            {{#if feature_image}} style="background-image: url({{img_url feature_image size="xl"}})"{{/if}}{{!--
-    --}}{{else}} small"
-            {{#if feature_image}} style="background-image: url({{img_url feature_image size="m"}})"{{/if}}{{!--
-    --}}{{/has}}{{!--
---}}{{else if allow-large}}{{!--
-    --}}{{#has number="nth:3"}} large"
-            {{#if feature_image}} style="background-image: url({{img_url feature_image size="xl"}})"{{/if}}{{!--
+--}}{{#if book}} book no-image"{{!--
+--}}{{else}}{{!--
+    --}}{{#if square}} square{{/if}}{{!--
+    --}}{{#if feature_image}} with-image{{else}} no-image{{/if}}{{!--
+    --}}{{#if allow-sizes}}{{!--
+        --}}{{#has number="1,2,7,8"}}"
+                {{#if feature_image}} style="background-image: url({{img_url feature_image size="l"}})"{{/if}}{{!--
+        --}}{{else has number="6,12"}} large"
+                {{#if feature_image}} style="background-image: url({{img_url feature_image size="xl"}})"{{/if}}{{!--
+        --}}{{else}} small"
+                {{#if feature_image}} style="background-image: url({{img_url feature_image size="m"}})"{{/if}}{{!--
+        --}}{{/has}}{{!--
+    --}}{{else if allow-large}}{{!--
+        --}}{{#has number="nth:3"}} large"
+                {{#if feature_image}} style="background-image: url({{img_url feature_image size="xl"}})"{{/if}}{{!--
+        --}}{{else}}"
+                {{#if feature_image}} style="background-image: url({{img_url feature_image size="l"}})"{{/if}}{{!--
+        --}}{{/has}}{{!--
     --}}{{else}}"
             {{#if feature_image}} style="background-image: url({{img_url feature_image size="l"}})"{{/if}}{{!--
-    --}}{{/has}}{{!--
---}}{{else}}"
-        {{#if feature_image}} style="background-image: url({{img_url feature_image size="l"}})"{{/if}}{{!--
+    --}}{{/if}}{{!--
 --}}{{/if}}>
 {{#if member-banner}}
     {{#has tag='Member Content'}}
@@ -46,6 +48,13 @@
                 </div>
             </footer>
             <h2 class="title">{{title}}</h2>
+            {{#if book}}
+                <div class="book-container-3d">
+                    <div class="book">
+                        <img src="{{img_url feature_image size="s"}}" alt="{{title}}" />
+                    </div>
+                </div>
+            {{/if}}
         </div>
     </a>
 </article>
