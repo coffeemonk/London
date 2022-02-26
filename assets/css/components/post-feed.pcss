@@ -209,16 +209,71 @@
                 }
             }
         }
+
+        /* Book Cards */
+        &.book {
+            background: none;
+            min-height: 360px;
+            .content {
+                background: none;
+            }
+            .book-container-3d {
+                flex-grow: initial;
+            }
+            .footer {
+                margin: 0 auto;
+                z-index: 99;
+                background: linear-gradient(90deg, #00000000 0, #00000033 50%, #00000000 100%);
+                font-weight: 600;
+                border-radius: 20px;
+                opacity: 0;
+                .tag {
+                    color: var(--text);
+                    opacity: 0.75;
+                }
+            }
+            .title {
+                position: absolute;
+                max-width: none;
+                width: 100%;
+                background: rgba(0,0,0,0.25);
+                opacity: 0;
+                margin:0;
+                padding: 50% 0;
+                text-shadow: 2px 4px 8px var(--shadow);
+            }
+            &:before {
+                content: ''
+            }
+            &:hover {
+                .footer,
+                .title {
+                    opacity: 1;
+                    z-index: 100;
+                    text-decoration: none;
+                }
+            }
+        }
+
     }
-    &.home .post-card.tag-hash-books:first-child {
+    &.page-books .post-card.book {
+        flex-basis: 33%;
+    }
+    /* -- Feature first book on home page in own row --
+     &.home .post-card.tag-hash-books:first-child {
         flex: 1 1 100%;
         aspect-ratio: var(--aspect-three-to-one);
         padding-top: var(--aspect-three-to-one-padding);
-    }
+    } */
 }
 .theme-dark .post-feed .post-card.with-image {
     opacity: .8;
     transition: opacity .5s ease-out;
+}
+@media (max-width:1280px) {
+    .post-feed.page-books .post-card.book {
+        flex-basis: 50%;
+    }
 }
 @media (min-width:741px) {
     .post-feed .post-card.no-image {
@@ -237,7 +292,8 @@
     .post-feed .post-card.small,
     .post-feed .post-card.large,
     .post-feed .post-card.no-image.about,
-    .post-feed.home .post-card.tag-hash-books:first-child {
+    .post-feed.home .post-card.tag-hash-books:first-child,
+    .post-feed.page-books .post-card.book {
         flex: 1 1 100%;
         aspect-ratio: var(--aspect-wide);
         padding-top: var(--aspect-wide-padding);

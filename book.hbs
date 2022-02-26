@@ -49,7 +49,11 @@
                 </p>
             </div>
             <div class="col-4 links">
-                <img src="{{feature_image}}" /><br />
+                <div class="book-container-3d">
+                    <div class="book">
+                        <img alt="{{title}} by Matthew Rasnake" src="{{feature_image}}" />
+                    </div>
+                </div>
                 <h4 class="price">${{date published_at format="H"}}.{{#has tag="#paperback"}}99{{else}}95{{/has}}</h4>
                 <h6 class="direct">Direct From the Author</h6>
                 <ul class="direct actions fit stacked">
