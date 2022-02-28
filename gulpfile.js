@@ -43,7 +43,7 @@ function css(done) {
     processors = [
         easyimport(),
         nested(),
-        customProperties({preserve: false}),
+        customProperties({preserve: true}),
         autoprefixer()
         // colorFunction(),
     ]
