@@ -139,7 +139,7 @@
                     if (!!bookData.payhip.ebook) {
                         $('ul.actions.direct').append('<li><a href="https://payhip.com/b/'+bookData.payhip.ebook+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip.ebook+'">Buy eBook</a></li>');
                     }
-                    $('body').append('<scr'+'ipt type="text/javascript" src="https://payhip.com/payhip.js?v=24u69003"></scr'+'ipt>')
+                    $('body').append('<scr'+'ipt type="text/javascript" src="https://payhip.com/payhip.js?v=24u69003"></scr'+'ipt>');
                 }
                 if (!!bookData.bookshop || !!bookData.overdrive || !!bookData.b2r) {
                     $('h6.indirect').show();
@@ -163,7 +163,7 @@
                 if (!!bookData.goodreads || !!bookData.bookBub) {
                     $('h6.book-love').show();
                     if (!!bookData.goodreads) {
-                        $('ul.actions.book-love').append('<li><a href="https://www.goodreads.com/book/show/'+bookData.goodreads+'" target="_blank"><img src="https://s.gr-assets.com/assets/badge/goodreads-badge-add-plus-71eae69ca0307d077df66a58ec068898.png" height="41" /></a></li>')
+                        $('ul.actions.book-love').append('<li><a href="https://www.goodreads.com/book/show/'+bookData.goodreads+'" target="_blank"><img src="https://s.gr-assets.com/assets/badge/goodreads-badge-add-plus-71eae69ca0307d077df66a58ec068898.png" height="41" /></a></li>');
                     }
                     if (!!bookData.bookBub) {
                         $('ul.actions.book-love').append('<li><a href="https://www.bookbub.com/books/'+bookData.bookBub+'"><img src="https://images.matthewrasnake.com/logo_BookBub.jpg" height="41" /></a></li>');
