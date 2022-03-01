@@ -5,9 +5,11 @@
     /* Colors */
     --white:            #F4F6F5; /* Cultured */
     --light-gray:       #C8D0CE; /* Light Gray */
+    --light-gray-shade: #C8D0CECC; /* Light Gray Shade */
     --medium-gray:      #7F918D; /* Morning Blue */
     --dark-gray:        #1C151F; /* Xiketic */
     --black:            #0B080C; /* Rich Black */
+    --black-shade:      #0B080CCC; /* Rich Black Shade*/
     --red:              #A30015; /* Ruby Red*/
     --green:            #23967f; /* Paolo Veronese Green */
     --blue:             #476EBD; /* Han Blue */
@@ -34,6 +36,7 @@
     --field-text:   var(--black);
     --field-bg:     var(--light-gray);
     --shadow:       var(--light-gray);
+    --shade:        var(--light-gray-shade);
 
     transition: background-color 0.5s ease-in-out;
     transition: color 0.5s ease-in-out;
@@ -59,6 +62,7 @@
     --field-text:   var(--reverse-text);
     --field-bg:     var(--reverse-bg);
     --shadow:       var(--black);
+    --shade:        var(--black-shade);
     transition: background-color 0.5s ease-in-out;
     transition: color 0.5s ease-in-out;
 
@@ -85,6 +89,7 @@
         --field-text:   var(--reverse-text);
         --field-bg:     var(--reverse-bg);
         --shadow:       var(--black);
+        --shade:        var(--black-shade);
 
         transition: background-color 0.5s ease-in-out;
         transition: color 0.5s ease-in-out;

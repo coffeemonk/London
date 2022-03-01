@@ -50,6 +50,21 @@ function initMobileNav() {
     });
 };
 
+var $modalWrapper, $modal;
+function showModal(title, content) {
+    $modalWrapper = $('.modal-wrapper');
+    $modal = $modalWrapper.find('.modal');
+    $modal.find('.modal-title').html(title);
+    $modal.find('.modal-content').html(content);
+    $modalWrapper.show();
+}
+
+function closeModal() {
+    $modalWrapper.hide();
+    $modal.find('.modal-title').html('');
+    $modal.find('.modal-content').html('');
+}
+
 /* Other initializations */
 if ("undefined" == typeof Cove) {
     const Cove = {

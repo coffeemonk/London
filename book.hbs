@@ -1,11 +1,8 @@
 {{!< default}}
 
 {{#page}}
-<article class="post-content
-    book
-    {{page_class}}
-    {{#has tag="#preorder"}}preorder{{else has tag="#comingsoon"}}comingsoon{{/has}}
-    no-image">
+<article class="post-content book {{page_class}} no-image{{!--
+--}}{{#has tag="#preorder"}} preorder{{else has tag="#comingsoon"}} comingsoon{{/has}}">
 
     <header class="post-content-header">
         <h2 class="post-content-title">{{title}}</h2>
@@ -67,7 +64,12 @@
             </div>
         </div>
     </div>
-
+    <div class="modal-content overdrive">
+        <p><em>{{title}}</em> may be available to borrow from your local library via the digital lending service OverDrive.</p>
+        <p class="center"><a href="https://www.overdrive.com/" id="odLink">Check Availability &raquo;</a></p>
+        <p>If not already available, search for <em>{{title}}</em> in <a href="https://www.overdrive.com/libraries">your local library's digital collection</a> and recommend it!</p>
+        <p>Though it can take time to become available, OverDrive and your local library are great ways to read my stories for free, and I think it'll be worth your wait!</p>
+    </div>
 </article>
 {{/page}}
 
@@ -137,21 +139,31 @@
                     if (!!bookData.payhip.ebook) {
                         $('ul.actions.direct').append('<li><a href="https://payhip.com/b/'+bookData.payhip.ebook+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip.ebook+'">Buy eBook</a></li>');
                     }
-                    $('body').append('<scr'+'ipt type="text/javascript" src="https://payhip.com/payhip.js?v=24u68984"></scr'+'ipt>')
+                    $('body').append('<scr'+'ipt type="text/javascript" src="https://payhip.com/payhip.js?v=24u69003"></scr'+'ipt>');
                 }
-                if (!!bookData.bookshop || !!bookData.b2r) {
+                if (!!bookData.bookshop || !!bookData.overdrive || !!bookData.b2r) {
                     $('h6.indirect').show();
+                    const $indirectActions = $('ul.actions.indirect');
                     if (!!bookData.bookshop) {
-                        $('ul.actions.indirect').append('<li><a href="https://bookshop.org/a/16912/'+bookData.bookshop+'" class="button fit" title="Find your local bookshop on bookshop.org">Your Local Shop</a></li>');
+                        $indirectActions.append('<li><a href="https://bookshop.org/a/16912/'+bookData.bookshop+'" class="button fit" title="Find your local bookshop on bookshop.org">Your Local Bookshop</a></li>');
+                    }
+                    if (!!bookData.overdrive) {
+                        $indirectActions
+                            .append('<li><a href="https://www.overdrive.com/media/'+bookData.overdrive+'" class="button fit overdrive" title="Borrow from your local library">Your Local Library</a></li>')
+                            .find('.button.overdrive').click(function(e) {
+                                e.preventDefault();
+                                $('#odLink').attr("href",this.href);
+                                showModal('Library Availability', $('div.modal-content.overdrive').html());
+                            })
                     }
                     if (!!bookData.b2r) {
-                        $('ul.actions.indirect').append('<li><a href="https://books2read.com/'+bookData.b2r+'" class="button fit" title="Choose your favorite online retailer.">The Big Guys</a></li>');
+                        $indirectActions.append('<li><a href="https://books2read.com/'+bookData.b2r+'" class="button fit" title="Choose your favorite online retailer.">The Big Guys</a></li>');
                     }
                 }
                 if (!!bookData.goodreads || !!bookData.bookBub) {
                     $('h6.book-love').show();
                     if (!!bookData.goodreads) {
-                        $('ul.actions.book-love').append('<li><a href="https://www.goodreads.com/book/show/'+bookData.goodreads+'" target="_blank"><img src="https://s.gr-assets.com/assets/badge/goodreads-badge-add-plus-71eae69ca0307d077df66a58ec068898.png" height="41" /></a></li>')
+                        $('ul.actions.book-love').append('<li><a href="https://www.goodreads.com/book/show/'+bookData.goodreads+'" target="_blank"><img src="https://s.gr-assets.com/assets/badge/goodreads-badge-add-plus-71eae69ca0307d077df66a58ec068898.png" height="41" /></a></li>');
                     }
                     if (!!bookData.bookBub) {
                         $('ul.actions.book-love').append('<li><a href="https://www.bookbub.com/books/'+bookData.bookBub+'"><img src="https://images.matthewrasnake.com/logo_BookBub.jpg" height="41" /></a></li>');

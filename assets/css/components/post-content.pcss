@@ -90,6 +90,13 @@
         h1, h2, h3, h4, h5, h6 {
             color: var(--text);
         }
+        h6.follow {
+            font-family: var(--font-fancy);
+            text-align: center;
+        }
+        ul.follow {
+            padding-right: 0;
+        }
         li {
             word-break: break-word;
         }
@@ -236,6 +243,9 @@
             text-align: right;
         }
     }
+    .modal-content {
+        display: none;
+    }
 }
 
 .related-posts {
@@ -286,8 +296,11 @@ article.post-content.book {
         .price {
             text-align: center;
         }
-        .book-love img {
-            height: 41px;
+        ul.book-love {
+            padding-right: 0;
+            img {
+                height: 41px;
+            }
         }
     }
 }
