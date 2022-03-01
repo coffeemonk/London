@@ -3,12 +3,20 @@
 {{#post}}
 <article class="post-content {{post_class}} {{#unless feature_image}}no-image{{/unless}}">
 
-    <header class="post-content-header">
-        <h1 class="post-content-title">{{title}}</h1>
+    <header class="post-header">
+        <h1 class="post-title">{{title}}</h1>
     </header>
 
-    <div class="post-content-body">
+    <div class="post-body">
         {{content}}
+        <hr />
+        <h6 class="follow">Elsewhere...</h6>
+        <ul class="follow actions special">
+            <li><a href="https://matthewrasnake.com/goodreads"><img src="https://images.matthewrasnake.com/social/goodreads_48x48.png" alt="GoodReads" /></a></li>
+            <li><a href="https://matthewrasnake.com/bookbub"><img src="https://images.matthewrasnake.com/social/bookbub_48x48.png" alt="BookBub" /></a></li>
+            <li><a href="https://matthewrasnake.com/facebook"><img src="https://images.matthewrasnake.com/social/facebook_48x48.png" alt="facebook" /></a></li>
+            <li><a href="https://matthewrasnake.com/instagram"><img src="https://images.matthewrasnake.com/social/instagram_48x48.png" alt="Instagram" /></a></li>
+        </ul>
     </div>
 
 </article>
