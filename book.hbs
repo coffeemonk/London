@@ -138,11 +138,11 @@
                         if ($directActions.hasClass('outofstock')) {
                             $directActions.append('<li><a href="https://matthewrasnake.com/waitlist/'+bookData.isbn.replace(/\-/g,'')+'" class="button primary fit">Join Waitlist!</a></li>');
                         } else {
-                            $directActions.append('<li><a href="https://payhip.com/b/'+bookData.payhip.print+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip.print+'">Buy Print</a></li>');
+                            $directActions.append('<li><a href="https://payhip.com/b/'+bookData.payhip.print+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip.print+'">'+(preorder ? 'Preorder' : 'Buy')+' Print</a></li>');
                         }
                     }
                     if (!!bookData.payhip.ebook) {
-                        $directActions.append('<li><a href="https://payhip.com/b/'+bookData.payhip.ebook+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip.ebook+'">Buy eBook</a></li>');
+                        $directActions.append('<li><a href="https://payhip.com/b/'+bookData.payhip.ebook+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip.ebook+'">'+(preorder ? 'Preorder' : 'Buy')+' eBook</a></li>');
                     }
                     $('body').append('<scr'+'ipt type="text/javascript" src="https://payhip.com/payhip.js?v=24u69003"></scr'+'ipt>');
                 }
