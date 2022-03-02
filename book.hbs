@@ -53,7 +53,7 @@
                 </div>
                 <h4 class="price">${{date published_at format="H"}}.{{#has tag="#paperback"}}99{{else}}95{{/has}}</h4>
                 <h6 class="direct">Direct From the Author</h6>
-                <ul class="direct actions fit stacked">
+                <ul class="direct actions fit stacked{{#has tag="#outofstock"}} outofstock{{/has}}">
                 </ul>
                 <h6 class="indirect">Elsewhere</h6>
                 <ul class="indirect actions fit stacked">
@@ -133,11 +133,16 @@
                 // Show BUY buttons if book is available for sale or pre-order
                 if (!!bookData.payhip) {
                     $('h6.direct').show();
+                    const $directActions = $('ul.actions.direct');
                     if (!!bookData.payhip.print) {
-                        $('ul.actions.direct').append('<li><a href="https://payhip.com/b/'+bookData.payhip.print+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip.print+'">Buy Print</a></li>');
+                        if ($directActions.hasClass('outofstock')) {
+                            $directActions.append('<li><a href="https://matthewrasnake.com/waitlist/'+bookData.isbn.replace(/\-/g,'')+'" class="button primary fit">Join Waitlist!</a></li>');
+                        } else {
+                            $directActions.append('<li><a href="https://payhip.com/b/'+bookData.payhip.print+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip.print+'">Buy Print</a></li>');
+                        }
                     }
                     if (!!bookData.payhip.ebook) {
-                        $('ul.actions.direct').append('<li><a href="https://payhip.com/b/'+bookData.payhip.ebook+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip.ebook+'">Buy eBook</a></li>');
+                        $directActions.append('<li><a href="https://payhip.com/b/'+bookData.payhip.ebook+'" class="button primary fit payhip-buy-button" data-theme="none" data-product="'+bookData.payhip.ebook+'">Buy eBook</a></li>');
                     }
                     $('body').append('<scr'+'ipt type="text/javascript" src="https://payhip.com/payhip.js?v=24u69003"></scr'+'ipt>');
                 }
