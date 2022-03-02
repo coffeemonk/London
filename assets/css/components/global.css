@@ -338,7 +338,7 @@ a {
     text-decoration: none;
     transition: 0.4s ease;
 
-    &:not(.kg-btn):not(.kg-product-card-button):hover {
+    &:not(.button):not(.kg-btn):not(.kg-product-card-button):hover {
         text-decoration: underline;
         transition: 0.2s ease;
     }
