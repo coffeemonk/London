@@ -1,17 +1,17 @@
 {{#if @member}}
     <script data-swup-reload-script>
         {{#if @member.paid}}
-            {{#each @products as |product|}}
+            {{#foreach @products visibility="all" as |product|}}
                 {{#foreach @member.subscriptions as |sub|}}
                     {{#match sub.price.product.product_id "=" product.id}}
                         {{#match sub.status "!=" "canceled"}}
-            var memberPlan = '{{product.name}}'.toLowerCase();
-                            {{/match}}
+        var memberPlan = '{{product.name}}'.toLowerCase();
+                        {{/match}}
                     {{/match}}
                 {{/foreach}}
-            {{/each}}
+            {{/foreach}}
         {{else}}
-            var memberPlan = "trainee";
+        var memberPlan = "trainee";
         {{/if}}
 
         $(document).ready(function() {

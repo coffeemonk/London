@@ -8,7 +8,7 @@
     <div class="page-body gh-page member">
         <h3 class="title member-welcome">Welcome,
             {{#if @member.paid}}
-                {{#each @products as |product|}}
+                {{#foreach @products visibility="all" as |product|}}
                     {{#foreach @member.subscriptions as |sub|}}
                         {{#match sub.price.product.product_id "=" product.id}}
                             {{#match sub.status "!=" "canceled"}}
@@ -21,7 +21,7 @@
                             {{/match}}
                         {{/match}}
                     {{/foreach}}
-                {{/each}}
+                {{/foreach}}
             {{else}}
                 Recruit
             {{/if}}!
@@ -30,7 +30,7 @@
             <div class="subscription">
                 {{#if @member.paid}}
                     {{!-- Logged in, paying member: Show account info --}}
-                    {{#each @products as |product|}}
+                    {{#foreach @products visibility="all" as |product|}}
                         {{#foreach @member.subscriptions as |sub|}}
                             {{#match sub.price.product.product_id "=" product.id}}
                                 {{#match sub.status "!=" "canceled"}}
@@ -77,7 +77,7 @@
                                 {{/match}}
                             {{/match}}
                         {{/foreach}}
-                    {{/each}}
+                    {{/foreach}}
                 {{else}}
                     {{!-- Logged in, free subscriber: Show account info, encourage upgrade. --}}
                     <p>Hey there, recruit! You've signed up to receive members only newsletter and blog updates, and I sincerely appreciate your interest!</p>
