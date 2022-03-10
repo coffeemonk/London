@@ -25,7 +25,7 @@
                 <span class="switch">&nbsp;</span>
             </div>
             <div class="checkout-box">
-                {{#foreach @products as |product|}}
+                {{#each @products as |product|}}
                     {{^has slug="61ee9601d75b32002f171fbb"}}
                         {{^has slug="free"}}
                             <div class="checkout-plan plan-{{slug}}">
@@ -138,7 +138,7 @@
                             </footer>
                         </div>
                     {{/has}}
-                {{/foreach}}
+                {{/each}}
             </div>
         </div>
         {{#unless @member }}
