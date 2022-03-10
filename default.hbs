@@ -15,16 +15,14 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         {{!-- Mulish --}}
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400&display=swap" media="print" onload="this.media='all'" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400&display=swap" media="all" />
         {{!-- Venera --}}
         <link rel="preload" as="font" type="font/woff2" href="{{asset "fonts/venera/Venera700.woff2"}}" />
 
         {{!-- Styles'n'Scripts --}}
-        <link rel="stylesheet" type="text/css" href="{{asset "built/vars.css"}}" />
-        <link rel="stylesheet" type="text/css" href="{{asset "built/critical.css"}}" />
-        <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}" />
-
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,600;0,700;0,800;1,400;1,700&display=swap" media="all" />
+        <link rel="stylesheet" href="{{asset "built/critical.css"}}" type="text/css" />
+        <link rel="stylesheet" href="{{asset "built/screen.css"}}" type="text/css" media="all"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,600;0,700;0,800;1,400;1,700&display=swap"  media="print" onload="this.media='all'"/>
 
         {{!-- This tag outputs SEO meta+structured data and other important settings --}}
         {{ghost_head}}
@@ -141,11 +139,11 @@
             </div>
         </div>
 
-        <script src='{{asset "built/jquery.js"}}' data-swup-reload-script></script>
-        <!-- script src='{{asset "built/swup.js"}}' data-swup-ignore-script></script -->
-        <script src='{{asset "built/infinite-scroll.js"}}' data-swup-ignore-script></script>
-        <script src='{{asset "built/lazysizes.js"}}' data-swup-reload-script></script>
-        <script src="{{asset "built/reframe.min.js"}}" data-swup-ignore-script></script>
+        <script defer src='{{asset "built/jquery.js"}}' data-swup-reload-script></script>
+        <!-- script defer src='{{asset "built/swup.js"}}' data-swup-ignore-script></script -->
+        <script defer src='{{asset "built/infinite-scroll.js"}}' data-swup-ignore-script></script>
+        <script defer src='{{asset "built/lazysizes.js"}}' data-swup-reload-script></script>
+        <script defer src="{{asset "built/reframe.min.js"}}" data-swup-ignore-script></script>
 
         <div id="swup">
             {{{block "scripts"}}}
@@ -154,7 +152,7 @@
             {{ghost_foot}}
         </div>
 
-        <script src="{{asset "built/site.js"}}" data-swup-ignore-script></script>
+        <script defer src="{{asset "built/site.js"}}" data-swup-ignore-script></script>
 
         {{#is "post, page"}}
             <script>
