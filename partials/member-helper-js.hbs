@@ -1,23 +1,23 @@
 {{#if @member}}
-<script data-swup-reload-script>
-{{#if @member.paid}}
-    {{#foreach @products as |product|}}
-        {{#foreach @member.subscriptions as |sub|}}
-            {{#match sub.price.product.product_id "=" product.id}}
-                {{#match sub.status "!=" "canceled"}}
-    var memberPlan = '{{product.name}}'.toLowerCase();
+    <script data-swup-reload-script>
+        {{#if @member.paid}}
+            {{#each @products as |product|}}
+                {{#foreach @member.subscriptions as |sub|}}
+                    {{#match sub.price.product.product_id "=" product.id}}
+                        {{#match sub.status "!=" "canceled"}}
+            var memberPlan = '{{product.name}}'.toLowerCase();
+                            {{/match}}
                     {{/match}}
-            {{/match}}
-        {{/foreach}}
-    {{/foreach}}
-{{else}}
-    var memberPlan = "trainee";
-{{/if}}
+                {{/foreach}}
+            {{/each}}
+        {{else}}
+            var memberPlan = "trainee";
+        {{/if}}
 
-    $(document).ready(function() {
-        // update page classes
-        $('div.gh-page').addClass(`${memberPlan}`);
-    });
+        $(document).ready(function() {
+            // update page classes
+            $('div.gh-page').addClass(`${memberPlan}`);
+        });
 
-</script>
+    </script>
 {{/if}}
