@@ -77,11 +77,17 @@
             "xs": {
                 "width": 100
             },
+            "book-cover": {
+                "width": 200
+            },
             "s": {
                 "width": 300
             },
             "m": {
                 "width": 600
+            },
+            "post-card": {
+                "width": 900
             },
             "l": {
                 "width": 1200
