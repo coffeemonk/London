@@ -11,10 +11,6 @@ button,
     padding: 0 var(--height);
     border: 0;
     border-radius: var(--radius);
-    /* cursor: pointer; */
-    /* font-family: var(--font-sans-serif); */
-    /* font-size: var(--font-small); */
-    /* font-weight: var(--font-regular); */
     line-height: var(--line-loose);
     text-align: center;
     text-decoration: none;
@@ -26,38 +22,44 @@ button,
     background-color: transparent;
     box-shadow: inset 0 0 0 2px var(--color-primary);
 
+    svg {
+        fill: var(--color-primary);
+        height: 1em;
+        width: 1em;
+        min-height: 15px;
+        min-width: 15px;
+    }
+
     &.fit {
         width: 100%;
     }
-
     &.small {
         height: var(--height);
         line-height: var(--height);
         padding: 0 1em;
         font-size: var(--font-smaller);
     }
-
     &.large {
         height: var(--height);
         line-height: var(--height);
         padding: 0 3em;
         font-size: var(--font-big);
     }
-
     &.disabled,
     &:disabled {
         pointer-events: none;
         opacity: 0.4;
     }
-
     &:hover,
     &:focus {
         text-decoration: none;
         color: var(--color-text-onPrimary);
         background-color: var(--color-primary);
         box-shadow: inset 0 0 0 2px var(--color-primary);
-        transition: var(--transition);
         outline: var(--color-primary);
+        svg {
+            fill: var(--color-text-onPrimary);
+        }
     }
 
     &.primary {

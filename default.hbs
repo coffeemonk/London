@@ -14,10 +14,17 @@
         {{!-- Fonts --}}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&display=swap">
+        {{!-- Mulish --}}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400&display=swap" media="print" onload="this.media='all'" />
+        {{!-- Venera --}}
+        <link rel="preload" as="font" type="font/woff2" href="{{asset "fonts/venera/Venera700.woff2"}}" />
 
         {{!-- Styles'n'Scripts --}}
+        <link rel="stylesheet" type="text/css" href="{{asset "built/vars.css"}}" />
+        <link rel="stylesheet" type="text/css" href="{{asset "built/critical.css"}}" />
         <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}" />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,600;0,700;0,800;1,400;1,700&display=swap" media="all" />
 
         {{!-- This tag outputs SEO meta+structured data and other important settings --}}
         {{ghost_head}}
@@ -128,7 +135,7 @@
 
         <div class="modal-wrapper">
             <div class="modal">
-                <i class="close fa fa-times" onClick="closeModal()"></i>
+                <i class="close" onClick="closeModal()">{{> "icons/close"}}</i>
                 <h5 class="modal-title"></h5>
                 <div class="modal-content"></div>
             </div>

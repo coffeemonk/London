@@ -10,6 +10,31 @@
     background-color: var(--light-gray);
     color: var(--color-text-onLight);
 
+    .play {
+        display: block;
+    }
+    .pause,
+    .loader {
+        display: none;
+    }
+    &.playing {
+        .play {
+            display: none;
+        }
+        .pause {
+            display: block;
+        }
+    }
+    &.loading {
+        .play,
+        .pause {
+            display: none;
+        }
+        .loader {
+            display: block;
+        }
+    }
+
     .wrapper {
         flex-grow: 1;
         overflow: hidden;
@@ -67,6 +92,8 @@
                 .button {
                     margin-right: 5px;
                     line-height: var(--line-tight);
+                    min-height: 25px;
+                    font-size: clamp(15px, var(--font-smaller));
                 }
             }
             .time {
@@ -112,8 +139,25 @@
             display:flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
+
             background-color: var(--color-primary);
             color: var(--color-text-onPrimary);
+
+            svg {
+                fill: var(--color-text-onPrimary);
+                height: calc(var(--play-size) * 1.5);
+                width: calc(var(--play-size) * 1.5);
+                min-height: 15px;
+                min-width: 15px;
+            }
+            &:hover {
+                color: var(--color-primary);
+                background-color: var(--color-text-onPrimary);
+                svg {
+                    fill: var(--color-primary);
+                }
+            }
 
             --loader-size: 2em;
             .loader,
@@ -125,7 +169,6 @@
                 height: var(--loader-size);
             }
             .loader {
-                display: none;
                 color: var(--color-text-onPrimary);
                 text-indent: -9999em;
                 margin: 4px auto 0;
@@ -254,13 +297,27 @@
             z-index: 900;
             display: block;
             position: absolute;
-            top: .25em;
-            right: .25em;
-            width: 1em;
-            height: 1em;
+            font-size: .8em;
+            top: 0.3em;
+            right: 0.3em;
+            width: 1.4em;
+            height: 1.4em;
             padding: 0;
+            border-radius: 3px;
             box-shadow: none;
             line-height: 1em;
+            svg {
+                position: absolute;
+                top: 0.2em;
+                left: 0.2em;
+                width: 1em;
+                height: 1em;
+            }
+            &:hover{
+                .svg {
+                    fill: var(--color-text-onPrimary);
+                }
+            }
         }
     }
     .player-opened & {

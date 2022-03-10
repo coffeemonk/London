@@ -16,7 +16,7 @@
 
     --color-light:      #F4F0F9; /* Magnolia */
     --color-dark:       #1C112C; /* Dark Purple */
-    --color-primary:    #8256BF; /* Royal Purple */
+    --color-primary:    var(--ghost-accent-color, #8256BF); /* Royal Purple */
     --color-secondary:  var(--blue);
     --color-tertiary:   var(--green);
 
@@ -33,21 +33,11 @@
     --highlight:    var(--color-primary);
     --reverse-text: var(--color-light);
     --reverse-bg:   var(--dark-gray);
+    --reverse-highlight:  var(--medium-gray);
     --field-text:   var(--black);
     --field-bg:     var(--light-gray);
     --shadow:       var(--light-gray);
     --shade:        var(--light-gray-shade);
-
-    transition: background-color 0.5s ease-in-out;
-    transition: color 0.5s ease-in-out;
-    .site-head .container a.logo {
-        img.light {
-            display: block;
-        }
-        img.dark {
-            display: none;
-        }
-    }
 }
 /* Dark Theme */
 :root.theme-dark {
@@ -59,21 +49,11 @@
     --highlight:    var(--color-primary);
     --reverse-text: var(--color-text-onLight);
     --reverse-bg:   var(--color-light);
+    --reverse-highlight:  var(--light-gray);
     --field-text:   var(--reverse-text);
     --field-bg:     var(--reverse-bg);
     --shadow:       var(--black);
     --shade:        var(--black-shade);
-    transition: background-color 0.5s ease-in-out;
-    transition: color 0.5s ease-in-out;
-
-    .site-head .container a.logo {
-        img.light {
-            display: none;
-        }
-        img.dark {
-            display: block;
-        }
-    }
 }
 /* Auto Dark Theme based on OS/browser settings */
 @media (prefers-color-scheme: dark) {
@@ -86,27 +66,17 @@
         --highlight:    var(--color-primary);
         --reverse-text: var(--color-text-onLight);
         --reverse-bg:   var(--color-light);
+        --reverse-highlight:  var(--light-gray);
         --field-text:   var(--reverse-text);
         --field-bg:     var(--reverse-bg);
         --shadow:       var(--black);
         --shade:        var(--black-shade);
-
-        transition: background-color 0.5s ease-in-out;
-        transition: color 0.5s ease-in-out;
-    }
-    .site-head .container a.logo {
-        img.light {
-            display: none;
-        }
-        img.dark {
-            display: block;
-        }
     }
 }
 :root {
     /* Fonts */
     --font-fancy:   'Venera', sans-serif;
-    --font-sans-serif:  'Mulish', 'Muli', Lucida Sans Unicode, Lucida Grande, Helvetica, Arial, sans-serif;
+    --font-sans-serif:  'Mulish', Lucida Sans Unicode, Lucida Grande, Helvetica, Arial, sans-serif;
     --font-serif:   Georgia, Times, serif;
     --font-mono:    Menlo, Courier, monospace;
     --font-light:   100;
@@ -165,5 +135,5 @@
 
 
     /* Misc */
-    --transition: all 0.4s ease-out;
+    --transition: all 0.5s ease-in-out;
 }
