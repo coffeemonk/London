@@ -2,25 +2,7 @@
 /* ---------------------------------------------------------- */
 
 .post-feed {
-    display:    flex;
-    flex-wrap:  wrap;
-    max-width:  1680px;
-    margin:     0 auto;
-    font-size:  var(--font-normal);
-    border-radius: .75em;
-    overflow:   hidden;
-
     .post-card {
-        position:       relative;
-        display:        flex;
-        flex:           1 1 50%;
-        aspect-ratio:   var(--aspect-three-to-one);
-        padding-top:    var(--aspect-three-to-one-padding);
-        height:         auto;
-        background:     linear-gradient(135deg, #1f1f1f 0%, #111 100%) center center;
-        background-size: cover;
-        overflow:       hidden;
-        counter-increment: posts;
 
         .link {
             flex:       1 1 auto;
@@ -130,53 +112,6 @@
                 letter-spacing: -0.1em;
                 color: rgba(0,0,0,0.2);
             }
-            &.subscribe-form {
-                &:before {
-                    content: "";
-                }
-                border: 0;
-                margin: 0;
-                padding: var(--padding-large);
-                flex-direction: column;
-                justify-content: center;
-
-                .title {
-                    font-family: var(--font-fancy);
-                    font-size: clamp(var(--font-h5), 5.25vw, var(--font-h1));
-                    max-width: 100%;
-                }
-                .title,
-                .description {
-                    margin-bottom: clamp(.25em, 1.5vw, 2em);
-                    color: var(--color-text-onDark);
-                    text-align: center;
-                }
-                form {
-                    width: 100%;
-                    font-size: var(--font-normal);
-
-                    .form-group {
-                        flex-direction: column;
-
-                        .subscribe-name {
-                            display: block;
-                            margin-bottom: .25em;
-                        }
-                        .subscribe-email {
-                            margin-right: .5em;
-                        }
-                    }
-
-                    &.success .message-success,
-                    &.invalid .message-error,
-                    &.error .message-error {
-                        font-size: var(--font-small);
-                    }
-                }
-                .description {
-                    font-size: var(--font-normal);
-                }
-            }
             &.about {
                 aspect-ratio: var(--aspect-three-to-one);
                 padding-top: var(--aspect-three-to-one-padding);
@@ -212,8 +147,6 @@
 
         /* Book Cards */
         &.book {
-            background: none;
-            min-height: 360px;
             .content {
                 background: none;
             }
@@ -256,62 +189,10 @@
         }
 
     }
-    &.page-books .post-card.book {
-        flex-basis: 33%;
-    }
     /* -- Feature first book on home page in own row --
      &.home .post-card.tag-hash-books:first-child {
         flex: 1 1 100%;
         aspect-ratio: var(--aspect-three-to-one);
         padding-top: var(--aspect-three-to-one-padding);
     } */
-}
-.theme-dark .post-feed .post-card.with-image {
-    opacity: .8;
-    transition: opacity .5s ease-out;
-}
-@media (max-width:1280px) {
-    .post-feed.page-books .post-card.book {
-        flex-basis: 50%;
-    }
-}
-@media (min-width:741px) {
-    .post-feed .post-card.no-image {
-        &.about .content p {
-            font-size: clamp(.7rem,1.7vw,1.5rem);
-        }
-        &.subscribe-form {
-            .title {
-                font-size: clamp(var(--font-h5), 3vw, var(--font-h1));
-            }
-        }
-    }
-}
-@media (max-width: 740px) {
-    .post-feed .post-card,
-    .post-feed .post-card.small,
-    .post-feed .post-card.large,
-    .post-feed .post-card.no-image.about,
-    .post-feed.home .post-card.tag-hash-books:first-child,
-    .post-feed.page-books .post-card.book {
-        flex: 1 1 100%;
-        aspect-ratio: var(--aspect-wide);
-        padding-top: var(--aspect-wide-padding);
-        height: auto;
-
-        &.no-image {
-            &:before {
-                font-size: 50vw;
-            }
-        }
-    }
-}
-@media (max-width: 480px) {
-    .post-feed .post-card {
-        &.with-image {
-            .content {
-                opacity: 1;
-            }
-        }
-    }
 }

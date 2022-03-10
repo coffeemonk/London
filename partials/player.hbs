@@ -1,7 +1,9 @@
 <div class="audioPlayer {{#if is_external}} external{{else}} episode{{#unless feature_image}} no-thumbnail{{/unless}}{{/if}}{{#unless @member.paid}} non-member{{/unless}}"
     {{#if @member.paid}}
-        data-url="https://audio.matthewrasnake.com/podcast/{{tags.[1].slug}}/{{comment_id}}.mp3"
-        data-id="{{comment_id}}">
+        {{#if comment_id}}
+            data-url="https://audio.matthewrasnake.com/podcast/{{tags.[1].slug}}/{{comment_id}}.mp3"
+            data-id="{{comment_id}}"
+        {{/if}}>
         <audio class="audio" {{#unless is_external}} src="https://audio.matthewrasnake.com/podcast/{{tags.[1].slug}}/{{comment_id}}.mp3"{{/unless}}></audio>
     {{else}}
         >
@@ -15,16 +17,20 @@
         </div>
         <div class="controls">
             <div class="buttons">
-                <button class="button small play js-play"><i class="fa fa-play"></i></button>
-                <button class="button small secondary backward"><i class="fa fa-fast-backward"></i></button>
+                <button class="button small secondary backward">{{> "icons/replay_10"}}</button>
+                <button class="button small js-play">
+                    <span class="play">{{> "icons/play"}}</span>
+                    <span class="pause">{{> "icons/pause"}}</span>
+                </button>
+                {{!-- <button class="button small pause js-play"></button> --}}
+                <button class="button small secondary forward">{{> "icons/forward_30"}}</button>
                 <button class="button small secondary speed">1x</button>
-                <button class="button small secondary forward"><i class="fa fa-fast-forward"></i></button>
             </div>
             <div class="time">
                 <span class="current">00:00:00</span>
                 <span class="duration">00:00:00</span>
             </div>
         </div>
-        <button class="button close"><i class="fa fa-times"></i></button>
+        <button class="button close">{{> "icons/close" }}</button>
     </div>
 </div>
