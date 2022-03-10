@@ -223,11 +223,14 @@
     &.member {
         .checkout-form .checkout-box .checkout-plan {
             .yearly& {
-                .monthly {
-                    display: none;
-                }
-                .yearly {
-                    display: block;
+                .plan-header,
+                .plan-footer {
+                    .monthly {
+                        display: none;
+                    }
+                    .yearly {
+                        display: block;
+                    }
                 }
             }
             .plan-footer {
@@ -257,9 +260,12 @@
                     h6 {
                         display: block;
                     }
-                    .monthly,
-                    .yearly {
-                        display: none;
+                    .plan-header,
+                    .plan-footer {
+                        .monthly,
+                        .yearly {
+                            display: none;
+                        }
                     }
                 }
                 &.plan-astronaut{
@@ -281,9 +287,12 @@
                     h6 {
                         display: block;
                     }
-                    .monthly,
-                    .yearly {
-                        display: none;
+                    .plan-header,
+                    .plan-footer {
+                        .monthly,
+                        .yearly {
+                            display: none;
+                        }
                     }
                 }
                 &.plan-colonist {
@@ -305,10 +314,13 @@
                     h6 {
                         display: block;
                     }
-                    .monthly,
-                    .yearly,
-                    .upgrade {
-                        display: none;
+                    .plan-header,
+                    .plan-footer {
+                        .monthly,
+                        .yearly,
+                        .upgrade {
+                            display: none;
+                        }
                     }
                 }
                 &.plan-explorer {
@@ -389,7 +401,6 @@
     	}
     }
 }
-
 
 /* Testimonials */
 /* ------------ */

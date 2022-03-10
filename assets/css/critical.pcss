@@ -1,0 +1,346 @@
+/* Critical Styles */
+/* ---------------------------------------------------------- */
+
+@import "vars.css";
+@import "components/global.css";
+@import "components/hamburger.css";
+@import "components/3d-book-cover.pcss";
+
+/* Critical Theme Styles */
+:root {
+    &.theme-default,
+    &.theme-light,
+    &.theme-dark {
+        transition: background-color 0.5s ease-in-out;
+        transition: color 0.5s ease-in-out;
+    }
+    &.theme-default,
+    &.theme-light {
+        .site-head .container a.logo {
+            img.light {
+                display: block;
+            }
+            img.dark {
+                display: none;
+            }
+        }
+    }
+    &.theme-dark {
+        .site-head .container a.logo {
+            img.light {
+                display: none;
+            }
+            img.dark {
+                display: block;
+            }
+        }
+    }
+}
+/* Auto Dark Theme based on OS/browser settings */
+@media (prefers-color-scheme: dark) {
+    :root.theme-default {
+        .site-head .container a.logo {
+            img.light {
+                display: none;
+            }
+            img.dark {
+                display: block;
+            }
+        }
+    }
+    :root.theme-light {
+        .site-head .container a.logo {
+            background-color: transparent;
+            background-image: url(https://images.matthewrasnake.com/logo_MatthewRasnake-Author.png);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            opacity: .75;
+            img {
+                visibility: hidden;
+            }
+        }
+    }
+}
+
+
+/* Critical Fonts */
+@font-face {
+    font-family:'Venera';
+	src: url('/assets/fonts/venera/Venera700.woff2') format('woff2'),
+		url('/assets/fonts/venera/Venera700.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-00FE;
+}
+.fancy {
+    font-family: var(--font-fancy);
+}
+
+/* Critical Reset & Base Defaults */
+
+/* Critical Layout */
+body {
+    font-family: var(--font-sans-serif);
+    background: var(--bg);
+    transition: background 0.3s ease-out;
+    transition-delay: 0.25;
+}
+.img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 100%;
+}
+.hidden {
+    visibility: hidden;
+    position: absolute;
+    text-indent: -9999px;
+}
+.center {
+    text-align: center;
+}
+
+.site-wrapper {
+    padding: var(--padding);
+    min-height: 100vh;
+    max-width: 1920px;
+    margin: 0 auto;
+
+    .site-main {
+        margin-bottom: var(--margin);
+        min-height: calc(100vh - 8.5rem);
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--margin);
+        }
+        .share {
+            font-size: var(--font-big);
+            text-align: center;
+        }
+        .member-banner {
+            display: none;
+        }
+        .tag-member-content .member-banner {
+            display: block;
+            background-color: var(--color-primary);
+            color: var(--color-text-onPrimary);
+            font-size: .6em;
+            line-height: 1em;
+            padding: .25em 1.75em;
+            text-align: center;
+            white-space: nowrap;
+            width: 13em;
+            height: 1.5em;
+            transform: rotate(-45deg);
+            position: absolute;
+            z-index: 200;
+            top: 3em;
+            left: -2.65em;
+            text-transform: uppercase;
+        }
+        .podcast-feed .tag-member-content .member-banner {
+            font-size: .5em;
+        }
+    }
+}
+
+.page-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4vw 0;
+    max-width: 70%;
+    margin: auto;
+    text-align: center;
+}
+.page-head-title {
+    margin: 0;
+    font-size: var(--font-bigger);
+    color: var(--text);
+
+    .has-serif-title & {
+        font-family: var(--font-serif);
+    }
+}
+.page-head-description {
+    margin: 0 0 1.6vw;
+    color: color(var(--border) l(-20%));
+    font-size: var(--font-h4);
+    line-height: 1.35em;
+}
+
+.page-body {
+    max-width: var(--medium);
+    margin: 0 auto;
+}
+
+.subscribe-button {
+    display: block;
+    padding: 4px 10px;
+    border: var(--border) 1px solid;
+    color: var(--text);
+    font-size: var(--font-small);
+    line-height: 1em;
+    border-radius: 10px;
+    opacity: 0.8;
+    :hover {
+        text-decoration: none;
+        opacity: 1;
+    }
+}
+.modal-wrapper {
+    display: none;
+}
+
+.post-feed {
+    display:    flex;
+    flex-wrap:  wrap;
+    max-width:  var(--xlarge);
+    margin:     0 auto;
+    font-size:  var(--font-normal);
+    border-radius: .75em;
+    overflow:   hidden;
+
+    .post-card {
+        position:       relative;
+        display:        flex;
+        flex:           1 1 50%;
+        aspect-ratio:   var(--aspect-three-to-one);
+        padding-top:    var(--aspect-three-to-one-padding);
+        height:         auto;
+        background:     linear-gradient(135deg, #1f1f1f 0%, #111 100%) center center;
+        background-size: cover;
+        overflow:       hidden;
+        counter-increment: posts;
+        &.no-image {
+            &.subscribe-form {
+                &:before {
+                    content: "";
+                }
+                border: 0;
+                margin: 0;
+                padding: var(--padding-large);
+                flex-direction: column;
+                justify-content: center;
+
+                .title {
+                    font-family: var(--font-fancy);
+                    font-size: clamp(var(--font-h5), 5.25vw, var(--font-h1));
+                    max-width: 100%;
+                }
+                .title,
+                .description {
+                    margin-bottom: clamp(.25em, 1.5vw, 2em);
+                    color: var(--color-text-onDark);
+                    text-align: center;
+                }
+                form {
+                    width: 100%;
+                    font-size: var(--font-normal);
+
+                    .form-group {
+                        flex-direction: column;
+
+                        .subscribe-name {
+                            display: block;
+                            margin-bottom: .25em;
+                        }
+                        .subscribe-email {
+                            margin-right: .5em;
+                        }
+                    }
+
+                    &.success .message-success,
+                    &.invalid .message-error,
+                    &.error .message-error {
+                        font-size: var(--font-small);
+                    }
+                }
+                .description {
+                    font-size: var(--font-normal);
+                }
+            }
+        }
+        &.book {
+            background: none;
+            min-height: 360px;
+        }
+    }
+
+    &.page-books .post-card.book {
+        flex-basis: 33%;
+    }
+}
+.theme-dark .post-feed .post-card.with-image {
+    opacity: .8;
+    transition: opacity .5s ease-out;
+}
+
+/* Critical Media Queries */
+/* ---------------------------------------------------------- */
+@media (max-width:1280px) {
+    .post-feed.page-books .post-card.book {
+        flex-basis: 50%;
+    }
+}
+@media (min-width:741px) {
+    .post-feed .post-card.no-image {
+        &.about .content p {
+            font-size: clamp(.7rem,1.7vw,1.5rem);
+        }
+        &.subscribe-form {
+            .title {
+                font-size: clamp(var(--font-h5), 3vw, var(--font-h1));
+            }
+        }
+    }
+}
+@media (max-width: 740px) {
+    .post-feed .post-card,
+    .post-feed .post-card.small,
+    .post-feed .post-card.large,
+    .post-feed .post-card.no-image.about,
+    .post-feed.home .post-card.tag-hash-books:first-child,
+    .post-feed.page-books .post-card.book {
+        flex: 1 1 100%;
+        aspect-ratio: var(--aspect-wide);
+        padding-top: var(--aspect-wide-padding);
+        height: auto;
+
+        &.no-image {
+            &:before {
+                font-size: 50vw;
+            }
+        }
+    }
+}
+@media (max-width: 980px) {
+    .site-wrapper {
+        padding: var(--padding-large);
+        .site-main {
+            min-height: auto;
+        }
+    }
+}
+@media (max-width: 480px) {
+    .page-head-title {
+        font-size: var(--font-h4);
+    }
+    .page-head-description {
+        font-size: var(--font-h6);
+    }
+    .post-feed .post-card {
+        &.with-image {
+            .content {
+                opacity: 1;
+            }
+        }
+    }
+}

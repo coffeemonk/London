@@ -234,13 +234,36 @@
             .item:not(:first-child) {
                 margin-left: .5em;
             }
+            .item{
+                &:hover {
+                    text-decoration: none;
+                    svg {
+                        fill: var(--reverse-highlight);
+                    }
+                }
+                svg {
+                    width: 1em;
+                    height: 1em;
+                    fill: var(--highlight);
+                }
+            }
         }
     }
     .post-nav {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        .item.next {
-            text-align: right;
+        .item{
+            &.next {
+                text-align: right;
+            }
+            .link {
+                svg {
+                    width: 1em;
+                    height: 1em;
+                    fill: var(--color-primary);
+                    padding-bottom: 0.1em;
+                }
+            }
         }
     }
     .modal-content {

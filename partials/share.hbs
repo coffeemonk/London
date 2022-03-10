@@ -1,26 +1,41 @@
 <div class="share">
     {{#if podcast}}
-        <a class="item rss" href="https://audio.matthewrasnake.com/podcast?user={{encode @member.email}}" target="_blank" rel="noopener" title="Members Only Podcast Feed — Please Don't Share!">
-            <i class="fa fa-rss-square"></i>
-        </a>
+        <a href="https://audio.matthewrasnake.com/podcast?user={{encode @member.email}}"
+            class="item rss"
+            target="_blank"
+            rel="noopener"
+            title="Members Only Podcast Feed — Please Don't Share!"
+            >{{> "icons/rss" }}</a>
     {{else}}
-        <a class="item facebook"
-            href="https://www.facebook.com/sharer.php?u={{url absolute="true"}}" target="_blank" rel="noopener"><i
-                class="fab fa-facebook-square"></i></a>
-        <a class="item twitter"
-            href="https://twitter.com/intent/tweet?url={{url absolute="true"}}&text={{encode title}}" target="_blank" rel="noopener"><i
-                class="fab fa-twitter-square"></i></a>
-        <a class="item pinterest"
-            href="https://pinterest.com/pin/create/button/?url={{url absolute="true"}}&media={{feature_image}}&description={{encode title}}"
-            target="_blank" rel="noopener" data-pin-do="none"><i class="fab fa-pinterest-square"></i></a>
-        <a class="item linkedin"
-            href="https://www.linkedin.com/shareArticle?mini=true&url={{url absolute="true"}}&title={{encode title}}"
-            target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
-        <a class="item reddit"
-            href="https://reddit.com/submit?url={{url absolute="true"}}&title={{encode title}}" target="_blank" rel="noopener"><i
-                class="fab fa-reddit-square"></i></a>
-        <a class="item tumblr"
-            href="https://www.tumblr.com/widgets/share/tool?canonicalUrl={{url absolute="true"}}&title={{encode title}}"
-            target="_blank" rel="noopener"><i class="fab fa-tumblr-square"></i></a>
+        <a href="https://www.facebook.com/sharer.php?u={{url absolute="true"}}"
+            class="item facebook"
+            target="_blank"
+            rel="noopener"
+            >{{> "icons/share/facebook" }}</a>
+        <a href="https://twitter.com/intent/tweet?url={{url absolute="true"}}&text={{encode title}}"
+            class="item twitter"
+            target="_blank"
+            rel="noopener"
+            >{{> "icons/share/twitter" }}</a>
+        <a href="https://pinterest.com/pin/create/button/?url={{url absolute="true"}}&media={{feature_image}}&description={{encode title}}"
+            class="item pinterest"
+            target="_blank" rel="noopener"
+            data-pin-do="none"
+            >{{> "icons/share/pinterest" }}</a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{url absolute="true"}}&title={{encode title}}"
+            class="item linkedin"
+            target="_blank"
+            rel="noopener"
+            >{{> "icons/share/linkedin" }}</a>
+        <a href="https://reddit.com/submit?url={{url absolute="true"}}&title={{encode title}}"
+            class="item reddit"
+            target="_blank"
+            rel="noopener"
+            >{{> "icons/share/reddit" }}</a>
+        <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl={{url absolute="true"}}&title={{encode title}}"
+            class="item tumblr"
+            target="_blank"
+            rel="noopener"
+            >{{> "icons/share/tumblr" }}</a>
     {{/if}}
 </div>
