@@ -5,7 +5,7 @@
         member
         {{#if @member.paid}}
             {{#foreach @member.subscriptions as |sub|}}
-                {{#match sub.status "=" "active"}}
+                {{#match sub.status "active"}}
                     {{plan.interval}}ly
                 {{/match}}
             {{/foreach}}
@@ -14,8 +14,7 @@
         {{/if}}
     {{else}}
         monthly
-    {{/if}}"
->
+    {{/if}}">
     <div class="gh-container">
         <div class="checkout-form">
             <h1 class="checkout-title">Join the Adventure!</h1>
@@ -163,7 +162,7 @@
                 instructions for requesting cancellation of complimentary
                 membership
             2. Update "Join" page for existing paid members to include instructions for
-                for requesting cancellation of their current membership so they can re-sign-up
+                requesting cancellation of their current membership so they can re-sign-up
                 under a different plan
         */
         $(document).ready(function() {
