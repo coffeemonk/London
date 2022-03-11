@@ -1,9 +1,16 @@
 {{#if @member}}
     <script data-swup-reload-script>
+        var memberPlan = "trainee";
         {{#if @member.paid}}
-            var memberPlan = ""{{#foreach @products visibility="all" as |product|}}{{#foreach @member.subscriptions as |sub|}}{{#match sub.price.product.product_id "=" product.id}}{{#match sub.status "!=" "canceled"}}+ '{{product.name}}'.toLowerCase();{{/match}}{{/match}}{{/foreach}}{{/foreach}}
-        {{else}}
-            var memberPlan = "trainee";
+            {{#foreach @products visibility="all" as |product|}}
+                {{#foreach @member.subscriptions as |sub|}}
+                    {{#match sub.tier.slug "=" product.slug}}
+                        {{#match sub.status "!=" "canceled"}}
+        memberPlan = '{{product.name}}'.toLowerCase();
+                        {{/match}}
+                    {{/match}}
+                {{/foreach}}
+            {{/foreach}}
         {{/if}}
 
         $(document).ready(function() {

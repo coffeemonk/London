@@ -10,13 +10,12 @@
             {{#if @member.paid}}
                 {{#foreach @products visibility="all" as |product|}}
                     {{#foreach @member.subscriptions as |sub|}}
-                        {{#match sub.price.product.product_id "=" product.id}}
+                        {{#match sub.tier.slug "=" product.slug}}
                             {{#match sub.status "!=" "canceled"}}
-                                {{#match plan.amount "!=" 0}}
-                                    {{product.name}}
-                                {{/match}}
                                 {{#match plan.amount "=" 0}}
                                     Friend
+                                {{else}}
+                                    {{product.name}}
                                 {{/match}}
                             {{/match}}
                         {{/match}}
@@ -32,7 +31,7 @@
                     {{!-- Logged in, paying member: Show account info --}}
                     {{#foreach @products visibility="all" as |product|}}
                         {{#foreach @member.subscriptions as |sub|}}
-                            {{#match sub.price.product.product_id "=" product.id}}
+                            {{#match sub.tier.slug "=" product.slug}}
                                 {{#match sub.status "!=" "canceled"}}
                                     <div class="status {{status}}">
                                         <p>
@@ -50,11 +49,10 @@
                                             <div class="detail plan" data-amount="{{plan.amount}}" data-interval="{{plan.interval}}">
                                                 <label class="label">Your plan: </label>
                                                 <span class="content plan-is-by-{{plan.interval}}">
-                                                    {{#match plan.amount "!=" 0}}
-                                                        {{product.name}}
-                                                    {{/match}}
                                                     {{#match plan.amount "=" 0}}
                                                         Complimentary
+                                                    {{else}}
+                                                        {{product.name}}
                                                     {{/match}} &mdash; {{price plan currency=currency}}/{{plan.interval}}
                                                 </span>
                                             </div>
