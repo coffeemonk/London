@@ -10,7 +10,7 @@
             {{#if @member.paid}}
                 {{#foreach @products visibility="all" as |product|}}
                     {{#foreach @member.subscriptions as |sub|}}
-                        {{#match sub.tier.slug "=" product.slug}}
+                        {{#match sub.tier.slug product.slug}}
                             {{#match sub.status "!=" "canceled"}}
                                 {{#match plan.amount "=" 0}}
                                     Friend
@@ -31,7 +31,7 @@
                     {{!-- Logged in, paying member: Show account info --}}
                     {{#foreach @products visibility="all" as |product|}}
                         {{#foreach @member.subscriptions as |sub|}}
-                            {{#match sub.tier.slug "=" product.slug}}
+                            {{#match sub.tier.slug product.slug}}
                                 {{#match sub.status "!=" "canceled"}}
                                     <div class="status {{status}}">
                                         <p>
