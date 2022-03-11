@@ -11,13 +11,13 @@
 <div style="display:none;">
     products
     {{#each @products as |product|}}
-        {{product.slug}}
+        {{product.slug}} — {{product.id}}
     {{/each}}
 </div>
 <div style="display:none;">
     subs
     {{#each @member.subscriptions as |sub|}}
-        tier: {{sub.tier.slug}}
+        tier: {{sub.tier.slug}} — {{sub.tier.id}}
     {{/each}}
 </div>
                 {{#foreach @products visibility="all" as |product|}}
