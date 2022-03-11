@@ -8,6 +8,18 @@
     <div class="page-body gh-page member">
         <h3 class="title member-welcome">Welcome,
             {{#if @member.paid}}
+<div style="display:none;">
+    products
+    {{#each @products as |product|}}
+        {{product.slug}}
+    {{/each}}
+</div>
+<div style="display:none;">
+    subs
+    {{#each @member.subscriptions as |sub|}}
+        tier: {{sub.tier.slug}}
+    {{/each}}
+</div>
                 {{#foreach @products visibility="all" as |product|}}
                     {{#foreach @member.subscriptions as |sub|}}
                         {{#match sub.tier.slug product.slug}}
