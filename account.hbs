@@ -8,34 +8,22 @@
     <div class="page-body gh-page member">
         <h3 class="title member-welcome">Welcome,
             {{#if @member.paid}}
-<div style="display:none;">
-    products
-    {{#each @products as |product|}}
-        {{product.slug}} — {{product.id}}
-    {{/each}}
-</div>
-<div style="display:none;">
-    subs
-    {{#each @member.subscriptions as |sub|}}
-        tier: {{sub.tier.slug}} — {{sub.tier.id}}
-    {{/each}}
-</div>
                 {{#foreach @products visibility="all" as |product|}}
                     {{#foreach @member.subscriptions as |sub|}}
                         {{#match sub.tier.slug product.slug}}
                             {{#match sub.status "!=" "canceled"}}
                                 {{#match plan.amount "=" 0}}
-                                    Friend
+                                    Friend!
                                 {{else}}
-                                    {{product.name}}
+                                    {{product.name}}!
                                 {{/match}}
                             {{/match}}
                         {{/match}}
                     {{/foreach}}
                 {{/foreach}}
             {{else}}
-                Recruit
-            {{/if}}!
+                Recruit!
+            {{/if}}
         </h3>
         <div class="member-box">
             <div class="subscription">
