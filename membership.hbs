@@ -25,93 +25,11 @@
             </div>
             <div class="checkout-box">
                 {{#foreach @products visibility="all" as |product|}}
-                    {{^has slug="61ee9601d75b32002f171fbb"}}
-                        {{^has slug="free"}}
-                            <div class="checkout-plan plan-{{slug}}">
-                                <header class="plan-header">
-                                    <h3>{{name}}</h3>
-                                    {{#if product.monthly_price}}
-                                        <span class="price monthly"><span>$</span><strong>{{price product.monthly_price.amount}}</strong> / month</span>
-                                    {{/if}}
-                                    {{#if product.yearly_price}}
-                                        <span class="price yearly"><span>$</span><strong>{{price product.yearly_price.amount}}</strong> / year</span>
-                                    {{/if}}
-                                </header>
-                                <div class="plan-content">
-                                    <b class="tagline">
-                                        {{#has slug="astronaut"}}
-                                            Light that candle!
-                                        {{else has slug="colonist"}}
-                                            Build a brave new world!
-                                        {{else has slug="explorer"}}
-                                            See what's out there...
-                                        {{/has}}
-                                    </b>
-                                    <p class="intro">{{description}}</p>
-                                    <b>Includes:</b>
-                                    <ul>
-                                        {{#has slug="astronaut"}}
-                                            <li class="benefit-new">Pre-release eBook downloads</li>
-                                            <li class="benefit-new">Acknowledgement as a patron</li>
-                                            <li class="benefit-new yearly">As an annual patron, get one month free!</li>
-                                            <li class="benefit-prior">Email newsletter with public and member-exclusive content</li>
-                                            <li class="benefit-prior">Site membership with access to patron-exclusive content</li>
-                                            <li class="benefit-prior"><a href="javascript:scrollToStories()">Two free sci-fi-short stories!</a></li>
-                                        {{else has slug="colonist"}}
-                                            <li class="benefit-new">A patron-exclusive podcast featuring audio of original short stories and novels, read by me</li>
-                                            <li class="benefit-new yearly">As an annual patron, get one month free!</li>
-                                            <li class="benefit-prior">Pre-release eBook downloads</li>
-                                            <li class="benefit-prior">Acknowledgement as a patron</li>
-                                            <li class="benefit-prior">Email newsletter with public and member-exclusive content</li>
-                                            <li class="benefit-prior">Site membership with access to patron-exclusive content</li>
-                                            <li class="benefit-prior"><a href="javascript:scrollToStories()">Two free sci-fi-short stories!</a></li>
-                                        {{else has slug="explorer"}}
-                                            <li class="benefit-new">A signed paperback copy of any book(s) released while you're a patron</li>
-                                            <li class="benefit-new yearly">As an annual patron, get one month free!</li>
-                                            <li class="benefit-prior">Patron-exclusive podcast</li>
-                                            <li class="benefit-prior">Pre-release eBook downloads</li>
-                                            <li class="benefit-prior">Acknowledgement as a patron</li>
-                                            <li class="benefit-prior">Email newsletter with public and member-exclusive content</li>
-                                            <li class="benefit-prior">Site membership with access to patron-exclusive content</li>
-                                            <li class="benefit-prior"><a href="javascript:scrollToStories()">Two free sci-fi-short stories!</a></li>
-                                        {{/has}}
-                                    </ul>
-                                </div>
-                                <footer class="plan-footer">
-                                    <a class="button monthly primary fit" href="#/portal/signup/{{id}}/monthly/">
-                                        {{#has slug="astronaut"}}
-                                            <span class="upgrade">Upgrade to Astronaut</span>
-                                            <span class="become">Chase the Stars</span>
-                                        {{else has slug="colonist"}}
-                                            <span class="upgrade">Upgrade to Colonist</span>
-                                            <span class="become">Build a World</span>
-                                        {{else has slug="explorer"}}
-                                            <span class="upgrade">Upgrade to Explorer</span>
-                                            <span class="become">Push the Boundaries</span>
-                                        {{/has}}
-                                    </a>
-                                    <a class="button yearly primary fit" href="#/portal/signup/{{id}}/yearly/">
-                                        {{#has slug="astronaut"}}
-                                            <span class="upgrade">Upgrade to Astronaut</span>
-                                            <span class="become">Chase the Stars</span>
-                                        {{else has slug="colonist"}}
-                                            <span class="upgrade">Upgrade to Colonist</span>
-                                            <span class="become">Build a World</span>
-                                        {{else has slug="explorer"}}
-                                            <span class="upgrade">Upgrade to Explorer</span>
-                                            <span class="become">Push the Boundaries</span>
-                                        {{/has}}
-                                    </a>
-                                    <h6 class="fancy primary">You Rock!</h6>
-                                    <a class="manage primary" href="/account/">View Your Profile</a>
-                                </footer>
-                            </div>
-                        {{/has}}
-                    {{else}}
+                    {{#match product.type "free"}}
                         <div class="checkout-plan plan-trainee">
                             <header class="plan-header">
                                 <h3>Trainee</h3>
-                                <strong>&nbsp;</strong><span>FREE</span><strong>&nbsp;</strong>
+                                <span class="price monthly yearly"><strong>&nbsp;</strong><span>FREE</span><strong>&nbsp;</strong></span>
                             </header>
                             <div class="plan-content">
                                 <b class="tagline">The right stuff!</b>
@@ -136,7 +54,87 @@
                                 <a class="manage primary" href="/account/">View Your Profile</a>
                             </footer>
                         </div>
-                    {{/has}}
+                    {{else}}
+                        <div class="checkout-plan plan-{{slug}}">
+                            <header class="plan-header">
+                                <h3>{{name}}</h3>
+                                {{#if product.monthly_price}}
+                                    <span class="price monthly"><span>$</span><strong>{{price product.monthly_price.amount}}</strong> / month</span>
+                                {{/if}}
+                                {{#if product.yearly_price}}
+                                    <span class="price yearly"><span>$</span><strong>{{price product.yearly_price.amount}}</strong> / year</span>
+                                {{/if}}
+                            </header>
+                            <div class="plan-content">
+                                <b class="tagline">
+                                    {{#has slug="astronaut"}}
+                                        Light that candle!
+                                    {{else has slug="colonist"}}
+                                        Build a brave new world!
+                                    {{else has slug="explorer"}}
+                                        See what's out there...
+                                    {{/has}}
+                                </b>
+                                <p class="intro">{{description}}</p>
+                                <b>Includes:</b>
+                                <ul>
+                                    {{#has slug="astronaut"}}
+                                        <li class="benefit-new">Pre-release eBook downloads</li>
+                                        <li class="benefit-new">Acknowledgement as a patron</li>
+                                        <li class="benefit-new yearly">As an annual patron, get one month free!</li>
+                                        <li class="benefit-prior">Email newsletter with public and member-exclusive content</li>
+                                        <li class="benefit-prior">Site membership with access to patron-exclusive content</li>
+                                        <li class="benefit-prior"><a href="javascript:scrollToStories()">Two free sci-fi-short stories!</a></li>
+                                    {{else has slug="colonist"}}
+                                        <li class="benefit-new">A patron-exclusive podcast featuring audio of original short stories and novels, read by me</li>
+                                        <li class="benefit-new yearly">As an annual patron, get one month free!</li>
+                                        <li class="benefit-prior">Pre-release eBook downloads</li>
+                                        <li class="benefit-prior">Acknowledgement as a patron</li>
+                                        <li class="benefit-prior">Email newsletter with public and member-exclusive content</li>
+                                        <li class="benefit-prior">Site membership with access to patron-exclusive content</li>
+                                        <li class="benefit-prior"><a href="javascript:scrollToStories()">Two free sci-fi-short stories!</a></li>
+                                    {{else has slug="explorer"}}
+                                        <li class="benefit-new">A signed paperback copy of any book(s) released while you're a patron</li>
+                                        <li class="benefit-new yearly">As an annual patron, get one month free!</li>
+                                        <li class="benefit-prior">Patron-exclusive podcast</li>
+                                        <li class="benefit-prior">Pre-release eBook downloads</li>
+                                        <li class="benefit-prior">Acknowledgement as a patron</li>
+                                        <li class="benefit-prior">Email newsletter with public and member-exclusive content</li>
+                                        <li class="benefit-prior">Site membership with access to patron-exclusive content</li>
+                                        <li class="benefit-prior"><a href="javascript:scrollToStories()">Two free sci-fi-short stories!</a></li>
+                                    {{/has}}
+                                </ul>
+                            </div>
+                            <footer class="plan-footer">
+                                <a class="button monthly primary fit" href="#/portal/signup/{{id}}/monthly/">
+                                    {{#has slug="astronaut"}}
+                                        <span class="upgrade">Upgrade to Astronaut</span>
+                                        <span class="become">Chase the Stars</span>
+                                    {{else has slug="colonist"}}
+                                        <span class="upgrade">Upgrade to Colonist</span>
+                                        <span class="become">Build a World</span>
+                                    {{else has slug="explorer"}}
+                                        <span class="upgrade">Upgrade to Explorer</span>
+                                        <span class="become">Push the Boundaries</span>
+                                    {{/has}}
+                                </a>
+                                <a class="button yearly primary fit" href="#/portal/signup/{{id}}/yearly/">
+                                    {{#has slug="astronaut"}}
+                                        <span class="upgrade">Upgrade to Astronaut</span>
+                                        <span class="become">Chase the Stars</span>
+                                    {{else has slug="colonist"}}
+                                        <span class="upgrade">Upgrade to Colonist</span>
+                                        <span class="become">Build a World</span>
+                                    {{else has slug="explorer"}}
+                                        <span class="upgrade">Upgrade to Explorer</span>
+                                        <span class="become">Push the Boundaries</span>
+                                    {{/has}}
+                                </a>
+                                <h6 class="fancy primary">You Rock!</h6>
+                                <a class="manage primary" href="/account/">View Your Profile</a>
+                            </footer>
+                        </div>
+                    {{/match}}
                 {{/foreach}}
             </div>
         </div>
