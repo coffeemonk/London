@@ -1,17 +1,9 @@
 {{#if @member}}
     <script data-swup-reload-script>
         {{#if @member.paid}}
-            {{#foreach @products visibility="all" as |product|}}
-                {{#foreach @member.subscriptions as |sub|}}
-                    {{#match sub.price.product.product_id "=" product.id}}
-                        {{#match sub.status "!=" "canceled"}}
-        var memberPlan = '{{product.name}}'.toLowerCase();
-                        {{/match}}
-                    {{/match}}
-                {{/foreach}}
-            {{/foreach}}
+            var memberPlan = ""{{#foreach @products visibility="all" as |product|}}{{#foreach @member.subscriptions as |sub|}}{{#match sub.price.product.product_id "=" product.id}}{{#match sub.status "!=" "canceled"}}+ '{{product.name}}'.toLowerCase();{{/match}}{{/match}}{{/foreach}}{{/foreach}}
         {{else}}
-        var memberPlan = "trainee";
+            var memberPlan = "trainee";
         {{/if}}
 
         $(document).ready(function() {
