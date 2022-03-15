@@ -24,7 +24,7 @@
                 <span class="switch">&nbsp;</span>
             </div>
             <div class="checkout-box">
-                {{#foreach @products visibility="all" as |product|}}
+                {{#foreach @products as |product|}}
                     {{#match product.type "free"}}
                         <div class="checkout-plan plan-trainee">
                             <header class="plan-header">

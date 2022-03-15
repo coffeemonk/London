@@ -8,7 +8,7 @@
     <div class="page-body gh-page member">
         <h3 class="title member-welcome">Welcome,
             {{#if @member.paid}}
-                {{#foreach @products visibility="all" as |product|}}
+                {{#foreach @products as |product|}}
                     {{#foreach @member.subscriptions as |sub|}}
                         {{#match sub.tier.slug product.slug}}
                             {{#match sub.status "!=" "canceled"}}
@@ -29,7 +29,7 @@
             <div class="subscription">
                 {{#if @member.paid}}
                     {{!-- Logged in, paying member: Show account info --}}
-                    {{#foreach @products visibility="all" as |product|}}
+                    {{#foreach @products as |product|}}
                         {{#foreach @member.subscriptions as |sub|}}
                             {{#match sub.tier.slug product.slug}}
                                 {{#match sub.status "!=" "canceled"}}
