@@ -2,7 +2,7 @@
     <script data-swup-reload-script>
         var memberPlan = "trainee";
         {{#if @member.paid}}
-            {{#foreach @products visibility="all" as |product|}}
+            {{#foreach @products as |product|}}
                 {{#foreach @member.subscriptions as |sub|}}
                     {{#match sub.tier.slug product.slug}}
                         {{#match sub.status "!=" "canceled"}}
